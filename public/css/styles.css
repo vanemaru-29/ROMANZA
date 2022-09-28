@@ -1,0 +1,8 @@
+:root {
+    --dark-gray: rgb(33, 37, 41);
+}
+
+.banner-image {
+    background-image: url('../assets/webp/banner-image.webp');
+    background-size: cover;
+}
