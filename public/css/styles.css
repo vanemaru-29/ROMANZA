@@ -1,8 +1,37 @@
 :root {
     --dark-gray: rgb(33, 37, 41);
+    --dark-light: rgba(33, 37, 41, .5);
+    --red-cta: rgb(220, 53, 69);
 }
 
+/* inicio */
 .banner-image {
     background-image: url('../assets/webp/banner-image.webp');
+    background-repeat: no-repeat;
     background-size: cover;
+}
+
+/* login */
+.login__container {
+    background-color: var(--dark-gray);
+}
+
+.login__container-section {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-image {
+    background-image: url('../assets/webp/login-image.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login__label {
+    float: left;
+}
+
+.form-control:focus {
+    border-color: var(--grey-dark);
+    box-shadow: none;
 }
