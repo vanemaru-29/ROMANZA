@@ -1,7 +1,7 @@
 <?php
     class TitlePagesModel {
         static public function titlesPagesM($title) {
-            if ($title == "galery") {
+            if ($title == "gallery") {
                 $titlePage = "| Galeria";
             } else if ($title == "login") {
                 $titlePage = "| Login";

@@ -1,7 +1,7 @@
 <?php
     class LinksPagesModel {
         static public function linksPagesM($links) {
-            if ($links == "galery" || $links == "menu") {
+            if ($links == "gallery" || $links == "menu") {
                 $module = "view/module/".$links.".html";
             } else if ($links == "blog" || $links == "reserves" || $links == "delivery" || $links == "login") {
                 $module = "view/module/".$links.".php";
