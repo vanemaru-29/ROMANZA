@@ -18,7 +18,7 @@
                             <label for="password" class="form-label login__label"> Contraseña </label>
                             <input type="password" class="form-control" placeholder="Ingrese contraseña" name="password" id="password">
                         </div>
-                        <div class="d-grid mb-4">
+                        <div class="d-grid my-5">
                             <button type="submit" class="btn btn-danger"> INGRESAR </button>
                         </div>
                     </form>

@@ -1,7 +1,30 @@
+/* fuente */
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 :root {
+    /* fuente */
+    --font-title: 'Satisfy', cursive;
+
+    /* colores */
+    --white: rgb(255, 255, 255);
     --dark-gray: rgb(33, 37, 41);
     --dark-light: rgba(33, 37, 41, .5);
     --red-cta: rgb(220, 53, 69);
+    --bg-gradient: linear-gradient(120deg, #4f000b 0%, #720026 19%, #ce4257 60%, #720026 100%);
+}
+
+/* header */
+.header__logo {
+    margin: 5px;
+}
+
+.header__title {
+    font-size: 25px;
+    font-family: var(--font-title);
+}
+
+.header__btn {
+    color: var(--dark-gray);
 }
 
 /* inicio */
@@ -9,6 +32,20 @@
     background-image: url('../assets/webp/banner-image.webp');
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.index__title {
+    font-family: var(--font-title);
+}
+
+.index__btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* galeria */
+.galery__container {
+    background-color: var(--dark-gray);
 }
 
 /* login */
@@ -34,4 +71,42 @@
 .form-control:focus {
     border-color: var(--grey-dark);
     box-shadow: none;
+}
+
+/* pedidos */
+.delivery__container {
+    background-image: var(--bg-gradient);
+}
+
+.delivery__card {
+    width: 250px;
+    height: 200px;
+    background-color: transparent;
+}
+
+.delivery__card-image {
+    position: fixed;
+    width: 150px;
+}
+
+.delivery__card-content {
+    float: right;
+    width: 200px;
+    height: 200px;
+    background-color: var(--white);
+    border-radius: 20px;
+}
+
+.delivery__card-view {
+    position: fixed;
+    float: right;
+    margin: 70px 0 0 98px;
+}
+
+.delivery__card-name {
+    margin: 140px 0 0 0;
+}
+
+.delivery__card-price {
+    font-weight: 800;
 }

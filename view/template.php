@@ -47,8 +47,7 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="view/../bootstrap/js/bootstrap.min.js"></script>
-    <!-- <script src="view/../bootstrap/js/bootstrap.bundle.min.js"></script> -->
+    <script src="view/../bootstrap/js/bootstrap.bundle.min.js"></script>
     
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/095148edc4.js" crossorigin="anonymous"></script>
