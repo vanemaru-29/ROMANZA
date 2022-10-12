@@ -1,10 +1,8 @@
 <?php
-    require_once ('config/config.php');
-            
     // navegación
-    require_once ('controller/navigation.php');
-    require_once ('model/navigation.php');
+    require_once ('controladores/navegacion.php');
+    require_once ('modelos/navegacion.php');
 
-    $mvc = new NavigationController();
-    $mvc -> template();
+    $mvc = new ControladorDeNavegacion;
+    $mvc -> plantilla();
 ?>
