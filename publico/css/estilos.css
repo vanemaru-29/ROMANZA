@@ -19,7 +19,7 @@
     --sombra-clara: rgba(255, 255, 255, .2);
     --sombra-oscura: rgba(0, 0, 0, .2);
     --sombra-roja: rgba(220, 53, 69, .5);
-    --fondo-degradado: linear-gradient(120deg, #4f000b 0%, #720026 19%, #ce4257 60%, #720026 100%);
+    --fondo-degradado: linear-gradient(#212529 2%, #720026 20%, #ce4257 60%, #720026 100%);
 }
 
 /* -- general -- */
@@ -53,6 +53,19 @@ body::-webkit-scrollbar-thumb {
 /* -- header administrador -- */
 /* -- header encargado -- */
 /* -- header cliente -- */
+.header__carrito {
+    font-size: 20px;
+    margin-top: -8px;
+}
+
+.header__carrito-cuenta {
+    font-size: 20px;
+}
+
+.header__salir {
+    width: 60px;
+    font-size: 20px;
+}
 
 /* -- footer -- */
 .footer {

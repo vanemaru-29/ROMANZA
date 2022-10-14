@@ -67,6 +67,10 @@
     </div>
 </div>
 
+<?php
+    include ('vistas/parciales/footer.html');
+?>
+
 <!-- redes sociales -->
 <div class="inicio__redes">
     <a href="https://www.facebook.com/romanzarestaurantepizzaria" target="_blank" class="inicio__redes-icono bg-warning"><i class="fa-brands fa-square-facebook"></i></a>

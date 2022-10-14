@@ -111,7 +111,7 @@
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Total</th>
-                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito.svg" alt="Carrito" class="pedidos__carrito-img"></th>
+                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Carrito" class="pedidos__carrito-img"></th>
                             </tr>
                         </thead>
                         <tbody>
