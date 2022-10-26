@@ -3,9 +3,9 @@
 
     <!-- sidebar -->
     <div class="pedidos__menu">
-        <a href="#" class="pedidos__menu-enlace"> Mi cuenta </a>
-        <a href="index.php?romanza=mis-ordenes"class="pedidos__menu-enlace"> Pedidos recientes </a>
-        <a href="index.php?romanza=mis-direcciones" class="pedidos__menu-enlace"> Direcciones </a>
+        <a href="index.php?romanza=mi-cuenta" class="pedidos__menu-enlace"> Mi cuenta </a>
+        <a href="index.php?romanza=mis-ordenes" class="pedidos__menu-enlace"> Pedidos recientes </a>
+        <a href="#" class="pedidos__menu-enlace"> Direcciones </a>
     </div>
 
     <!-- cards -->
@@ -14,51 +14,21 @@
             <div class="col p-5 ">
                 <div class="text-end">
                     <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" width="" alt="Logo ROMANZA">
-                    <h2 class="fw-bold text-center pb-5">Bienvenido user</h2>
-                    <div class="row ">
-                        <div class="col mb-3 ">
-                            <h3>Mi direccion predeterminada</h3>
-                            <h4>Cabudare la Piedad</h4>
-                            <h4>Barquisimeto</h4>
-                            <h4>United Kingdom</h4>
-                            <h4>Lara</h4>
-                        </div>
-                        <div class="col mb-3">
-                            <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta" >
-                            <h3>No hay menús añadidos en su carrito.</h3>
-                            <a href="index.php?romanza=carrito" class="btn btn-warning mx-2"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Ordene ahora</span> </a>
-                        </div>
-                        <tr>
-                    </div>
+                    <h2 class="fw-bold text-center pb-5">Registrar dirección</h2>
                     <!-- login -->
                     <form action="#" method="POST">
-                    <h4 class="text-center mb-4">Editar mis datos</h4>
                         <div class="row">
-                            <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
-                            </div>
-                            <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
+                        <div class="col mb-8">
+                                <p class="text-center">No tiene ninguna dirección registrada</p>
                             </div>
                             <div class="col mb-4">
-                                
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
+                            <a href="index.php?romanza=registrar-direccion" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Agregar nueva dirección</span> </a> 
                             </div>
-                        </div>
-                        <h4 class="text-center mb-4">Cambiar contraseña</h4>
-                        <div class="row">
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Contraseña antigua" name="password" id="password">
-                            </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Nueva contraseña" name="password" id="password">
-                            </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Confirmacion de nueva contraseña" name="password" id="password">
-                            </div>
-                        </div>
-                        <div class="d-grid my-5">
-                            <button type="submit" class="btn btn-danger"> Actualizar </button>
+                          <!--   <div class="col mb-3">
+                                <p class="text-center">No tiene ninguna dirección registrada</p>
+                                <a href="index.php?romanza=mi-cuenta" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Agregar nueva dirección</span> </a>
+                            </div> -->
+
                         </div>
                     </form>
                 </div>

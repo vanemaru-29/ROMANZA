@@ -14,23 +14,23 @@
                                 <label for="username" class="form-label login__label"> Nombre de Usuario </label>
                                 <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
                             </div>
+                            <div class="col mb-3">
+                                <label for="username" class="form-label login__label"> Nombre </label>
+                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-4">
+                                <label for="telefono" class="form-label login__label"> Telefono </label>
+                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
+                            </div>
                             <div class="col mb-4">
                                 <label for="password" class="form-label login__label"> Contraseña </label>
                                 <input type="password" class="form-control" placeholder="Ingrese contraseña" name="password" id="password">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col mb-4">
-                                <label for="username" class="form-label login__label"> Nombre de Usuario </label>
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
-                            </div>
-                            <div class="col mb-4">
-                                <label for="telefono" class="form-label login__label"> telefono </label>
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
-                            </div>
-                        </div>
                         <div class="d-grid my-5">
-                            <button type="submit" class="btn btn-danger"> INGRESAR </button>
+                            <button type="submit" class="btn btn-danger"> REGISTRARSE </button>
                         </div>
                     </form>
                 </div>

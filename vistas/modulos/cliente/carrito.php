@@ -88,66 +88,39 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Jugos Naturales </h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Pago </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
                 <form action="" method="POST">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Total</th>
-                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Carrito" class="pedidos__carrito-img"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Jugo de Manzana</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Pera</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Mango</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="row mb-6">
+                        <div class="col mb-6">
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
+                        </div>
+                        <div class="col mb-6">
+                            <input type="number" class="form-control" placeholder="Monto" name="monto" id="monto">
+                        </div>
+                    </div>
+                    <div class="row mt-6">
+                        <div class="col mb-6">
+                            <input type="text" class="form-control" placeholder="Referencia" name="referencia" id="referencia">
+                        </div>
+                        <div class="col mb-6">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Metodo de pago</option>
+                                <option value="1">Pago al delivery</option>
+                                <option value="2">Cuenta Banesco</option>
+                                <option value="3">Cuenta Provincial</option>
+                            </select>
+                        </div>
+                    </div>
                 </form>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-warning"> Añadir al Carrito </button>
+                <button type="button" class="btn btn-warning"> Pagar </button>
             </div>
         </div>
     </div>

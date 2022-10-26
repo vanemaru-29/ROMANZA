@@ -13,6 +13,14 @@
                 $modulo = "vistas/modulos/inicio.php";
             } else if ($enlace == "mi-cuenta") {
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
+            }else if ($enlace == "mis-ordenes") {
+                $modulo = "vistas/modulos/cliente/".$enlace.".php";
+            }else if ($enlace == "orden") {
+                $modulo = "vistas/modulos/cliente/".$enlace.".php";
+            }else if ($enlace == "mis-direcciones") {
+                $modulo = "vistas/modulos/cliente/".$enlace.".php";
+            }else if ($enlace == "registrar-direccion") {
+                $modulo = "vistas/modulos/cliente/".$enlace.".php";
             } else {
                 $modulo = "vistas/modulos/inicio.php";
             }

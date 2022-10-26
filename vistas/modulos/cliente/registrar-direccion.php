@@ -3,8 +3,8 @@
 
     <!-- sidebar -->
     <div class="pedidos__menu">
-        <a href="#" class="pedidos__menu-enlace"> Mi cuenta </a>
-        <a href="index.php?romanza=mis-ordenes"class="pedidos__menu-enlace"> Pedidos recientes </a>
+        <a href="index.php?romanza=mi-cuenta" class="pedidos__menu-enlace"> Mi cuenta </a>
+        <a href="index.php?romanza=mis-ordenes" class="pedidos__menu-enlace"> Pedidos recientes </a>
         <a href="index.php?romanza=mis-direcciones" class="pedidos__menu-enlace"> Direcciones </a>
     </div>
 
@@ -14,51 +14,33 @@
             <div class="col p-5 ">
                 <div class="text-end">
                     <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" width="" alt="Logo ROMANZA">
-                    <h2 class="fw-bold text-center pb-5">Bienvenido user</h2>
-                    <div class="row ">
-                        <div class="col mb-3 ">
-                            <h3>Mi direccion predeterminada</h3>
-                            <h4>Cabudare la Piedad</h4>
-                            <h4>Barquisimeto</h4>
-                            <h4>United Kingdom</h4>
-                            <h4>Lara</h4>
-                        </div>
-                        <div class="col mb-3">
-                            <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta" >
-                            <h3>No hay menús añadidos en su carrito.</h3>
-                            <a href="index.php?romanza=carrito" class="btn btn-warning mx-2"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Ordene ahora</span> </a>
-                        </div>
-                        <tr>
-                    </div>
+                    <h2 class="fw-bold text-center pb-5">Mis direcciones</h2>
                     <!-- login -->
                     <form action="#" method="POST">
-                    <h4 class="text-center mb-4">Editar mis datos</h4>
-                        <div class="row">
+                    <div class="row">
                             <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
-                            </div>
-                            <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
+                                <label for="ciudad" class="form-label login__label"> Ciudad </label>
+                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="ciudad" id="ciudad" value="Barquisimeto" disabled>
                             </div>
                             <div class="col mb-4">
-                                
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
+                                <label for="estado" class="form-label login__label"> Estado </label>1
+                                <input type="text" class="form-control" placeholder="Ingrese contraseña" name="estado" id="estado" value="Lara" disabled>
                             </div>
                         </div>
-                        <h4 class="text-center mb-4">Cambiar contraseña</h4>
                         <div class="row">
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Contraseña antigua" name="password" id="password">
+                            <div class="col mb-12">
+                                <label for="username" class="form-label login__label">Direccion</label>
+                                <input type="textarea" class="form-control" placeholder="Ingresar direccion" name="username" id="username">
                             </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Nueva contraseña" name="password" id="password">
-                            </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Confirmacion de nueva contraseña" name="password" id="password">
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col mb-12">
+                                <label for="username" class="form-label login__label">Referencia</label>
+                                <input type="textarea" class="form-control" placeholder="Ingresar referencia" name="username" id="username">
                             </div>
                         </div>
                         <div class="d-grid my-5">
-                            <button type="submit" class="btn btn-danger"> Actualizar </button>
+                            <button type="submit" class="btn btn-danger"> Agregar direccion </button>
                         </div>
                     </form>
                 </div>
