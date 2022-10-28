@@ -13,9 +13,9 @@
                 <li class="nav-item mx-3"> <a href="index.php?romanza=galeria" class="nav-link text-white"> Galeria </a> </li>
                 <li class="nav-item mx-3"> <a href="index.php?romanza=opiniones" class="nav-link text-white"> Opiniones </a> </li>
                 <li class="nav-item mx-3"> <a href="index.php?romanza=pedidos" class="nav-link text-white"> Pedidos </a> </li>
+                <li class="nav-item mx-3"> <a href="index.php?romanza=mi-cuenta" class="nav-link text-white"> Mi Cuenta </a> </li>
                 <li class="nav-item mx-3"> <a href="index.php?romanza=carrito" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">€ 00,00</span> </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=mi-cuenta" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Mi cuenta</span> </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=carrito" class="header__btn btn btn-warning nav-link header__salir"> <i class="fa-solid fa-power-off"></i> </a> </li>
+                <li class="nav-item mx-3"> <a href="#" class="header__btn btn btn-warning nav-link header__salir"> <i class="fa-solid fa-power-off"></i> </a> </li>
             </ul>
         </div>
     </div>

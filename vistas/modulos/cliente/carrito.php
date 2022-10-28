@@ -14,7 +14,7 @@
             <tbody>
                 <tr>
                     <th scope="row"><a href="#" class="carrito__icono-quitar"><i class="fa-solid fa-circle-xmark"></i></a></th>
-                    <td>Jugo de Manzana <span class="carrito__categoria-producto">Jugos Naturales</span></td>
+                    <td>Jugo de Papaya <span class="carrito__categoria-producto">Bebidas</span></td>
                     <td>2</td>
                     <td>€ 04,00</td>
                 </tr>
@@ -55,7 +55,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row"> Jugo de Manzana <span class="carrito__categoria-producto">Jugos Naturales</span></td>
+                        <td scope="row"> Jugo de Manzana <span class="carrito__categoria-producto">Bebidas</span></td>
                         <td scope="row"> € 04,00 </td>
                     </tr>
                     <tr>
@@ -74,54 +74,23 @@
                         <td>€ 16,00</td>
                     </tr>
                     <tr>
+                        <div class="col-md-12 my-3">
+                            <label for="direccion" class="form-label login__label"> Dirección </label>
+                            <select class="form-select" aria-label="Default select example" name="direccion" id="direccion">
+                                <option selected>Seleccione una dirección</option>
+                                <option value="1">Opción 1</option>
+                                <option value="2">Opción 2</option>
+                                <option value="3">Opción 3</option>
+                                <option value="4">Opción 4</option>
+                            </select>
+                        </div>
+                    </tr>
+                    <tr>
                         <td colspan="2">
-                            <button type="button" class="btn btn-warning carrito__btn-finalizar" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-circle-check carrito__icono-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> Finalizar Compra </button>
+                            <button type="button" class="btn btn-warning carrito__btn-finalizar" onclick="solicitarPedido(1)"><i class="fa-solid fa-circle-check carrito__icono-btn"></i> Solicitar Pedido </button>
                         </td>
                     </tr>
                 </tfoot>
         </table>
     </section>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Pago </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <div class="row mb-6">
-                        <div class="col mb-6">
-                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
-                        </div>
-                        <div class="col mb-6">
-                            <input type="number" class="form-control" placeholder="Monto" name="monto" id="monto">
-                        </div>
-                    </div>
-                    <div class="row mt-6">
-                        <div class="col mb-6">
-                            <input type="text" class="form-control" placeholder="Referencia" name="referencia" id="referencia">
-                        </div>
-                        <div class="col mb-6">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Metodo de pago</option>
-                                <option value="1">Pago al delivery</option>
-                                <option value="2">Cuenta Banesco</option>
-                                <option value="3">Cuenta Provincial</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-warning"> Pagar </button>
-            </div>
-        </div>
-    </div>
-</div>

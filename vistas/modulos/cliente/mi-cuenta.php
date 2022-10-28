@@ -1,138 +1,81 @@
-<section class="pedidos py-5">
+<section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Mi cuenta </h1>
 
-    <!-- sidebar -->
-    <div class="pedidos__menu">
-        <a href="#" class="pedidos__menu-enlace"> Mi cuenta </a>
-        <a href="index.php?romanza=mis-ordenes"class="pedidos__menu-enlace"> Pedidos recientes </a>
-        <a href="index.php?romanza=mis-direcciones" class="pedidos__menu-enlace"> Direcciones </a>
+    <!-- navbar -->
+    <div class="mi-cuenta__menu mb-5">
+        <a href="index.php?romanza=mi-cuenta" class="mi-cuenta-enlace"> Mi Cuenta </a>
+        <a href="index.php?romanza=mis-direcciones" class="mi-cuenta-enlace"> Direcciones </a>
+        <a href="index.php?romanza=mis-ordenes" class="mi-cuenta-enlace"> Pedidos Recientes </a>
     </div>
 
-    <!-- cards -->
-    <section class="login__cont container bg-white shadow">
-        <div class="row">
-            <div class="col p-5 ">
-                <div class="text-end">
-                    <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" width="" alt="Logo ROMANZA">
-                    <h2 class="fw-bold text-center pb-5">Bienvenido user</h2>
-                    <div class="row ">
-                        <div class="col mb-3 ">
-                            <h3>Mi direccion predeterminada</h3>
-                            <h4>Cabudare la Piedad</h4>
-                            <h4>Barquisimeto</h4>
-                            <h4>United Kingdom</h4>
-                            <h4>Lara</h4>
-                        </div>
-                        <div class="col mb-3">
-                            <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta" >
-                            <h3>No hay menús añadidos en su carrito.</h3>
-                            <a href="index.php?romanza=carrito" class="btn btn-warning mx-2"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Ordene ahora</span> </a>
-                        </div>
-                        <tr>
-                    </div>
-                    <!-- login -->
-                    <form action="#" method="POST">
-                    <h4 class="text-center mb-4">Editar mis datos</h4>
-                        <div class="row">
-                            <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
-                            </div>
-                            <div class="col mb-3">
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
-                            </div>
-                            <div class="col mb-4">
-                                
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
-                            </div>
-                        </div>
-                        <h4 class="text-center mb-4">Cambiar contraseña</h4>
-                        <div class="row">
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Contraseña antigua" name="password" id="password">
-                            </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Nueva contraseña" name="password" id="password">
-                            </div>
-                            <div class="col mb-4">
-                                <input type="password" class="form-control" placeholder="Confirmacion de nueva contraseña" name="password" id="password">
-                            </div>
-                        </div>
-                        <div class="d-grid my-5">
-                            <button type="submit" class="btn btn-danger"> Actualizar </button>
-                        </div>
-                    </form>
-                </div>
+    <!-- mis datos -->
+    <section class="container mi-cuenta">
+        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
+        <h2 class="fw-bold text-center pb-5"> Bienvenido@ </h2>
+
+        <!-- editar datos -->
+        <article class="row">
+            <div class="col-sm-12 col-md-6">
+                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre:</span> Fabi Martinez</p>
+                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre de Usiario:</span> Fabimar2712</p>
+                <p class="mi-cuenta__datos"><span class="fw-bold">Teléfono:</span> 0414 351 5753</p>
             </div>
-        </div>
+            
+            <div class="col-sm-12 col-md-6">
+                <p class="text-center">No hay pedidos añadidos al carrito</p>
+                <a href="index.php?romanza=pedidos" class="btn btn-warning mx-2 mi-cuenta__cta"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">Ordene ahora</span> </a>
+            </div>
+
+            <hr class="my-5">
+
+            <!-- formulario -->
+            <form action="#" method="POST" class="row">
+                <h4 class="text-center mb-5">Editar Información</h4>
+
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <label for="username" class="form-label login__label"> Nombre </label>
+                    <input type="text" class="form-control" placeholder="Ingrese un nombre" name="name" id="name" value="Fabi Martinez">
+                </div>
+
+                <div class="col-sm-12 col-md-6 mb-3">
+                    <label for="username" class="form-label login__label"> Nombre de Usuario </label>
+                    <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username" value="Fabimar2712">
+                </div>
+
+                <div class="col-sm-12 col-md-6 formulario__campo-centro">
+                    <label for="telefono" class="form-label login__label"> Telefono </label>
+                    <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese un numero de telefono" name="telefono" id="telefono" value="0414 351 5753">
+                </div>
+
+                <div class="d-grid mt-5 formulario__btn-centro">
+                    <button type="submit" class="btn btn-danger"> Actualizar </button>
+                </div>
+            </form>
+
+            <hr class="my-5">
+
+            <form action="#" method="POST" class="row">
+                <h4 class="text-center mb-5">Editar Contraseña</h4>
+
+                <div class="col-sm-12 col-md-6 mb-4">
+                    <label for="telefono" class="form-label login__label"> Contraseña </label>
+                    <input type="password" class="form-control" placeholder="Contraseña antigua" name="password" id="password">
+                </div>
+
+                <div class="col-sm-12 col-md-6 mb-4">
+                    <label for="telefono" class="form-label login__label"> Nueva Contraseña </label>
+                    <input type="password" class="form-control" placeholder="Nueva contraseña" name="password" id="password">
+                </div>
+
+                <div class="col-sm-12 col-md-6 formulario__campo-centro">
+                    <label for="telefono" class="form-label login__label"> Confirmar Nueva Contraseña </label>
+                    <input type="password" class="form-control" placeholder="Confirmacion de nueva contraseña" name="password" id="password">
+                </div>
+
+                <div class="d-grid my-5 formulario__btn-centro">
+                    <button type="submit" class="btn btn-danger"> Actualizar </button>
+                </div>
+            </form>
+        </article>
     </section>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Jugos Naturales </h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                <form action="" method="POST">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Total</th>
-                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Carrito" class="pedidos__carrito-img"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Jugo de Manzana</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Pera</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Mango</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-warning"> Añadir al Carrito </button>
-            </div>
-        </div>
-    </div>
-</div>

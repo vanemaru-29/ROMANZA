@@ -19,6 +19,7 @@
     --sombra-clara: rgba(255, 255, 255, .2);
     --sombra-oscura: rgba(0, 0, 0, .2);
     --sombra-roja: rgba(220, 53, 69, .5);
+    --sombra-verde: rgb(30, 209, 45, .5);
     --fondo-degradado: linear-gradient(#212529 2%, #720026 20%, #ce4257 60%, #720026 100%);
 }
 
@@ -50,6 +51,10 @@ body::-webkit-scrollbar-thumb {
     color: var(--gris-oscuro);
 }
 
+.icono__romanza {
+    float: right;
+}
+
 /* -- header administrador -- */
 /* -- header encargado -- */
 /* -- header cliente -- */
@@ -76,6 +81,18 @@ body::-webkit-scrollbar-thumb {
 
 .footer__titulo {
     font-family: var(--fuente-titulos);
+}
+
+/* -- formularios -- */
+.formulario__campo-centro {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formulario__btn-centro {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* -- inicio -- */
@@ -400,22 +417,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* modal */
-.pedidos__carrito-img {
-    width: 30px;
+.pedidos__imagen-producto {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+}
+
+.pedidos__imagen-producto img {
+    width: 100%;
 }
 
 .pedidos__cantidad-producto {
     width: 50px;
-}
-
-.form-check-input:focus {
-    border-color: var(--gris-oscuro);
-    box-shadow: none;
-}
-
-.form-check-input:checked {
-    background-color: var(--gris-medio);
-    border-color: var(--gris-oscuro);
 }
 
 /* -- registro -- */
@@ -429,6 +443,18 @@ body::-webkit-scrollbar-thumb {
 
 .login-imagen {
     background-image: url('../activos/webp/imagen-login.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registro-imagen {
+    background-image: url('../activos/webp/imagen-registro.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contacto-imagen {
+    background-image: url('../activos/webp/imagen-contacto.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -481,6 +507,103 @@ body::-webkit-scrollbar-thumb {
 
 .carrito__btn-finalizar {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -- mi cuenta -- */
+.mi-cuenta {
+    padding: 40px;
+    background-color: var(--blanco);
+    border-radius: 10px;
+}
+
+.mi-cuenta__datos {
+    margin: 5px;
+}
+
+.mi-cuenta__cta {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* navegación */
+.mi-cuenta__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--blanco);
+}
+
+.mi-cuenta-enlace {
+    padding: 10px;
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    transition: all .5s;
+}
+
+.mi-cuenta-enlace:hover {
+    color: var(--blanco);
+    background-color: var(--sombra-clara);
+    transition: all .5s;
+}
+
+/* -- mis direcciones -- */
+.direcciones__icono {
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--gris-medio);
+}
+
+.direcciones__icono-borrar:hover {
+    color: var(--sombra-roja);
+}
+
+.direcciones__icono-editar:hover {
+    color: var(--sombra-verde);
+}
+
+/* -- orden -- */
+.orden__estado {
+    color: var(--gris-medio);
+}
+
+.orden__factura {
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.orden__btn {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -- reportes -- */
+.reportes__contenedor {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reportes__btn {
+    display: block;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* -- categoria -- */
+.categoria__grupo {
+    width: 350px;
     margin-left: auto;
     margin-right: auto;
 }
