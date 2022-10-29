@@ -104,8 +104,14 @@
 
             <div class="modal-body">
                 <form action="" method="POST">
-                    <div class="pedidos__imagen-producto">
-                        <img src="vistas/../publico/activos/pedidos/bebida1.webp" alt="Producto ROMANZA">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 pedidos__imagen-producto">
+                            <img src="vistas/../publico/activos/pedidos/bebida1.webp" alt="Producto ROMANZA">
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 pedidos__descripcion-producto">
+                            <p><span class="fw-bold">Descirpción: </span> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, velit!</p>
+                        </div>
                     </div>
 
                     <table class="table table-hover">

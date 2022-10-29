@@ -7,56 +7,86 @@
         <a href="index.php?romanza=registrar-producto" class="mi-cuenta-enlace"> Registrar Producto </a>
     </div>
 
-    <!-- registrar producto -->
+    <!-- editar producto -->
     <section class="container bg-light carrito__tabla p-5">
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Editar Producto </h2>
 
-        <form action="#" method="POST" class="row">
-            <div class="col-sm-12 col-md-6 mb-3">
-                <label for="username" class="form-label login__label"> Nombre del Producto</label>
-                <input type="text" class="form-control" placeholder="Ingrese un nombre" name="nombre" id="nombre">
-            </div>
-
-            <div class="col-sm-12 col-md-6 mb-3">
-                <label for="username" class="form-label login__label"> Descripción </label>
-                <input type="text" class="form-control" placeholder="Escriba una descripción" name="descripcion" id="descripcion">
-            </div>
-
-            <div class="col-sm-12 col-md-6 mb-3">
-                <label for="telefono" class="form-label login__label"> Precio </label>
-                <input type="text" class="form-control" placeholder="Ingrese el precio del producto" name="precio" id="precio">
+        <form action="#" method="POST" class="formulario" id="producto">
+            <!-- Grupo: Nombre -->
+            <div class="formulario__grupo" id="grupo__nombre">
+                <label for="nombre" class="form-label login__label"> Nombre del Producto </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="form-control formulario__input" placeholder=". . ." name="nombre" id="nombre">
+                    <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                </div>
+                <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 8 caracteres.</p>
             </div>
             
-            <div class="col-sm-12 col-md-6 mb-3">
+            <!-- Grupo: Descripción -->
+            <div class="formulario__grupo" id="grupo__descripcion">
+                <label for="descripcion" class="form-label login__label"> Descripción </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="form-control formulario__input" placeholder=". . ." name="descripcion" id="descripcion">
+                    <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                </div>
+                <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 15 caracteres.</p>
+            </div>
+            
+            <!-- Grupo: Precio -->
+            <div class="formulario__grupo" id="grupo__precio">
+                <label for="precio" class="form-label login__label"> Precio en USD </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="form-control formulario__input" placeholder=". . ." name="precio" id="precio">
+                    <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                </div>
+                <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un monto válido.</p>
+            </div>
+            
+            <!-- Grupo: Estatus -->
+            <div class="formulario__grupo" id="grupo__estatus">
                 <label for="estatus" class="form-label login__label"> Estatus </label>
-                <select class="form-select" aria-label="Default select example" id="estatus">
-                    <option selected>Seleccione un estatus</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                </select>
+                <div class="formulario__grupo-input">
+                    <select class="form-select" aria-label="Default select example" name="estatus" id="estatus">
+                        <option selected value="0">Seleccione un estatus</option>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </div>
             </div>
             
-            <div class="col-sm-12 col-md-6">
+            <!-- Grupo: Categoria -->
+            <div class="formulario__grupo" id="grupo__categoria">
                 <label for="categoria" class="form-label login__label"> Categoria </label>
-                <select class="form-select" aria-label="Default select example" id="cateoria">
-                    <option selected>Seleccione una categoria</option>
-                    <option value="bebidas">Bebidas</option>
-                    <option value="pizzas">Pizzas</option>
-                    <option value="carnes">Carnes</option>
-                    <option value="postres">Postres</option>
-                    <option value="sopas">Sopas</option>
-                </select>
+                <div class="formulario__grupo-input">
+                    <select class="form-select" aria-label="Default select example" name="cateoria" id="cateoria">
+                        <option selected value="0">Seleccione una categoria</option>
+                        <option value="bebidas">Bebidas</option>
+                        <option value="pizzas">Pizzas</option>
+                        <option value="carnes">Carnes</option>
+                        <option value="postres">Postres</option>
+                        <option value="sopas">Sopas</option>
+                    </select>
+                </div>
             </div>
             
-            <div class="col-sm-12 col-md-6">
-                <label for="telefono" class="form-label login__label"> Imagen </label>
-                <input type="file" class="form-control" placeholder="Ingrese un numero de telefono" name="telefono" id="telefono">
+            <!-- Grupo: Imagen -->
+            <div class="formulario__grupo" id="grupo__imagen">
+                <label for="imagen" class="form-label login__label"> Imagen </label>
+                <div class="formulario__grupo-input">
+                    <input type="file" class="form-control" placeholder=". . ." name="imagen" id="imagen" onchange="return validarExt()">
+                </div>
             </div>
 
-            <div class="d-grid mt-5 formulario__btn-centro">
-                <button type="submit" class="btn btn-danger"> Actualizar </button>
+            <div class="mt-2 mx-auto formulario__grupo editarInfo__actualizar grupo__verArchivo" id="ver-archivo">
+
+            </div>
+
+            <div class="d-grid my-2 mx-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                <button type="submit" name="editar-producto" class="formulario__btn btn btn-danger"> REGISTRAR </button>
             </div>
         </form>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-producto.js"></script>

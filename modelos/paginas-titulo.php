@@ -51,6 +51,8 @@
                 $tituloPagina = "| Registrar Categoria";
             } else if ($modulo == "editar-categoria") {
                 $tituloPagina = "| Editar Categoria";
+            } else if ($modulo == "administrar") {
+                $tituloPagina = "| Administrar";
                 
             // encargado
             } else if ($modulo == "pedidos-pendientes") {

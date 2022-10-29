@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
-                    <button type="submit" name="actualizar-info" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
+                    <button type="submit" name="editar-direccion" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
         </form>
     </section>

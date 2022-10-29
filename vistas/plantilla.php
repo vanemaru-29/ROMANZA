@@ -41,7 +41,7 @@
     <!-- header -->
     <header>
         <?php
-            include ('modulos/../parciales/header-inicio.html');
+            include ('modulos/../parciales/header-administrador.html');
         ?>
     </header>
 

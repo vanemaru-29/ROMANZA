@@ -24,7 +24,7 @@
             </div>
 
             <div class="d-grid my-4 formulario__grupo formulario__btn-centro editarInfo__actualizar">
-                <button type="submit" name="nueva-categoria" class="formulario__btn btn btn-danger"> REGISTRAR </button>
+                <button type="submit" name="registrar-categoria" class="formulario__btn btn btn-danger"> REGISTRAR </button>
             </div>
         </form>
     </section>

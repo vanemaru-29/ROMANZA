@@ -137,6 +137,23 @@ body::-webkit-scrollbar-thumb {
     grid-column: span 2;
 }
 
+.grupo__verArchivo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 200px;
+    background-color: var(--gris-claro);
+    border: 1px solid var(--gris-medio);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.grupo__verArchivo embed {
+    object-fit: contain;
+    width: 100%;
+}
+
 .formulario__grupo-input {
     position: relative;
 }
@@ -517,6 +534,16 @@ body::-webkit-scrollbar-thumb {
 
 .pedidos__imagen-producto img {
     width: 100%;
+}
+
+.pedidos__descripcion-producto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pedidos__descripcion-producto p {
+    margin: 0;
 }
 
 .pedidos__cantidad-producto {
