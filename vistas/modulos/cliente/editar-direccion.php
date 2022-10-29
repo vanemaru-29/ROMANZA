@@ -14,20 +14,32 @@
         <h2 class="fw-bold text-center pb-5"> Editar </h2>
 
         <!-- formulario -->
-        <form action="#" method="POST" class="row">                    
-            <div class="col-sm-12 col-md-6">
-                <label for="telefono" class="form-label login__label"> Dirección </label>
-                <input type="text" class="form-control" placeholder="Ingrese una dirección" name="direccion" id="direccion" value="Cabudare la Piedad, Barquisimeto. United Kingdom, Lara">
-            </div>
-                    
-            <div class="col-sm-12 col-md-6 formulario__campo-centro">
-                <label for="telefono" class="form-label login__label"> Referencia </label>
-                <input type="text" class="form-control" placeholder="Ingrese una dirección" name="direccion" id="direccion" value="Ninguna referencia añadida">
-            </div>
+        <form action="#" method="POST" class="formulario" id="direccion">                    
+            <!-- Grupo: Dirección -->
+            <div class="formulario__grupo editarInfo__tlfn" id="grupo__direccion">
+                    <label for="direccion" class="form-label login__label"> Dirección </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control formulario__input" placeholder=". . ." name="direccion" id="direccion" value="Cabudare la Piedad, Barquisimeto. United Kingdom, Lara">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, el texto debe ser mayor a 20 caracteres.</p>
+                </div>
+                
+                <!-- Grupo: Referencia -->
+                <div class="formulario__grupo editarInfo__tlfn" id="grupo__referencia">
+                    <label for="referencia" class="form-label login__label"> Referencia </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control formulario__input" placeholder=". . ." name="referencia" id="referencia" value="Ninguna referencia añadida">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos.</p>
+                </div>
 
-            <div class="d-grid my-5 formulario__btn-centro">
-                <button type="submit" class="btn btn-danger"> Actualizar </button>
-            </div>
+                <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                    <button type="submit" name="actualizar-info" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
+                </div>
         </form>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-direccion.js"></script>

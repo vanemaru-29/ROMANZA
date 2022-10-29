@@ -60,3 +60,5 @@
         </form>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-producto.js"></script>

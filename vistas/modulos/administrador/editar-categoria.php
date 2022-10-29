@@ -12,20 +12,22 @@
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Editar Categoria </h2>
 
-        <form action="#" method="POST" class="row">
-            <div class="col-sm-12 mb-3 categoria__grupo">
-                <label for="username" class="form-label login__label"> Nombre de la Categoria</label>
-                <input type="text" class="form-control" placeholder="Ingrese un nombre" name="nombre" id="nombre">
+        <form action="#" method="POST" class="formulario" id="categoria">
+            <!-- Grupo: Nombre de la Categoria -->
+            <div class="formulario__grupo editarInfo__tlfn" id="grupo__nombre">
+                <label for="nombre" class="form-label login__label"> Nombre de la Categoria </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="form-control formulario__input" placeholder=". . ." name="nombre" id="nombre">
+                    <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                </div>
+                <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, el texto debe ser mayor a 4 caracteres.</p>
             </div>
 
-            <div class="col-sm-12 categoria__grupo">
-                <label for="username" class="form-label login__label"> Descripción </label>
-                <input type="text" class="form-control" placeholder="Escriba una descripción" name="descripcion" id="descripcion">
-            </div>
-
-            <div class="d-grid mt-5 formulario__btn-centro">
-                <button type="submit" class="btn btn-danger"> Actualizar </button>
+            <div class="d-grid my-4 formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                <button type="submit" name="nueva-categoria" class="formulario__btn btn btn-danger"> REGISTRAR </button>
             </div>
         </form>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-categoria.js"></script>

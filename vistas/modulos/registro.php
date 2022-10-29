@@ -9,31 +9,49 @@
                     <h2 class="fw-bold text-center py-3"> Registrarse </h2>
 
                     <!-- registro -->
-                    <form action="#" method="POST">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6 mb-3">
-                                <label for="username" class="form-label login__label"> Nombre </label>
-                                <input type="text" class="form-control" placeholder="Ingrese su nombre" name="name" id="name">
+                    <form action="#" method="POST" class="formulario formulario-registro" id="registro-cliente">
+                        <!-- Grupo: Nombre -->
+                        <div class="formulario__grupo" id="grupo__nombre">
+                            <label for="nombre" class="form-label login__label"> Nombre </label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="form-control formulario__input" placeholder="Vanessa Barboza" name="nombre" id="nombre">
+                                <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
+                            <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 8 caracteres.</p>
+                        </div>
 
-                            <div class="col-sm-12 col-md-6 mb-3">
-                                <label for="username" class="form-label login__label"> Nombre de Usuario </label>
-                                <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username">
+                        <!-- Grupo: Nombre de Usuario -->
+                        <div class="formulario__grupo" id="grupo__nombre_usuario">
+                            <label for="nombre_usuario" class="form-label login__label"> Nombre de Usuario </label>
+                            <div class="formulario__grupo-input">
+                                <input type="text" class="form-control" placeholder="Vanemaru29" name="nombre_usuario" id="nombre_usuario">
+                                <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
+                            <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, debe ser mayor a 8 caracteres.</p>
+                        </div>
                             
-                            <div class="col-sm-12 col-md-6 mb-4">
-                                <label for="telefono" class="form-label login__label"> Telefono </label>
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese el numero de telefono" name="telefono" id="telefono">
+                        <!-- Grupo: Teléfono -->
+                        <div class="formulario__grupo" id="grupo__telefono">
+                            <label for="telefono" class="form-label login__label"> Teléfono </label>
+                            <div class="formulario__grupo-input">
+                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
+                                <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
+                            <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>
+                        </div>
                             
-                            <div class="col-sm-12 col-md-6 mb-4 formulario__campo-centro">
-                                <label for="clave" class="form-label login__label"> Contraseña </label>
-                                <input type="password" class="form-control" placeholder="Ingrese contraseña" name="clave" id="clave">
+                        <!-- Grupo: Contraseña -->
+                        <div class="formulario__grupo" id="grupo__clave">
+                            <label for="clave" class="form-label login__label"> Contraseña </label>
+                            <div class="formulario__grupo-input">
+                                <input type="password" class="form-control" placeholder="Ingrese una contraseña" name="clave" id="clave">
+                                <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
+                            <p class="formulario__input-error m-2">Este campo debe contener de 6 a 12 caracteres.</p>
                         </div>
                         
-                        <div class="d-grid mt-4 mb-5">
-                            <button type="submit" class="btn btn-danger"> REGISTRARSE </button>
+                        <div class="d-grid m-2 formulario__grupo formulario__grupo-btn-enviar">
+                            <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRARSE </button>
                         </div>
                     </form>
                 </div>
@@ -41,3 +59,5 @@
         </div>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-registro.js"></script>

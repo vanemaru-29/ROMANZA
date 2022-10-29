@@ -28,54 +28,87 @@
 
             <hr class="my-5">
 
-            <!-- formulario -->
-            <form action="#" method="POST" class="row">
-                <h4 class="text-center mb-5">Editar Información</h4>
+            <!-- formulario editar información -->
+            <form action="#" method="POST" class="formulario" id="editar-info">
+                <h4 class="text-center mb-5 mi-cuenta__editar-titulo">Editar Información</h4>
 
-                <div class="col-sm-12 col-md-6 mb-3">
-                    <label for="username" class="form-label login__label"> Nombre </label>
-                    <input type="text" class="form-control" placeholder="Ingrese un nombre" name="name" id="name" value="Fabi Martinez">
+                <!-- Grupo: Nombre -->
+                <div class="formulario__grupo" id="grupo__nombre">
+                    <label for="nombre" class="form-label login__label"> Nombre </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control formulario__input" placeholder="Vanessa Barboza" name="nombre" id="nombre">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 8 caracteres.</p>
                 </div>
 
-                <div class="col-sm-12 col-md-6 mb-3">
-                    <label for="username" class="form-label login__label"> Nombre de Usuario </label>
-                    <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" name="username" id="username" value="Fabimar2712">
+                <!-- Grupo: Nombre de Usuario -->
+                <div class="formulario__grupo" id="grupo__nombre_usuario">
+                    <label for="nombre_usuario" class="form-label login__label"> Nombre de Usuario </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control" placeholder="Vanemaru29" name="nombre_usuario" id="nombre_usuario">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, debe ser mayor a 8 caracteres.</p>
+                </div>
+                            
+                <!-- Grupo: Teléfono -->
+                <div class="formulario__grupo editarInfo__tlfn" id="grupo__telefono">
+                    <label for="telefono" class="form-label login__label"> Teléfono </label>
+                    <div class="formulario__grupo-input">
+                        <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>
                 </div>
 
-                <div class="col-sm-12 col-md-6 formulario__campo-centro">
-                    <label for="telefono" class="form-label login__label"> Telefono </label>
-                    <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="Ingrese un numero de telefono" name="telefono" id="telefono" value="0414 351 5753">
-                </div>
-
-                <div class="d-grid mt-5 formulario__btn-centro">
-                    <button type="submit" class="btn btn-danger"> Actualizar </button>
+                <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                    <button type="submit" name="actualizar-info" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
             </form>
 
             <hr class="my-5">
 
-            <form action="#" method="POST" class="row">
-                <h4 class="text-center mb-5">Editar Contraseña</h4>
+            <!-- formulario editar contraseña -->
+            <form action="#" method="POST" class="formulario" id="editar-clave">
+                <h4 class="text-center mb-5 mi-cuenta__editar-titulo">Editar Contraseña</h4>
 
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <label for="telefono" class="form-label login__label"> Contraseña </label>
-                    <input type="password" class="form-control" placeholder="Contraseña antigua" name="password" id="password">
+                <!-- Grupo: Contraseña Antigua -->
+                <div class="formulario__grupo" id="grupo__clave">
+                    <label for="clave" class="form-label login__label"> Contraseña </label>
+                    <div class="formulario__grupo-input">
+                        <input type="password" class="form-control" placeholder="Contraseña actual" name="clave" id="clave">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo debe contener de 6 a 12 caracteres.</p>
                 </div>
 
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <label for="telefono" class="form-label login__label"> Nueva Contraseña </label>
-                    <input type="password" class="form-control" placeholder="Nueva contraseña" name="password" id="password">
+                <!-- Grupo: Nueva Contraseña -->
+                <div class="formulario__grupo" id="grupo__clave2">
+                    <label for="clave2" class="form-label login__label"> Nueva Contraseña </label>
+                    <div class="formulario__grupo-input">
+                        <input type="password" class="form-control" placeholder="Nueva contraseña" name="clave2" id="clave2">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo debe contener de 6 a 12 caracteres.</p>
                 </div>
 
-                <div class="col-sm-12 col-md-6 formulario__campo-centro">
-                    <label for="telefono" class="form-label login__label"> Confirmar Nueva Contraseña </label>
-                    <input type="password" class="form-control" placeholder="Confirmacion de nueva contraseña" name="password" id="password">
+                <!-- Grupo: Confirmar Nueva Contraseña -->
+                <div class="formulario__grupo editarInfo__tlfn" id="grupo__clave3">
+                    <label for="clave3" class="form-label login__label"> Confirmar Nueva Contraseña </label>
+                    <div class="formulario__grupo-input">
+                        <input type="password" class="form-control" placeholder="Repetir nueva contraseña" name="clave3" id="clave3">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Ambas contraseñas deben ser iguales.</p>
                 </div>
 
-                <div class="d-grid my-5 formulario__btn-centro">
-                    <button type="submit" class="btn btn-danger"> Actualizar </button>
+                <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                    <button type="submit" name="actualizar-clave" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
             </form>
         </article>
     </section>
 </section>
+
+<script src="vistas/../js/validacion-miCuenta.js"></script>

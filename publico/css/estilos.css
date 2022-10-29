@@ -21,6 +21,10 @@
     --sombra-roja: rgba(220, 53, 69, .5);
     --sombra-verde: rgb(30, 209, 45, .5);
     --fondo-degradado: linear-gradient(#212529 2%, #720026 20%, #ce4257 60%, #720026 100%);
+
+    /* validaciones */
+    --verde-correcto: #1ed12d;
+    --rojo-incorrecto: #bb2929;
 }
 
 /* -- general -- */
@@ -83,7 +87,79 @@ body::-webkit-scrollbar-thumb {
     font-family: var(--fuente-titulos);
 }
 
+/* -- login -- */
+.login__cont {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-imagen {
+    background-image: url('../activos/webp/imagen-login.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registro-imagen {
+    background-image: url('../activos/webp/imagen-registro.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contacto-imagen {
+    background-image: url('../activos/webp/imagen-contacto.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login__label {
+    float: left;
+}
+
+.form-control:focus {
+    border-color: var(--gris-oscuro);
+    box-shadow: none;
+}
+
 /* -- formularios -- */
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.formulario-registro {
+    grid-template-columns: 1fr;
+}
+
+.mi-cuenta__editar-titulo,
+.editarInfo__tlfn,
+.editarInfo__actualizar {
+    grid-column: span 2;
+}
+
+.formulario__grupo-input {
+    position: relative;
+}
+
+.formulario__input-error {
+    display: none;
+    margin: 0;
+    font-size: 12px;
+}
+
+.formulario__input-error-activo {
+    display: block;
+}
+
+.formulario__validacion-estado {
+    position: absolute;
+    right: 10px;
+    bottom: 9px;
+    z-index: 100;
+    font-size: 20px;
+    opacity: 0;
+}
+
 .formulario__campo-centro {
     margin-left: auto;
     margin-right: auto;
@@ -93,6 +169,21 @@ body::-webkit-scrollbar-thumb {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* validación de formularios */
+.formulario__grupo-correcto .formulario__validacion-estado {
+    color: var(--verde-correcto);
+    opacity: 1;
+}
+
+.formulario__grupo-incorrecto .formulario__label {
+    color: var(--rojo-incorrecto);
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+    color: var(--rojo-incorrecto);
+    opacity: 1;
 }
 
 /* -- inicio -- */
@@ -430,42 +521,6 @@ body::-webkit-scrollbar-thumb {
 
 .pedidos__cantidad-producto {
     width: 50px;
-}
-
-/* -- registro -- */
-
-
-/* -- login -- */
-.login__cont {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.login-imagen {
-    background-image: url('../activos/webp/imagen-login.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.registro-imagen {
-    background-image: url('../activos/webp/imagen-registro.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.contacto-imagen {
-    background-image: url('../activos/webp/imagen-contacto.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.login__label {
-    float: left;
-}
-
-.form-control:focus {
-    border-color: var(--gris-oscuro);
-    box-shadow: none;
 }
 
 /* -- carrito -- */
