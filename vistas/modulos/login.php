@@ -1,3 +1,24 @@
+<?php 
+require './modelos/conexion.php';
+session_start();
+
+if(!empty($_POST['usuario']) && !empty($_POST['password'])) {
+    $data = $conn->prepare('SELECT usuario, clave FROM usuarios WHERE usuario:usuario');
+    $data->bind_param(":usuario", $_POST['usuario']);
+    $data->execute();
+    $result = $data->fetch(PDO::FETCH_ASSOC);
+
+    $message = '';
+
+    if(count($result) > 0 && password_verify($_POST['password'], $result['password'])) {
+        $_SESSION['usuario'] = $result['usuario'];
+        header('./menu.html');
+        $message = "Credenciales correctas";
+    }else {
+        $message = "Credenciales incorrectas";
+    }
+}
+?>
 <section class="w-100 vh-100 d-flex justify-content-center align-items-center">
     <section class="login__cont container bg-white shadow">
         <div class="row">
@@ -20,6 +41,9 @@
                         <div class="d-grid my-5">
                             <button type="submit" class="btn btn-danger"> INGRESAR </button>
                         </div>
+                        <?php if(!empty($message)):?>
+                            <p><?= $message?></p>
+                           <?php endif;?> 
                     </form>
                 </div>
             </div>

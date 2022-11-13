@@ -21,6 +21,8 @@
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
             }else if ($enlace == "registrar-direccion") {
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
+            }else if ($enlace == "registrar-usuario") {
+                $modulo = "controladores/".$enlace.".php";
             } else {
                 $modulo = "vistas/modulos/inicio.php";
             }
