@@ -23,6 +23,7 @@ if(!empty($_POST['usuario']) && !empty($_POST['password'])) {
     <section class="login__cont container bg-white shadow">
         <div class="row">
             <div class="col login-imagen d-none d-lg-block"></div>
+            
             <div class="col p-5">
                 <div class="text-end">
                     <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" width="" alt="Logo ROMANZA">

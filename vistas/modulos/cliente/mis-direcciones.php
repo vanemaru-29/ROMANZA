@@ -1,39 +1,55 @@
-<section class="pedidos py-5">
-    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Mi cuenta </h1>
+<section class="py-5">
+    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Direcciones </h1>
 
-    <!-- sidebar -->
-    <div class="pedidos__menu">
-        <a href="index.php?romanza=mi-cuenta" class="pedidos__menu-enlace"> Mi cuenta </a>
-        <a href="index.php?romanza=mis-ordenes" class="pedidos__menu-enlace"> Pedidos recientes </a>
-        <a href="#" class="pedidos__menu-enlace"> Direcciones </a>
+    <!-- navbar -->
+    <div class="mi-cuenta__menu mb-5">
+        <a href="index.php?romanza=mi-cuenta" class="mi-cuenta-enlace"> Mi Cuenta </a>
+        <a href="index.php?romanza=mis-direcciones" class="mi-cuenta-enlace"> Direcciones </a>
+        <a href="index.php?romanza=mis-ordenes" class="mi-cuenta-enlace"> Pedidos Recientes </a>
     </div>
 
-    <!-- cards -->
-    <section class="login__cont container bg-white shadow">
-        <div class="row">
-            <div class="col p-5 ">
-                <div class="text-end">
-                    <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" width="" alt="Logo ROMANZA">
-                    <h2 class="fw-bold text-center pb-5">Registrar dirección</h2>
-                    <!-- login -->
-                    <form action="#" method="POST">
-                        <div class="row">
-                        <div class="col mb-8">
-                                <p class="text-center">No tiene ninguna dirección registrada</p>
-                            </div>
-                            <div class="col mb-4">
-                            <a href="index.php?romanza=registrar-direccion" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Agregar nueva dirección</span> </a> 
-                            </div>
-                          <!--   <div class="col mb-3">
-                                <p class="text-center">No tiene ninguna dirección registrada</p>
-                                <a href="index.php?romanza=mi-cuenta" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__cuenta"> <span class="header__info-cuenta">Agregar nueva dirección</span> </a>
-                            </div> -->
+    <!-- direcciones -->
+    <section class="container mi-cuenta">
+        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
+        <h2 class="fw-bold text-center pb-5"> Direcciones Registradas </h2>
 
-                        </div>
-                    </form>
-                </div>
+        <article class="row">            
+            <div class="col-sm-12 my-3">
+                <p class="text-center">Total de 2 direcciones</p>
+                <a href="#" class="btn btn-warning mx-2 mi-cuenta__cta" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <span class="header__carrito-cuenta">Administrar Direcciones</span> </a>
             </div>
-        </div>
+
+            <hr class="my-5">
+
+            <!-- formulario -->
+            <form action="#" method="POST" class="formulario" id="direccion">
+                <h4 class="text-center mb-2 mi-cuenta__editar-titulo">Registrar Nueva Dirección</h4>
+
+                <!-- Grupo: Dirección -->
+                <div class="formulario__grupo editarInfo__tlfn" id="grupo__direccion">
+                    <label for="direccion" class="form-label login__label"> Dirección </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control formulario__input" placeholder=". . ." name="direccion" id="direccion">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, el texto debe ser mayor a 20 caracteres.</p>
+                </div>
+                
+                <!-- Grupo: Referencia -->
+                <div class="formulario__grupo editarInfo__tlfn" id="grupo__referencia">
+                    <label for="referencia" class="form-label login__label"> Referencia </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" class="form-control formulario__input" placeholder=". . ." name="referencia" id="referencia">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos.</p>
+                </div>
+
+                <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
+                    <button type="submit" name="actualizar-direccion" class="formulario__btn btn btn-danger"> REGISTRAR </button>
+                </div>
+            </form>
+        </article>
     </section>
 </section>
 
@@ -42,67 +58,36 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Jugos Naturales </h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Administrar Direcciones </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div class="modal-body">
                 <form action="" method="POST">
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Total</th>
-                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Carrito" class="pedidos__carrito-img"></th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Referencia</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Jugo de Manzana</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
+                                <td>Cabudare la Piedad, Barquisimeto. United Kingdom, Lara</td>
+                                <td>Ninguna referencia añadida</td>
+                                <td><a href="#" class="direcciones__icono direcciones__icono-borrar"><i class="fa-solid fa-circle-xmark"></i></a> <a href="index.php?romanza=editar-direccion" class="direcciones__icono direcciones__icono-editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a></td>
                             </tr>
-
                             <tr>
-                                <td>Jugo de Pera</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Mango</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
+                                <td>Cabudare la Piedad, Barquisimeto. United Kingdom, Lara</td>
+                                <td>Ninguna referencia añadida</td>
+                                <td><a href="#" class="direcciones__icono direcciones__icono-borrar"><i class="fa-solid fa-circle-xmark"></i></a> <a href="index.php?romanza=editar-direccion" class="direcciones__icono direcciones__icono-editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a></td>
                             </tr>
                         </tbody>
                     </table>
                 </form>
             </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Cancelar </button>
-                <button type="button" class="btn btn-warning"> Añadir al Carrito </button>
-            </div>
         </div>
     </div>
 </div>
+
+<script src="vistas/../js/validacion-direccion.js"></script>

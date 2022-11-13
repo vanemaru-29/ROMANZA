@@ -20,7 +20,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <button type="button" class="btn btn-danger pedidos__card-detalles" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Detalles </button>
-                <p class="pedidos__card-nombre"> Jugos Naturales </p>
+                <p class="pedidos__card-nombre"> Jugo de Papaya </p>
                 <span class="pedidos__card-precio"> € 02,00 </span>
             </div>
         </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Batidos Naturales </p>
+                <p class="pedidos__card-nombre"> Batido de Fresa </p>
                 <span class="pedidos__card-precio"> € 04,50 </span>
             </div>
         </div>
@@ -42,7 +42,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Tés Naturales </p>
+                <p class="pedidos__card-nombre"> Tés de Hierbas </p>
                 <span class="pedidos__card-precio"> € 06,00 </span>
             </div>
         </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Sorbetes </p>
+                <p class="pedidos__card-nombre"> Sorbete </p>
                 <span class="pedidos__card-precio"> € 08,98 </span>
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Cócteles </p>
+                <p class="pedidos__card-nombre"> Americano Campari </p>
                 <span class="pedidos__card-precio"> € 10,50 </span>
             </div>
         </div>
@@ -86,7 +86,7 @@
             </div>
             <div class="pedidos__card-contenido shadow px-2">
                 <a class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Refrescos </p>
+                <p class="pedidos__card-nombre"> CocaCola </p>
                 <span class="pedidos__card-precio"> € 02,00 </span>
             </div>
         </div>
@@ -98,57 +98,35 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Jugos Naturales </h1>
+                <h1 class="modal-title fs-5" id="staticBackdropLabel"> Jugo de Papaya </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
                 <form action="" method="POST">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 pedidos__imagen-producto">
+                            <img src="vistas/../publico/activos/pedidos/bebida1.webp" alt="Producto ROMANZA">
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 pedidos__descripcion-producto">
+                            <p><span class="fw-bold">Descirpción: </span> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, velit!</p>
+                        </div>
+                    </div>
+
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Producto</th>
                                 <th scope="col">Cantidad</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Total</th>
-                                <th scope="col text-center"><img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Carrito" class="pedidos__carrito-img"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Jugo de Manzana</td>
                                 <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
                                 <td>€ 02,00</td>
                                 <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Pera</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Jugo de Mango</td>
-                                <td><input type="number" name="amount" id="" class="pedidos__cantidad-producto"></td>
-                                <td>€ 02,00</td>
-                                <td>€ 00,00</td>
-                                <td>
-                                    <div class="form-check mx-2">
-                                        <input class="form-check-input" type="checkbox" name="add_cart" id="">
-                                    </div>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
