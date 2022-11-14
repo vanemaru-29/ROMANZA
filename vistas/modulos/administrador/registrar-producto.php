@@ -1,3 +1,10 @@
+<?php
+    require_once ('vistas/../controladores/autoCarga.php');
+
+    $categorias = new Categorias();
+    $cat = $categorias->listaCat();
+?>
+
 <section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Registrar Producto </h1>
 
@@ -59,13 +66,15 @@
             <div class="formulario__grupo" id="grupo__categoria">
                 <label for="categoria" class="form-label login__label"> Categoria </label>
                 <div class="formulario__grupo-input">
-                    <select class="form-select" aria-label="Default select example" name="cateoria" id="cateoria">
+                    <select class="form-select" aria-label="Default select example" name="categoria" id="categoria">
                         <option selected value="0">Seleccione una categoria</option>
-                        <option value="bebidas">Bebidas</option>
-                        <option value="pizzas">Pizzas</option>
-                        <option value="carnes">Carnes</option>
-                        <option value="postres">Postres</option>
-                        <option value="sopas">Sopas</option>
+                        <?php
+                            while ($resultado = mysqli_fetch_array($cat)) {
+                            ?>
+                                <option value="<?= $resultado['nombre'] ?>"><?= $resultado['nombre'] ?></option>
+                            <?php
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -78,13 +87,32 @@
                 </div>
             </div>
 
-            <div class="mt-2 mx-auto formulario__grupo editarInfo__actualizar grupo__verArchivo" id="ver-archivo">
-
-            </div>
+            <div class="mt-2 mx-auto formulario__grupo editarInfo__actualizar grupo__verArchivo" id="ver-archivo"></div>
 
             <div class="d-grid my-2 mx-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
                 <button type="submit" name="registrar-producto" class="formulario__btn btn btn-danger"> REGISTRAR </button>
             </div>
+
+            <?php
+                if (empty($_POST['registrar-producto'])) {
+                    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && ($_POST['precio']) && ($_POST['estatus']) && ($_POST['categoria']) && ($_POST['imagen'])) {
+                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1 && strlen($_POST['precio']) >= 1 && strlen($_POST['estatus']) >= 1 && strlen($_POST['categoria']) >= 1 && strlen($_POST['imagen']) >= 1) {
+                            $nombre = $_POST['nombre'];
+                            $descripcion = $_POST['descripcion'];
+                            $precio = $_POST['precio'];
+                            $estatus = $_POST['estatus'];
+                            $categoria = $_POST['categoria'];
+                            $imagen = $_POST['imagen'];
+    
+                            // $nuevaCat = new Categorias();
+                            // $nuevaCat -> registroCat($nombre, $descripcion);
+                        } else {
+                            $camposVacios = new ErrFormularios();
+                            $camposVacios -> camposVacios();
+                        }
+                    }
+                }
+            ?>
         </form>
     </section>
 </section>

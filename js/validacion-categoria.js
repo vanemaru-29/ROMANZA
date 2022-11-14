@@ -2,12 +2,14 @@ const formulario = document.getElementById('categoria');
 const inputs = document.querySelectorAll('#categoria input');
 
 const expresiones = {
-	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/ // Letras y espacios, pueden llevar acentos.
+	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
+    descripcion: /^[a-zA-ZÀ-ÿ\s]{15,200}$/ // Letras y espacios, pueden llevar acentos.
 }
 
 // inicializando campos
 const campos = {
-    nombre: false
+    nombre: false,
+    descripcion: false,
 }
 
 // llamando expresión según name
@@ -15,6 +17,10 @@ const validarFormulario = (e) => {
     switch (e.target.name) {
         case "nombre":
             validarCampo(expresiones.nombre, e.target);
+            break;
+        
+        case "descripcion":
+            validarCampo(expresiones.descripcion, e.target);
             break;
     }
 }
@@ -50,9 +56,9 @@ inputs.forEach((input) => {
 
 // validando que todos los campos sean correctos
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    if (campos.nombre) {
+    if (campos.nombre && campos.descripcion) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

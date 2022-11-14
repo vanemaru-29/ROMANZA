@@ -14,7 +14,7 @@ function solicitarPedido(id) {
             icon: "success",
         });
         } else {
-        swal("Se ha cancelado a acción");
+        swal("Se ha cancelado la acción");
         }
     });
 }
@@ -35,7 +35,7 @@ function pedidoProceso(id) {
             icon: "success",
         });
         } else {
-        swal("Se ha cancelado a acción");
+        swal("Se ha cancelado la acción");
         }
     });
 }
@@ -56,7 +56,7 @@ function pedidoFinalizado(id) {
             icon: "success",
         });
         } else {
-        swal("Se ha cancelado a acción");
+        swal("Se ha cancelado la acción");
         }
     });
 }

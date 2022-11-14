@@ -62,7 +62,7 @@ function validarExt() {
     var extPermitidas = /(.png)$/i;
 
     if (!extPermitidas.exec(archivoRuta)) {
-        swal('Asegure haber seleccionado una imagen en formato ".png".');
+        swal('Asegure haber seleccionado una imagen en formato ".png" o ".webp".');
         
         archivoInput.value = '';
         campos.imagen = false;
@@ -70,7 +70,7 @@ function validarExt() {
         if (archivoInput.files && archivoInput.files[0]) {
             var visor = new FileReader();
             visor.onload = function (e) {
-                document.getElementById('ver-archivo').innerHTML='<embed src="'+e.target.result+'">';
+                document.getElementById('ver-archivo').innerHTML='<img src="'+e.target.result+'">';
             };
 
             visor.readAsDataURL(archivoInput.files[0]);

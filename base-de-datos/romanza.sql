@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2022 at 02:47 PM
+-- Generation Time: Nov 13, 2022 at 09:15 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -61,6 +61,18 @@ CREATE TABLE `comida` (
   `estatus` varchar(45) DEFAULT NULL,
   `is_sub_categoria` int(11) DEFAULT NULL,
   `id_categoria` int(11) DEFAULT NULL,
+  `fecha_registro` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `conversion`
+--
+
+CREATE TABLE `conversion` (
+  `id_conversion` int(11) NOT NULL,
+  `bs_equivalencia` double DEFAULT NULL,
   `fecha_registro` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -163,6 +175,31 @@ CREATE TABLE `usuario` (
   `fecha_registro` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuario` varchar(45) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `telefono` int(12) DEFAULT NULL,
+  `clave` varchar(45) NOT NULL,
+  `fecha_registro` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario`, `nombre`, `telefono`, `clave`, `fecha_registro`) VALUES
+('fabimar', 'fabiana', 2147483647, '0', '0000-00-00 00:00:00'),
+('fanilu', 'fanni rivero', 2147483647, '28528966', '0000-00-00 00:00:00'),
+('fer', 'luis', 45245245, '2852896', '0000-00-00 00:00:00'),
+('karela', 'karen', 416415, '$2y$04$1ZR3KDo51O3UOJJkhOgR8OLOW6nSoeCxRqEzWK', '0000-00-00 00:00:00'),
+('luifer', 'luis', 2147483647, '28528966', '0000-00-00 00:00:00');
+
 --
 -- Indexes for dumped tables
 --
@@ -184,6 +221,12 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `comida`
   ADD PRIMARY KEY (`id_comida`);
+
+--
+-- Indexes for table `conversion`
+--
+ALTER TABLE `conversion`
+  ADD PRIMARY KEY (`id_conversion`);
 
 --
 -- Indexes for table `direccion`
@@ -222,6 +265,12 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`,`id_rol`);
 
 --
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -242,6 +291,12 @@ ALTER TABLE `categoria`
 --
 ALTER TABLE `comida`
   MODIFY `id_comida` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `conversion`
+--
+ALTER TABLE `conversion`
+  MODIFY `id_conversion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `direccion`

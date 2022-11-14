@@ -36,12 +36,15 @@
     <?php
         require_once ('vistas/../controladores/navegacion.php');
         require_once ('vistas/../modelos/navegacion.php');
+
+        require_once ('vistas/../modelos/Conexion.php');
+        require_once ('vistas/../modelos/redirecciones.php');
     ?>
 
     <!-- header -->
     <header>
         <?php
-            include ('modulos/../parciales/header-administrador.html');
+            include ('modulos/../parciales/header-inicio.html');
         ?>
     </header>
 

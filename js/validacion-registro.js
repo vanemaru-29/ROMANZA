@@ -68,7 +68,7 @@ inputs.forEach((input) => {
 
 // validando que todos los campos sean correctos
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (campos.nombre && campos.nombre_usuario && campos.telefono && campos.clave) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
