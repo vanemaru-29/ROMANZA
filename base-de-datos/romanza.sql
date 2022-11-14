@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 09:15 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 14-11-2022 a las 13:54:32
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `romanza`
+-- Base de datos: `romanza`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carrito`
+-- Estructura de tabla para la tabla `carrito`
 --
 
 CREATE TABLE `carrito` (
@@ -36,20 +36,28 @@ CREATE TABLE `carrito` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
 CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
-  `fecha_registro` datetime DEFAULT NULL
+  `nombre` varchar(45) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `fecha_registro` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nombre`, `descripcion`, `fecha_registro`) VALUES
+(1, 'Bebidas', 'Toda clase de bebidas con o sin alcohol', '14/11/2022'),
+(2, 'Carnes', 'Todos los tipos de carne y preparaciones con carne para todos los gustos', '14/11/2022');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comida`
+-- Estructura de tabla para la tabla `comida`
 --
 
 CREATE TABLE `comida` (
@@ -67,7 +75,7 @@ CREATE TABLE `comida` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversion`
+-- Estructura de tabla para la tabla `conversion`
 --
 
 CREATE TABLE `conversion` (
@@ -79,7 +87,7 @@ CREATE TABLE `conversion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `direccion`
+-- Estructura de tabla para la tabla `direccion`
 --
 
 CREATE TABLE `direccion` (
@@ -92,7 +100,7 @@ CREATE TABLE `direccion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `metodo_pago`
+-- Estructura de tabla para la tabla `metodo_pago`
 --
 
 CREATE TABLE `metodo_pago` (
@@ -104,7 +112,7 @@ CREATE TABLE `metodo_pago` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opiniones`
+-- Estructura de tabla para la tabla `opiniones`
 --
 
 CREATE TABLE `opiniones` (
@@ -117,7 +125,7 @@ CREATE TABLE `opiniones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orden`
+-- Estructura de tabla para la tabla `orden`
 --
 
 CREATE TABLE `orden` (
@@ -133,7 +141,7 @@ CREATE TABLE `orden` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pago`
+-- Estructura de tabla para la tabla `pago`
 --
 
 CREATE TABLE `pago` (
@@ -151,7 +159,7 @@ CREATE TABLE `pago` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `rol` (
@@ -162,7 +170,7 @@ CREATE TABLE `rol` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -178,7 +186,7 @@ CREATE TABLE `usuario` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -190,7 +198,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`usuario`, `nombre`, `telefono`, `clave`, `fecha_registro`) VALUES
@@ -201,135 +209,135 @@ INSERT INTO `usuarios` (`usuario`, `nombre`, `telefono`, `clave`, `fecha_registr
 ('luifer', 'luis', 2147483647, '28528966', '0000-00-00 00:00:00');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `carrito`
+-- Indices de la tabla `carrito`
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id_carrito`);
 
 --
--- Indexes for table `categoria`
+-- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indexes for table `comida`
+-- Indices de la tabla `comida`
 --
 ALTER TABLE `comida`
   ADD PRIMARY KEY (`id_comida`);
 
 --
--- Indexes for table `conversion`
+-- Indices de la tabla `conversion`
 --
 ALTER TABLE `conversion`
   ADD PRIMARY KEY (`id_conversion`);
 
 --
--- Indexes for table `direccion`
+-- Indices de la tabla `direccion`
 --
 ALTER TABLE `direccion`
   ADD PRIMARY KEY (`id_direccion`);
 
 --
--- Indexes for table `metodo_pago`
+-- Indices de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
   ADD PRIMARY KEY (`id_metodo_pago`);
 
 --
--- Indexes for table `opiniones`
+-- Indices de la tabla `opiniones`
 --
 ALTER TABLE `opiniones`
   ADD PRIMARY KEY (`id_opinion`);
 
 --
--- Indexes for table `orden`
+-- Indices de la tabla `orden`
 --
 ALTER TABLE `orden`
   ADD PRIMARY KEY (`id_orden`);
 
 --
--- Indexes for table `rol`
+-- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`,`id_rol`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuario`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `carrito`
+-- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
   MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `comida`
+-- AUTO_INCREMENT de la tabla `comida`
 --
 ALTER TABLE `comida`
   MODIFY `id_comida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `conversion`
+-- AUTO_INCREMENT de la tabla `conversion`
 --
 ALTER TABLE `conversion`
   MODIFY `id_conversion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `direccion`
+-- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
   MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `metodo_pago`
+-- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
   MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `opiniones`
+-- AUTO_INCREMENT de la tabla `opiniones`
 --
 ALTER TABLE `opiniones`
   MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `orden`
+-- AUTO_INCREMENT de la tabla `orden`
 --
 ALTER TABLE `orden`
   MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rol`
+-- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
