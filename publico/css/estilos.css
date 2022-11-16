@@ -150,9 +150,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .grupo__verArchivo img {
+    display: block;
     object-fit: contain;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
 }
 
 .formulario__grupo-input {
@@ -496,7 +497,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* sidebar */
-.pedidos__menu {
+/* .pedidos__menu {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -523,7 +524,7 @@ body::-webkit-scrollbar-thumb {
     color: var(--blanco);
     background-color: var(--sombra-clara);
     transition: all .5s;
-}
+} */
 
 /* modal */
 .pedidos__imagen-producto {
@@ -596,6 +597,7 @@ body::-webkit-scrollbar-thumb {
 
 /* -- mi cuenta -- */
 .mi-cuenta {
+    display: block;
     padding: 40px;
     background-color: var(--blanco);
     border-radius: 10px;

@@ -1,8 +1,18 @@
+<?php
+    require_once ('vistas/../controladores/autoCarga.php');
+
+    $productos = new Productos();
+    $datos = $productos->activosPdt();
+
+    $categorias = new Categorias();
+    $cat = $categorias->listaCat();
+?>
+
 <section class="pedidos py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Solicitar Pedido </h1>
 
     <!-- sidebar -->
-    <div class="pedidos__menu">
+    <!-- <div class="pedidos__menu">
         <a href="#" class="pedidos__menu-enlace"> Bebidas </a>
         <a href="#" class="pedidos__menu-enlace"> Carnes </a>
         <a href="#" class="pedidos__menu-enlace"> Ensaladas </a>
@@ -10,86 +20,39 @@
         <a href="#" class="pedidos__menu-enlace"> Pizzas </a>
         <a href="#" class="pedidos__menu-enlace"> Postres </a>
         <a href="#" class="pedidos__menu-enlace"> Sopas </a>
+    </div> -->
+
+    <div class="container mb-5">
+        <select class="form-select" aria-label="Default select example">
+            <option selected value="0">Seleccione una categoria</option>
+            <?php
+                while ($resultado = mysqli_fetch_array($cat)) {
+                    ?>
+                        <option value="<?= $resultado['id_categoria'] ?>"><?= $resultado['nombre'] ?></option>
+                    <?php
+                }
+            ?>
+        </select>
     </div>
 
     <!-- cards -->
     <section class="container pedidos__cartas">
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida1.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <button type="button" class="btn btn-danger pedidos__card-detalles" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Detalles </button>
-                <p class="pedidos__card-nombre"> Jugo de Papaya </p>
-                <span class="pedidos__card-precio"> € 02,00 </span>
-            </div>
-        </div>
-
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida2.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Batido de Fresa </p>
-                <span class="pedidos__card-precio"> € 04,50 </span>
-            </div>
-        </div>
-
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida3.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Tés de Hierbas </p>
-                <span class="pedidos__card-precio"> € 06,00 </span>
-            </div>
-        </div>
-
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida4.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Sorbete </p>
-                <span class="pedidos__card-precio"> € 08,98 </span>
-            </div>
-        </div>
-
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida5.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Americano Campari </p>
-                <span class="pedidos__card-precio"> € 10,50 </span>
-            </div>
-        </div>
-        
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida6.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a href="#" class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> Té de Burbujas </p>
-                <span class="pedidos__card-precio"> € 06,00 </span>
-            </div>
-        </div>
-
-        <div class="pedidos__producto">
-            <div class="pedidos__producto-img">
-                <img src="vistas/../publico/activos/pedidos/bebida7.webp" alt="Producto ROMANZA">
-            </div>
-            <div class="pedidos__card-contenido shadow px-2">
-                <a class="btn btn-danger pedidos__card-detalles"> Detalles </a>
-                <p class="pedidos__card-nombre"> CocaCola </p>
-                <span class="pedidos__card-precio"> € 02,00 </span>
-            </div>
-        </div>
+        <?php
+            while ($resultado = mysqli_fetch_array($datos)) {
+                ?>
+                    <div class="pedidos__producto">
+                        <div class="pedidos__producto-img">
+                            <img src="vistas/../publico/activos/pedidos/<?= $resultado['imagen'] ?>" alt="Producto ROMANZA">
+                        </div>
+                        <div class="pedidos__card-contenido shadow px-2">
+                            <button type="button" class="btn btn-danger pedidos__card-detalles" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Detalles </button>
+                            <p class="pedidos__card-nombre"> <?= $resultado['nombre'] ?> </p>
+                            <span class="pedidos__card-precio"> $ <?= $resultado['precio'] ?> </span>
+                        </div>
+                    </div>
+                <?php
+            }
+        ?>
     </section>
 </section>
 

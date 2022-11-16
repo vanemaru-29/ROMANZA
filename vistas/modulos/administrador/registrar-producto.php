@@ -19,7 +19,7 @@
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Nuevo Producto </h2>
 
-        <form action="#" method="POST" class="formulario" id="producto">
+        <form action="#" method="POST" class="formulario" id="producto" enctype="multipart/form-data">
             <!-- Grupo: Nombre -->
             <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="form-label login__label"> Nombre del Producto </label>
@@ -27,7 +27,7 @@
                     <input type="text" class="form-control formulario__input" placeholder=". . ." name="nombre" id="nombre">
                     <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                 </div>
-                <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 8 caracteres.</p>
+                <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p>
             </div>
             
             <!-- Grupo: Descripción -->
@@ -71,7 +71,7 @@
                         <?php
                             while ($resultado = mysqli_fetch_array($cat)) {
                             ?>
-                                <option value="<?= $resultado['nombre'] ?>"><?= $resultado['nombre'] ?></option>
+                                <option value="<?= $resultado['id_categoria'] ?>"><?= $resultado['nombre'] ?></option>
                             <?php
                             }
                         ?>
@@ -83,7 +83,7 @@
             <div class="formulario__grupo" id="grupo__imagen">
                 <label for="imagen" class="form-label login__label"> Imagen </label>
                 <div class="formulario__grupo-input">
-                    <input type="file" class="form-control" placeholder=". . ." name="imagen" id="imagen" onchange="return validarExt()">
+                    <input type="file" class="form-control" name="imagen" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
                 </div>
             </div>
 
@@ -95,17 +95,17 @@
 
             <?php
                 if (empty($_POST['registrar-producto'])) {
-                    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && ($_POST['precio']) && ($_POST['estatus']) && ($_POST['categoria']) && ($_POST['imagen'])) {
-                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1 && strlen($_POST['precio']) >= 1 && strlen($_POST['estatus']) >= 1 && strlen($_POST['categoria']) >= 1 && strlen($_POST['imagen']) >= 1) {
+                    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['estatus']) && isset($_POST['categoria']) && isset($_FILES['imagen'])) {
+                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1 && strlen($_POST['precio']) >= 1 && strlen($_POST['estatus']) >= 1 && strlen($_POST['categoria']) >= 1 && strlen($_FILES['imagen']['name']) >= 1) {
                             $nombre = $_POST['nombre'];
                             $descripcion = $_POST['descripcion'];
                             $precio = $_POST['precio'];
                             $estatus = $_POST['estatus'];
                             $categoria = $_POST['categoria'];
-                            $imagen = $_POST['imagen'];
-    
-                            // $nuevaCat = new Categorias();
-                            // $nuevaCat -> registroCat($nombre, $descripcion);
+                            $imagen = $_FILES['imagen'];
+
+                            $nuevoPdt = new Productos();
+                            $nuevoPdt->registroPdt($nombre, $descripcion, $precio, $estatus, $categoria, $imagen);
                         } else {
                             $camposVacios = new ErrFormularios();
                             $camposVacios -> camposVacios();

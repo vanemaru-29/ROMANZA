@@ -1,18 +1,15 @@
-const formulario = document.getElementById('producto');
-const inputs = document.querySelectorAll('#producto input');
+const formulario = document.getElementById('categoria');
+const inputs = document.querySelectorAll('#categoria input');
 
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
-	descripcion: /^[a-zA-ZÀ-ÿ\s]{15,200}$/, // Letras y espacios, pueden llevar acentos.
-	precio: /^[0-9]+[,]+[0-9]{2,2}$/ // formato 00,00
+    descripcion: /^[a-zA-ZÀ-ÿ\s]{15,200}$/ // Letras y espacios, pueden llevar acentos.
 }
 
 // inicializando campos
 const campos = {
     nombre: false,
     descripcion: false,
-    precio: false,
-    imagen: false
 }
 
 // llamando expresión según name
@@ -24,10 +21,6 @@ const validarFormulario = (e) => {
         
         case "descripcion":
             validarCampo(expresiones.descripcion, e.target);
-            break;
-
-        case "precio":
-            validarCampo(expresiones.precio, e.target);
             break;
     }
 }
@@ -55,30 +48,6 @@ const validarCampo = (expresion, input) => {
     }
 }
 
-// validar extensión de archivo
-function validarExt() {
-    var archivoInput = document.getElementById('imagen');
-    var archivoRuta = archivoInput.value;
-    var extPermitidas = /(.png|.webp)$/i;
-
-    if (!extPermitidas.exec(archivoRuta)) {
-        swal('Asegure haber seleccionado una imagen en formato ".png" o ".webp".');
-        
-        archivoInput.value = '';
-        campos.imagen = false;
-    } else {
-        if (archivoInput.files && archivoInput.files[0]) {
-            var visor = new FileReader();
-            visor.onload = function (e) {
-                document.getElementById('ver-archivo').innerHTML='<img src="'+e.target.result+'">';
-            };
-
-            visor.readAsDataURL(archivoInput.files[0]);
-            campos.imagen = true;
-        }
-    }
-}
-
 // ejecutando función al presionar teclas o al dar click afuera
 inputs.forEach((input) => {
     input.addEventListener('keyup', validarFormulario);
@@ -89,7 +58,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre && campos.descripcion && campos.precio && campos.imagen) {
+    if (campos.nombre || campos.descripcion) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

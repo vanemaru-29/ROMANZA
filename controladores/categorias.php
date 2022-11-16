@@ -25,8 +25,9 @@
             $insertarDatos = $insertar->execute();
 
             if (isset($insertarDatos)) {
-                $mensaje = new MsjFormularios();
-                $mensaje->registroExito();
+                $respuesta = new Redirecciones();
+                $respuesta->listaCat();
+                include $respuesta;
 
                 return 1;
             } else {
@@ -48,6 +49,7 @@
             $sql = mysqli_query($this->conexion, "SELECT * FROM categoria WHERE id_categoria = '$ID'");
             return $sql;
         }
+
 
         // editar información de categoria
         public function editarCat ($ID_cat, $nombre_cat, $descripcion_cat) {

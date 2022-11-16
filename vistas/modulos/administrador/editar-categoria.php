@@ -62,14 +62,14 @@
             </div>
 
             <?php
-                if (empty($_POST['registrar-categoria'])) {
+                if (empty($_POST['editar-categoria'])) {
                     if (isset($_POST['nombre']) && isset($_POST['descripcion'])) {
                         if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1) {
                             $nombre = $_POST['nombre'];
                             $descripcion = $_POST['descripcion'];
     
-                            $nuevaCat = new Categorias();
-                            $nuevaCat -> editarCat($ID, $nombre, $descripcion);
+                            $editarCat = new Categorias();
+                            $editarCat -> editarCat($ID, $nombre, $descripcion);
                         } else {
                             $camposVacios = new ErrFormularios();
                             $camposVacios -> camposVacios();
@@ -81,4 +81,4 @@
     </section>
 </section>
 
-<script src="vistas/../js/validacion-categoria.js"></script>
+<script src="vistas/../js/validacion-categoria-editar.js"></script>

@@ -14,7 +14,7 @@
         <a href="index.php?romanza=registrar-categoria" class="mi-cuenta-enlace"> Registrar Categoria </a>
     </div>
 
-    <!-- pedidos -->
+    <!-- lista de categorias -->
     <section class="container mi-cuenta">
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5">Categorias Registradas</h2>
@@ -33,8 +33,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Fecha de Registro</th>
-                        <th scope="col">Opciones</th>
+                        <th scope="col">Registro</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>

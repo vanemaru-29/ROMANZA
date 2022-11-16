@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2022 a las 13:54:32
+-- Tiempo de generación: 16-11-2022 a las 20:49:17
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -51,26 +51,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre`, `descripcion`, `fecha_registro`) VALUES
-(1, 'Bebidas', 'Toda clase de bebidas con o sin alcohol', '14/11/2022'),
-(2, 'Carnes', 'Todos los tipos de carne y preparaciones con carne para todos los gustos', '14/11/2022');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `comida`
---
-
-CREATE TABLE `comida` (
-  `id_comida` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
-  `imagen` varchar(200) DEFAULT NULL,
-  `precio` int(11) DEFAULT NULL,
-  `estatus` varchar(45) DEFAULT NULL,
-  `is_sub_categoria` int(11) DEFAULT NULL,
-  `id_categoria` int(11) DEFAULT NULL,
-  `fecha_registro` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(1, 'Bebidas', 'Toda clase de bebidas con o sin alcohol', '15/11/2022'),
+(2, 'Carnes', 'Todos los tipos de carne y preparaciones con carne para todos los gustos', '14/11/2022'),
+(4, 'Postres', 'Toda clase de postres desde tortas hasta helados', '14/11/2022'),
+(5, 'Sopas', 'Todo tipo de sopas caldos y cremas', '14/11/2022'),
+(6, 'Pastas', 'Preparaciones con diferentes tipos de pastas', '16/11/2022'),
+(7, 'Ensaladas', 'Ensaladas de distintas preparaciones', '16/11/2022');
 
 -- --------------------------------------------------------
 
@@ -159,6 +145,41 @@ CREATE TABLE `pago` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `producto`
+--
+
+CREATE TABLE `producto` (
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `descripcion` varchar(100) NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  `precio` text NOT NULL,
+  `estatus` varchar(45) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  `fecha_registro` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `precio`, `estatus`, `id_categoria`, `fecha_registro`) VALUES
+(1, 'Jugo de Papaya', 'Jugo natural de papaya', '1.webp', '01,00', 'inactivo', 1, '14/11/2022'),
+(2, 'Batido de Frutilla', 'Batido natural de frutilla con leche', '2.webp', '01,85', 'activo', 1, '16/11/2022'),
+(3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '02,50', 'inactivo', 1, '14/11/2022'),
+(4, 'Té de Hierbas', 'Té natural de hierbas con miel', '4.webp', '00,80', 'activo', 1, '14/11/2022'),
+(5, 'Té de Burbujas', 'Té de frutas con leche y bolitas de tapioca', '5.webp', '03,00', 'activo', 1, '14/11/2022'),
+(7, 'Americano Campari', 'Cóctel clásico italiano', '7.webp', '03,80', 'activo', 1, '14/11/2022'),
+(8, 'Banana Split', 'Postre de helado y banana', '8.webp', '03,50', 'activo', 4, '14/11/2022'),
+(9, 'Pollo a la Parrilla', 'Pollo a la parrilla con salsa agridulce', '9.webp', '05,25', 'activo', 2, '14/11/2022'),
+(10, 'Sopa de Mariscos', 'Sopa de mariscos expecial italiana', '10.webp', '04,00', 'activo', 5, '14/11/2022'),
+(11, 'Tarta de Queso', 'Tarta de queso dulce con ceresas', '11.webp', '04,00', 'inactivo', 4, '15/11/2022'),
+(12, 'Pasta Italiana Básica', 'Pasta con vegetales variados', '12.webp', '04,50', 'inactivo', 6, '16/11/2022'),
+(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '04,50', 'activo', 5, '16/11/2022');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `rol`
 --
 
@@ -225,12 +246,6 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Indices de la tabla `comida`
---
-ALTER TABLE `comida`
-  ADD PRIMARY KEY (`id_comida`);
-
---
 -- Indices de la tabla `conversion`
 --
 ALTER TABLE `conversion`
@@ -259,6 +274,13 @@ ALTER TABLE `opiniones`
 --
 ALTER TABLE `orden`
   ADD PRIMARY KEY (`id_orden`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id_producto`),
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `rol`
@@ -292,13 +314,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `comida`
---
-ALTER TABLE `comida`
-  MODIFY `id_comida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `conversion`
@@ -329,6 +345,12 @@ ALTER TABLE `opiniones`
 --
 ALTER TABLE `orden`
   MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
