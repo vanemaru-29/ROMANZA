@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2022 a las 20:49:17
+-- Tiempo de generación: 17-11-2022 a las 18:59:25
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -165,17 +165,18 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `precio`, `estatus`, `id_categoria`, `fecha_registro`) VALUES
 (1, 'Jugo de Papaya', 'Jugo natural de papaya', '1.webp', '01,00', 'inactivo', 1, '14/11/2022'),
-(2, 'Batido de Frutilla', 'Batido natural de frutilla con leche', '2.webp', '01,85', 'activo', 1, '16/11/2022'),
+(2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '01,85', 'activo', 4, '17/11/2022'),
 (3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '02,50', 'inactivo', 1, '14/11/2022'),
 (4, 'Té de Hierbas', 'Té natural de hierbas con miel', '4.webp', '00,80', 'activo', 1, '14/11/2022'),
 (5, 'Té de Burbujas', 'Té de frutas con leche y bolitas de tapioca', '5.webp', '03,00', 'activo', 1, '14/11/2022'),
 (7, 'Americano Campari', 'Cóctel clásico italiano', '7.webp', '03,80', 'activo', 1, '14/11/2022'),
 (8, 'Banana Split', 'Postre de helado y banana', '8.webp', '03,50', 'activo', 4, '14/11/2022'),
 (9, 'Pollo a la Parrilla', 'Pollo a la parrilla con salsa agridulce', '9.webp', '05,25', 'activo', 2, '14/11/2022'),
-(10, 'Sopa de Mariscos', 'Sopa de mariscos expecial italiana', '10.webp', '04,00', 'activo', 5, '14/11/2022'),
-(11, 'Tarta de Queso', 'Tarta de queso dulce con ceresas', '11.webp', '04,00', 'inactivo', 4, '15/11/2022'),
+(10, 'Sopa de Mariscos', 'Sopa de mariscos expecial italiana', '10.webp', '04,00', 'inactivo', 5, '14/11/2022'),
+(11, 'Tarta de Queso', 'Tarta de queso dulce con ceresas', '11.webp', '04,00', 'activo', 4, '15/11/2022'),
 (12, 'Pasta Italiana Básica', 'Pasta con vegetales variados', '12.webp', '04,50', 'inactivo', 6, '16/11/2022'),
-(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '04,50', 'activo', 5, '16/11/2022');
+(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '04,50', 'activo', 5, '16/11/2022'),
+(15, 'CocaCola', 'Refresco cocacola', '15.webp', '00,65', 'activo', 1, '17/11/2022');
 
 -- --------------------------------------------------------
 
@@ -350,7 +351,7 @@ ALTER TABLE `orden`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -363,6 +364,16 @@ ALTER TABLE `rol`
 --
 ALTER TABLE `usuario`
   MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

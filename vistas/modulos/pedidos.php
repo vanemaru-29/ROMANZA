@@ -1,4 +1,6 @@
 <?php
+    clearstatcache();
+
     require_once ('vistas/../controladores/autoCarga.php');
 
     $productos = new Productos();

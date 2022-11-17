@@ -12,6 +12,7 @@ const campos = {
     nombre: false,
     descripcion: false,
     precio: false,
+    categoria: true,
     imagen: false
 }
 
@@ -89,7 +90,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre || campos.descripcion || campos.precio || campos.imagen) {
+    if (campos.nombre || campos.descripcion || campos.precio || campos.categoria || campos.imagen) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });
