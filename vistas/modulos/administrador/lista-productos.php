@@ -20,22 +20,26 @@
         <h2 class="fw-bold text-center pb-5">Productos Registrados</h2>
 
         <?php
+            // eliminar producto
             if (!empty($_GET['producto'])) {
-                $producto = new Productos();
-                $pdt = $producto->obtenerPdt($_GET['producto']);
-                
                 $eliminar = new Productos();
                 $eliminar->eliminarPdt($_GET['producto']);
+            }
+
+            // cambiar estatus del producto
+            if (!empty($_GET['estatus'])) {
+                $producto = new Productos();
+                $pdt = $producto->obtenerPdt($_GET['estatus']);
 
                 while ($pdtDatos = $pdt->fetch_object()) {
                     $estatus = new Productos();
-                    $estatus->estatusPdt($_GET['producto'], $pdtDatos->estatus);
+                    $estatus->estatusPdt($_GET['estatus'], $pdtDatos->estatus);
                 }
             }
         ?>
 
         <article>
-            <table class="table table-hover">
+            <table class="table table-hover" id="table_data">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -46,7 +50,7 @@
                         <th scope="col">Categoria</th>
                         <th scope="col">Imagen</th>
                         <th scope="col">Registro</th>
-                        <th scope="col"></th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +62,7 @@
                                     <td><?= $resultado['nombre'] ?></td>
                                     <td><?= $resultado['descripcion'] ?></td>
                                     <td class="text-center">$ <?= $resultado['precio'] ?></td>
-                                    <td class="text-center"> <a href="index.php?romanza=lista-productos&&producto=<?= $resultado['id_producto'] ?>" class="btn" id="estatus-<?= $resultado['estatus'] ?>"><?= $resultado['estatus'] ?></a> </td>
+                                    <td class="text-center"> <a href="index.php?romanza=lista-productos&&estatus=<?= $resultado['id_producto'] ?>" class="btn" id="estatus-<?= $resultado['estatus'] ?>"><?= $resultado['estatus'] ?></a> </td>
                                     <td>
                                         <?php
                                             $categoria = new Categorias();
@@ -85,4 +89,5 @@
     </section>
 </section>
 
+<script src="vistas/../js/dataTables.js"></script>
 <script src="vistas/../publico/js/estatus.js"></script>

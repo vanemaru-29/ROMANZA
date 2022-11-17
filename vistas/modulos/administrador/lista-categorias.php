@@ -5,7 +5,7 @@
     $datos = $categorias->listaCat();
 ?>
 
-<section class="w-100 vh-100 py-5">
+<section class="w-100 py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Lista de Categorias </h1>
 
     <!-- navbar -->
@@ -20,6 +20,7 @@
         <h2 class="fw-bold text-center pb-5">Categorias Registradas</h2>
 
         <?php
+            // eliminar categoria
             if (!empty($_GET['categoria'])) {
                 $eliminar = new Categorias();
                 $eliminar->eliminarCat($_GET['categoria']);
@@ -27,14 +28,14 @@
         ?>
 
         <article>
-            <table class="table table-hover">
+            <table class="table table-hover" id="table_data">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Registro</th>
-                        <th scope="col"></th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,3 +60,5 @@
         </article>
     </section>
 </section>
+
+<script src="vistas/../js/dataTables.js"></script>
