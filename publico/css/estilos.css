@@ -549,7 +549,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .pedidos__cantidad-producto {
-    width: 50px;
+    width: 100px;
 }
 
 /* -- carrito -- */

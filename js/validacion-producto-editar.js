@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#producto input');
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
 	descripcion: /^[a-zA-ZÀ-ÿ\s]{15,200}$/, // Letras y espacios, pueden llevar acentos.
-	precio: /^[0-9]+[,]+[0-9]{2,2}$/ // formato 00,00
+	precio: /^[0-9]+[.]+[0-9]{2,2}$/ // formato 00,00
 }
 
 // inicializando campos
