@@ -18,31 +18,26 @@
                         </div>
                     </div>
 
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-center">Cantidad</th>
-                                <th scope="col" class="text-center">Precio</th>
-                                <th scope="col" class="text-center">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>                                
-                                <!-- Grupo: Cantidad -->
-                                <td class="text-center">
-                                    <input type="text" class="pedidos__cantidad-producto" name="cantidad" id="cantidad<?= $resultado['id_producto'] ?>" onkeyup="calcular(<?= $resultado['id_producto'] ?>)">
-                                </td>
-                                <td class="text-center">
-                                    $ <input type="text" class="pedidos__cantidad-producto" name="precio" id="precio<?= $resultado['id_producto'] ?>" value="<?= $resultado['precio'] ?>" disabled>
-                                </td>
-                                <td class="text-center">
-                                    $ <input type="text" class="pedidos__cantidad-producto" name="total" id="total<?= $resultado['id_producto'] ?>" disabled>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <section class="pedidos__detalles">
+                        <article class="pedidos__detalles-head">
+                            <p scope="col" class="text-center pedidos__detalles-h-p">Cantidad</p>
+                            <p scope="col" class="text-center pedidos__detalles-h-p">Precio</p>
+                            <p scope="col" class="text-center pedidos__detalles-h-p">Total</p>
+                        </article>
+                        <article class="pedidos__detalles-body">
+                            <div class="text-center pedidos__detalles-b-d">
+                                <input type="text" class="pedidos__cantidad-producto" name="cantidad" id="cantidad<?= $resultado['id_producto'] ?>" onkeyup="calcular(<?= $resultado['id_producto'] ?>)">
+                            </div>
+                            <div class="text-center pedidos__detalles-b-d">
+                                $ <input type="text" class="pedidos__cantidad-producto" name="precio" id="precio<?= $resultado['id_producto'] ?>" value="<?= $resultado['precio'] ?>" disabled>
+                            </div>
+                            <div class="text-center pedidos__detalles-b-d">
+                                $ <input type="text" class="pedidos__cantidad-producto" name="total" id="total<?= $resultado['id_producto'] ?>" disabled>
+                            </div>
+                        </article>
+                    </section>
                 </div>
-                
+                                                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal"> Cancelar </button>
                     <button type="button" class="btn btn-warning"> Añadir al Carrito </button>

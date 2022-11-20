@@ -18,7 +18,10 @@
         public function registroCat ($nombre_cat, $descripcion_cat) {
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
-            $this->registro_cat = date("d/m/Y");
+
+            $fecha = new General();
+            $fechaActual = $fecha->fechaActual();
+            $this->registro_cat = $fechaActual;
             
             $sql = "INSERT INTO categoria (nombre, descripcion, fecha_registro) VALUES ('".$this->nombre_cat."', '".$this->descripcion_cat."', '".$this->registro_cat."')";
             $insertar = $this->conexion->prepare($sql);
@@ -56,7 +59,10 @@
             $this->ID_cat = $ID_cat;
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
-            $this->registro_cat = date("d/m/Y");
+
+            $fecha = new General();
+            $fechaActual = $fecha->fechaActual();
+            $this->registro_cat = $fechaActual;
 
             $sql = "UPDATE categoria SET nombre='".$this->nombre_cat."', descripcion='".$this->descripcion_cat."', fecha_registro='".$this->registro_cat."' WHERE id_categoria = '".$this->ID_cat."'";
             $editar = $this->conexion->prepare($sql);

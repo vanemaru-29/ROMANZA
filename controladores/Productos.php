@@ -1,6 +1,5 @@
 <?php
     require_once ('autoCarga.php');
-    date_default_timezone_set("America/Caracas");
 
     class Productos {
         private $ID_pdt;
@@ -26,7 +25,11 @@
             $this->estatus_pdt = $estatus;
             $this->categoria_pdt = $categoria;
             $this->imagen_pdt = $imagen;
-            $this->registro_pdt = date("d/m/Y");
+
+            $fecha = new General();
+            $fechaActual = $fecha->fechaActual();
+
+            $this->registro_pdt = $fechaActual;
 
             $sql = "INSERT INTO producto (nombre, descripcion, precio, estatus, id_categoria, imagen, fecha_registro) VALUES ('".$this->nombre_pdt."', '".$this->descripcion_pdt."', '".$this->precio_pdt."', '".$this->estatus_pdt."', '".$this->categoria_pdt."', NULL, '".$this->registro_pdt."')";
             $insertar = $this->conexion->prepare($sql);
@@ -135,7 +138,10 @@
             $this->precio_pdt = $precio;
             $this->categoria_pdt = $categoria;
             $this->imagen_pdt = $imagen;
-            $this->registro_pdt = date("d/m/Y");
+
+            $fecha = new General();
+            $fechaActual = $fecha->fechaActual();
+            $this->registro_pdt = $fechaActual;
 
             if ($this->imagen_pdt['name'] == "") {
                 $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";

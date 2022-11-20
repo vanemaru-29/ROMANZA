@@ -21,6 +21,45 @@
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5">Productos Registrados</h2>
 
+        <!-- formulario reportes por fecha -->
+        <article>
+            <?php
+                $nombreTabla = "producto";
+                $fecha = new Fechas();
+                $fechaActual = $fecha->fechaActual();
+                $fechaPrimera = $fecha->fechaPrimera($nombreTabla);
+            ?>
+
+            <form action="vistas/reportes/productos-registrados.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
+                <?php
+                    while ($verFecha = mysqli_fetch_array($fechaPrimera)) {
+                ?>
+                    <!-- Grupo: Desde -->
+                    <div class="formulario__grupo" id="grupo__desde">
+                        <label for="desde" class="form-label login__label"> Desde: </label>
+                        <div class="formulario__grupo-input">
+                            <input type="date" class="form-control formulario__input" name="desde" id="desde" value="<?= $verFecha['fecha_registro'] ?>">
+                        </div>
+                        <!-- <p class="formulario__input-error m-2">Algo.</p> -->
+                    </div>
+                <?php } ?>
+
+                <!-- Grupo: Hasta -->
+                <div class="formulario__grupo" id="grupo__hasta">
+                    <label for="hasta" class="form-label login__label"> Hasta </label>
+                    <div class="formulario__grupo-input">
+                        <input type="date" class="form-control formulario__input" name="hasta" id="hasta" value="<?= $fechaActual ?>">
+                    </div>
+                    <!-- <p class="formulario__input-error m-2">Algo.</p> -->
+                </div>
+                
+                <div class="d-grid my-4 formulario__grupo">
+                    <label for="exportar-pdf" class="form-label login__label">  </label>
+                    <button type="submit" name="exportar-pdf" id="exportar-pdf" class="formulario__btn btn btn-secondary"> Exportar PDF </button>
+                </div>
+            </form>
+        </article>
+
         <?php
             // eliminar producto
             if (!empty($_GET['producto'])) {
@@ -76,7 +115,13 @@
                                         ?>
                                     </td>
                                     <td><?= $resultado['imagen'] ?></td>
-                                    <td><?= $resultado['fecha_registro'] ?></td>
+                                    <td>
+                                        <?php
+                                            $fecha = new Fechas();
+                                            $resultadoFecha = $fecha->fechaFormato($resultado['fecha_registro']);
+                                            echo $resultadoFecha;
+                                        ?>
+                                    </td>
                                     <td>
                                         <a href="index.php?romanza=lista-productos&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
                                         <a href="index.php?romanza=editar-producto&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
