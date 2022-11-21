@@ -10,7 +10,7 @@ if(!empty($_POST['usuario']) && !empty($_POST['password'])) {
 
     $message = '';
 
-    if(count($result) > 0 && password_verify($_POST['password'], $result['password'])) {
+    if(count($result) > 0 && password_verify($_POST['clave'], $result['clave'])) {
         $_SESSION['usuario'] = $result['usuario'];
         header('./menu.html');
         $message = "Credenciales correctas";

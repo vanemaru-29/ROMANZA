@@ -1,13 +1,13 @@
 <?php
 
-if (isset($_POST['registrarse'])) {
+if (isset($_POST['submit'])) {
     include('./modelos/conexion.php');
     session_start();
 
-    $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : false;
     $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+    $usuario = isset($_POST['nombre_usuario']) ? $_POST['nombre_usuario'] : false;
     $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : false;
-    $contrasena = isset($_POST['password']) ? $_POST['password'] : false;
+    $contrasena = isset($_POST['clave']) ? $_POST['clave'] : false;
     $register_date = date("y/m/d");
 
     $errores = array();
@@ -23,7 +23,7 @@ if (isset($_POST['registrarse'])) {
         $usuario_validado = true;
     } else {
         $usuario_validado  = false;
-        $errores['usuario'] = "El usuario no es valido";
+        $errores['nombre_usuario'] = "El usuario no es valido";
     }
 
     if (!empty($telefono) && is_numeric($telefono)) {
@@ -37,15 +37,15 @@ if (isset($_POST['registrarse'])) {
         $contrasena_validado = true;
     } else {
         $contrasena_validado = false;
-        $errores['password'] = "La contrasena no es valido";
+        $errores['clave'] = "La contrasena no es valido";
     }
 
     $guardar_usuario = false;
 
     if (count($errores) == 0) {
         $guardar_usuario = true;
-        $contrasena_segura= password_hash($contrasena, PASSWORD_BCRYPT, ['cost' => 4]);
-        var_dump(password_verify($contrasena, $contrasena_segura));
+/*         $contrasena_segura= password_hash($contrasena, PASSWORD_BCRYPT, ['cost' => 4]);
+        var_dump(password_verify($contrasena, $contrasena_segura)); */
 
         $sql = "INSERT INTO usuarios (usuario, nombre, telefono, clave) VALUES ('$usuario', '$nombre', '$telefono', '$contrasena')";
 
