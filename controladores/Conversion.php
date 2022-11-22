@@ -2,15 +2,10 @@
     require_once ('autoCarga.php');
     date_default_timezone_set("America/Caracas");
 
-    class Metodos {
-        private $ID_pdt;
-        private $nombre_metodo;
-        private $descripcion_metodo;
-        private $numero_cuenta_m;
-        private $cedula_m;
-        private $telefono_m;
-        private $estatus_metodo;
-        private $registro_metodo;
+    class Conversion {
+        private $ID_b;
+        private $bolivares_c;
+        private $registro_c;
 
         // constructor
         public function __construct () {
@@ -19,16 +14,11 @@
         }
 
         // nuevo producto
-        public function registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus) {
-            $this->nombre_metodo = $nombre;
-            $this->descripcion_metodo = $descripcion;
-            $this->numero_cuenta_m = $numero_cuenta;
-            $this->cedula_m = $cedula;
-            $this->telefono_m = $telefono;
-            $this->estatus_metodo = $estatus;
-            $this->registro_metodo = date("d/m/Y");
+        public function registroConversion($bolivares) {
+            $this->bolivares_c = $bolivares;
+            $this->registro_c = date("d/m/Y");
 
-            $sql = "INSERT INTO metodo_pago (nombre, descripcion, numero_cuenta, cedula, telefono, fecha_registro, estatus) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->numero_cuenta_m."', '".$this->cedula_m."', '".$this->telefono_m."','".$this->registro_metodo."', '".$this->estatus_metodo."')";
+            $sql = "INSERT INTO conversion (bs_equivalencia, fecha_registro) VALUES ('".$this->bolivares_c."', '".$this->registro_c."')";
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 

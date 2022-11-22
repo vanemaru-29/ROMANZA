@@ -13,7 +13,7 @@
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
 
             // administrador
-            } else if ($enlace == "reportes" || $enlace == "registrar-producto" || $enlace == "editar-producto" || $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "editar-categoria" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "administrar") {
+            } else if ($enlace == "reportes" || $enlace == "registrar-producto" || $enlace == "editar-producto" || $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "editar-categoria" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "lista-metodo-pago" || $enlace == "conversion" || $enlace == "administrar") {
                 $modulo = "vistas/modulos/administrador/".$enlace.".php";
                 
             // encargado
