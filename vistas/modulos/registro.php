@@ -1,34 +1,7 @@
 <?php 
-require './controladores/registrar-usuario.php';
 
+require_once ('vistas/../controladores/autoCarga.php');
 
-/* $message = '';
-
-if(!empty($_POST['usuario'] && $_POST['nombre'] && $_POST['telefono'] && $_POST['password'])) {
-
-    $usuario = isset($_POST['usuario']) ? $_POST['usuario'] : false;
-    $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-    $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : false;
-    $contrasena = isset($_POST['password']) ? $_POST['password'] : false;
-    $register_date = date("y/m/d");
-
-    $sql =  "INSERT INTO usuarios (usuario, nombre, telefono, clave) VALUES ('$usuario', '$nombre', '$telefono', '$contrasena')";
-    $stmt = $conn->prepare($sql);
-
-
-    $stmt->bind_param(':nombre', $_POST['usuario']);
-    $stmt->bind_param(':nombre_usuario', $_POST['nombre_usuario']);
-    $stmt->bind_param(':telefono', $_POST['telefono']);
-    $password = password_hash($_POST['passsword'], PASSWORD_BCRYPT);
-    $stmt->bind_param(':passsword', $_POST['password']);
-
-
-    if($stmt->execute()) {
-        $message = "Registro exitoso";
-    }else {
-        $message = "Ha ocurrido un error intente de nuevo";
-    }
-} */
 
 ?>
 <section class="w-100 vh-100 d-flex justify-content-center align-items-center">
@@ -86,9 +59,27 @@ if(!empty($_POST['usuario'] && $_POST['nombre'] && $_POST['telefono'] && $_POST[
                         <div class="d-grid m-2 formulario__grupo formulario__grupo-btn-enviar">
                             <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRARSE </button>
                         </div>
-             <?php if(!empty($message)): ?>
-                <p><?=$message ?></p>
-                <?php endif;?>
+                        <?php
+                if (empty($_POST['submit'])) {
+                    if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono']) && isset($_POST['clave'])) {
+                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['clave']) >= 1) {
+                            $nombre = $_POST['nombre'];
+                            $usuario = $_POST['nombre_usuario'];
+                            $telefono = $_POST['telefono'];
+                            $clave = $_POST['clave'];
+                            $rol = 1;
+                  
+
+                            $nuevoMetodo = new Usuarios();
+                            $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $clave, $rol);
+                        } else {
+                            $camposVacios = new ErrFormularios();
+                            $camposVacios -> camposVacios();
+                        }
+                    }
+                }
+            ?>
+  
                     </form>
                 </div>
             </div>

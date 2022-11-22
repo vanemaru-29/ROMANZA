@@ -1,6 +1,5 @@
 <?php
     require_once ('autoCarga.php');
-    date_default_timezone_set("America/Caracas");
 
     class Productos {
         private $ID_pdt;
@@ -26,7 +25,11 @@
             $this->estatus_pdt = $estatus;
             $this->categoria_pdt = $categoria;
             $this->imagen_pdt = $imagen;
-            $this->registro_pdt = date("d/m/Y");
+
+            $fecha = new Fechas();
+            $fechaActual = $fecha->fechaActual();
+
+            $this->registro_pdt = $fechaActual;
 
             $sql = "INSERT INTO producto (nombre, descripcion, precio, estatus, id_categoria, imagen, fecha_registro) VALUES ('".$this->nombre_pdt."', '".$this->descripcion_pdt."', '".$this->precio_pdt."', '".$this->estatus_pdt."', '".$this->categoria_pdt."', NULL, '".$this->registro_pdt."')";
             $insertar = $this->conexion->prepare($sql);
@@ -128,33 +131,49 @@
         }
 
         // editar información de producto
-        public function editarPdt ($ID, $nombre, $descripcion, $precio, $categoria) {
+        public function editarPdt ($ID, $nombre, $descripcion, $precio, $categoria, $imagen) {
             $this->ID_pdt = $ID;
             $this->nombre_pdt = $nombre;
             $this->descripcion_pdt = $descripcion;
             $this->precio_pdt = $precio;
             $this->categoria_pdt = $categoria;
+            $this->imagen_pdt = $imagen;
 
-            $this->registro_pdt = date("d/m/Y");
+            $fecha = new Fechas();
+            $fechaActual = $fecha->fechaActual();
+            $this->registro_pdt = $fechaActual;
 
-            var_dump($this->categoria_pdt);
-            
-            // $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='1', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
-            // $editar = $this->conexion->prepare($sql);
-            // $insertarDatos = $editar->execute();
+            if ($this->imagen_pdt['name'] == "") {
+                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
+                $editar = $this->conexion->prepare($sql);
+                $insertarDatos = $editar->execute();
+            } else {
+                $this->imagen_pdt['name'] = $ID.".webp";
 
-            // if (isset($insertarDatos)) {
-            //     $respuesta = new Redirecciones();
-            //     $respuesta->listaPdt();
-            //     include $respuesta;
+                // cambiar imagen en directorio
+                if (file_exists("vistas/../publico/activos/pedidos/".$ID.".webp")) {
+                    if (unlink("vistas/../publico/activos/pedidos/".$ID.".webp")) {
+                        move_uploaded_file($this->imagen_pdt['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name']);
+                    }
+                }
 
-            //     return 1;
-            // } else {
-            //     $errorRegistro = new ErrFormularios();
-            //     $errorRegistro -> editar();
+                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', imagen='".$this->imagen_pdt['name']."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
+                $editar = $this->conexion->prepare($sql);
+                $insertarDatos = $editar->execute();
+            }
 
-            //     return 0;
-            // }
+            if (isset($insertarDatos)) {
+                $respuesta = new Redirecciones();
+                $respuesta->listaPdt();
+                include $respuesta;
+
+                return 1;
+            } else {
+                $errorRegistro = new ErrFormularios();
+                $errorRegistro -> editar();
+
+                return 0;
+            }
         }
 
         // eliminar un producto
@@ -163,6 +182,7 @@
 
             $imagen = $ID.".webp";
 
+            // eliminando la imagen del directorio
             if (file_exists("vistas/../publico/activos/pedidos/".$imagen)) {
                 if (unlink("vistas/../publico/activos/pedidos/".$imagen)) {
                     $sql = "DELETE FROM producto WHERE id_producto = '".$this->ID_pdt."'";

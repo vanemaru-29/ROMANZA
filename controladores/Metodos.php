@@ -22,7 +22,7 @@
             $this->estatus_metodo = $estatus;
             $this->registro_metodo = date("d/m/Y");
 
-            $sql = "INSERT INTO metodo_pago (nombre, info,  fecha_registro) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->registro_metodo."', '".$this->estatus_metodo."')";
+            $sql = "INSERT INTO metodo_pago (nombre, descripcion,  fecha_registro, estatus) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->registro_metodo."', '".$this->estatus_metodo."')";
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 

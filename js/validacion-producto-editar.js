@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#producto input');
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{4,40}$/, // Letras y espacios, pueden llevar acentos.
 	descripcion: /^[a-zA-ZÀ-ÿ\s]{15,200}$/, // Letras y espacios, pueden llevar acentos.
-	precio: /^[0-9]+[,]+[0-9]{2,2}$/ // formato 00,00
+	precio: /^[0-9]+[.]+[0-9]{2,2}$/ // formato 00,00
 }
 
 // inicializando campos
@@ -12,6 +12,7 @@ const campos = {
     nombre: false,
     descripcion: false,
     precio: false,
+    categoria: true,
     imagen: false
 }
 
@@ -89,7 +90,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre || campos.descripcion || campos.precio || campos.imagen) {
+    if (campos.nombre || campos.descripcion || campos.precio || campos.categoria || campos.imagen) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

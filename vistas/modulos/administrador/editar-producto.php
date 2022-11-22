@@ -5,6 +5,8 @@
             <script> window.location.href = "vistas/../index.php?romanza=lista-productos"; </script>
         <?php
     } else {
+        clearstatcache();
+        
         $ID = $_GET['producto'];
         
         require_once ('vistas/../controladores/autoCarga.php');
@@ -31,7 +33,7 @@
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Editar Producto </h2>
 
-        <form action="#" method="POST" class="formulario" id="producto">
+        <form action="#" method="POST" class="formulario" id="producto" enctype="multipart/form-data">
             <?php
                 while ($resultado = $datos->fetch_object()) {
             ?>
@@ -78,11 +80,11 @@
                     <label for="categoria" class="form-label login__label"> Categoria </label>
                     <div class="formulario__grupo-input">
                         <select class="form-select" aria-label="Default select example" name="categoria" id="categoria">
-                            <option selected value="0">Seleccione una categoria</option>
+                            <!-- <option value="0">Seleccione una categoria</option> -->
                             <?php
                                 while ($catDatos = mysqli_fetch_array($cat)) {
                                 ?>
-                                    <option value="<?= $catDatos['id_categoria'] ?>"><?= $catDatos['nombre'] ?></option>
+                                    <option <?php if ($catDatos['id_categoria'] == $resultado->id_categoria) {echo "selected";} ?> value="<?= $catDatos['id_categoria'] ?>"><?= $catDatos['nombre'] ?></option>
                                 <?php
                                 }
                             ?>
@@ -115,15 +117,16 @@
 
             <?php
                 if (empty($_POST['editar-producto'])) {
-                    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['categoria'])) {
-                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1 && strlen($_POST['precio']) >= 1 && strlen($_POST['categoria']) >= 1) {
+                    if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['categoria']) || isset($_FILES['imagen'])) {
+                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1 && strlen($_POST['precio']) >= 1 && strlen($_POST['categoria']) >= 1 || strlen($_FILES['imagen']['name']) >= 1) {
                             $nombre = $_POST['nombre'];
                             $descripcion = $_POST['descripcion'];
                             $precio = $_POST['precio'];
                             $categoria = $_POST['categoria'];
+                            $img_pdt = $_FILES['imagen'];
 
                             $nuevoPdt = new Productos();
-                            $nuevoPdt->editarPdt($ID, $nombre, $descripcion, $precio, $categoria);
+                            $nuevoPdt->editarPdt($ID, $nombre, $descripcion, $precio, $categoria, $img_pdt);
                         } else {
                             $camposVacios = new ErrFormularios();
                             $camposVacios -> camposVacios();
