@@ -58,7 +58,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.direccion && campos.referencia) {
+    if (campos.direccion || campos.referencia) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

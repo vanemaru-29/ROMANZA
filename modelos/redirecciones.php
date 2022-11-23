@@ -17,5 +17,11 @@
                 <script> window.location.href = "vistas/../index.php?romanza=pedidos"; </script>
             <?php
         }
+        
+        public function misDirecciones () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=mis-direcciones"; </script>
+            <?php
+        }
     }
 ?>

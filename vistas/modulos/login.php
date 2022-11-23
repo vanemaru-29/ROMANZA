@@ -1,7 +1,7 @@
 <?php
-    if (!isset($_SESSION['usuario'])) {
+    if (isset($_SESSION['nombre_usuario'])) {
         ?>
-            <script> window.location.href = "vistas/../index.php?modulo=inicio"; </script>
+            <script> window.location.href = "vistas/../index.php?romanza=inicio"; </script>
         <?php
     }
 ?>

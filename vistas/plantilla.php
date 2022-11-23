@@ -18,7 +18,7 @@
         // cerrar sesión
         if (isset($_POST['salir'])) {
             unset($_SESSION['nombre_usuario']);
-            unset($_SESSION['rol']);
+            unset($_SESSION['id_rol']);
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=inicio"; </script>
             <?php

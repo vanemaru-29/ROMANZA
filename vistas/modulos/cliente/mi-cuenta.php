@@ -1,11 +1,14 @@
 <?php
-    clearstatcache();
+    if (!isset($_SESSION['nombre_usuario'])) {
+        ?>
+            <script> window.location.href = "vistas/../index.php?romanza=inicio"; </script>
+        <?php
+    } else {
+        $nombre_usuario = $_SESSION['nombre_usuario'];
 
-    require_once ('vistas/../controladores/autoCarga.php');
-
-    $usuario = new Usuarios();
-    $datos = $usuario->getUsuario($ID);
-
+        $usuario = new Usuarios();
+        $datos = $usuario -> datosUser($nombre_usuario);
+    }
 ?>
 
 <section class="py-5">
@@ -22,13 +25,15 @@
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Bienvenido@ </h2>
      
-
+        <?php
+            while ($datos_usuario = mysqli_fetch_array($datos)) {
+        ?>
         <!-- editar datos -->
         <article class="row">
             <div class="col-sm-12 col-md-6">
-                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre:</span> Fabi Martinez</p>
-                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre de Usiario:</span> Fabimar2712</p>
-                <p class="mi-cuenta__datos"><span class="fw-bold">Teléfono:</span> 0414 351 5753</p>
+                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre:</span> <?= $datos_usuario['nombre'] ?></p>
+                <p class="mi-cuenta__datos"><span class="fw-bold">Nombre de Usuario:</span> <?= $datos_usuario['nombre_usuario'] ?></p>
+                <p class="mi-cuenta__datos"><span class="fw-bold">Teléfono:</span> <?= $datos_usuario['telefono'] ?></p>
             </div>
             
             <div class="col-sm-12 col-md-6">
@@ -46,7 +51,7 @@
                 <div class="formulario__grupo" id="grupo__nombre">
                     <label for="nombre" class="form-label login__label"> Nombre </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" class="form-control formulario__input" placeholder="Vanessa Barboza" name="nombre" id="nombre">
+                        <input type="text" class="form-control formulario__input" placeholder="Vanessa Barboza" name="nombre" id="nombre" value="<?= $datos_usuario['nombre'] ?>">
                         <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                     </div>
                     <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 8 caracteres.</p>
@@ -56,7 +61,7 @@
                 <div class="formulario__grupo" id="grupo__nombre_usuario">
                     <label for="nombre_usuario" class="form-label login__label"> Nombre de Usuario </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" class="form-control" placeholder="Vanemaru29" name="nombre_usuario" id="nombre_usuario">
+                        <input type="text" class="form-control" placeholder="Vanemaru29" name="nombre_usuario" id="nombre_usuario" value="<?= $datos_usuario['nombre_usuario'] ?>">
                         <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                     </div>
                     <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, debe ser mayor a 8 caracteres.</p>
@@ -66,7 +71,7 @@
                 <div class="formulario__grupo editarInfo__tlfn" id="grupo__telefono">
                     <label for="telefono" class="form-label login__label"> Teléfono </label>
                     <div class="formulario__grupo-input">
-                        <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
+                        <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono" value="<?= $datos_usuario['telefono'] ?>">
                         <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                     </div>
                     <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>
@@ -76,6 +81,9 @@
                     <button type="submit" name="actualizar-info" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
             </form>
+        <?php
+            }
+        ?>
 
             <hr class="my-5">
 

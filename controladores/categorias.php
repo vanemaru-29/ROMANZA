@@ -19,7 +19,7 @@
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
 
-            $fecha = new General();
+            $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
             $this->registro_cat = $fechaActual;
             
@@ -53,14 +53,13 @@
             return $sql;
         }
 
-
         // editar información de categoria
         public function editarCat ($ID_cat, $nombre_cat, $descripcion_cat) {
             $this->ID_cat = $ID_cat;
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
 
-            $fecha = new General();
+            $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
             $this->registro_cat = $fechaActual;
 

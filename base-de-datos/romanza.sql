@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2022 a las 23:22:33
+-- Tiempo de generación: 23-11-2022 a las 22:43:26
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -30,7 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `carrito` (
   `id_carrito` int(11) NOT NULL,
   `cantidad` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL
+  `precio` text NOT NULL,
+  `total` text NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -79,10 +82,21 @@ CREATE TABLE `conversion` (
 
 CREATE TABLE `direccion` (
   `id_direccion` int(11) NOT NULL,
-  `direccion` varchar(200) DEFAULT NULL,
-  `referencia` varchar(200) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL
+  `direccion` varchar(200) NOT NULL,
+  `referencia` varchar(200) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `direccion`
+--
+
+INSERT INTO `direccion` (`id_direccion`, `direccion`, `referencia`, `id_usuario`, `fecha_registro`) VALUES
+(1, 'Sector 04 las casitas. Zona norte - el cují.', 'Detrás de la cancha de futbol', 3, '2022-11-23'),
+(3, 'Sector 01 las casitas, av 4 con calle 5. Zona norte - el cují.', 'Frente al negocio de impresiones julio', 3, '2022-11-23'),
+(4, 'Zone norte, vía el cují. Urb don aurelio casa 15-34', 'ninguna', 4, '2022-11-23'),
+(5, 'Zone norte, vía el cují. Urb Yucatan casa 15-10', 'ninguna', 6, '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -195,6 +209,15 @@ CREATE TABLE `rol` (
   `descripcion` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `descripcion`) VALUES
+(1, 'Administrador'),
+(2, 'Encargado'),
+(3, 'Cliente');
+
 -- --------------------------------------------------------
 
 --
@@ -203,38 +226,25 @@ CREATE TABLE `rol` (
 
 CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
-  `nombre_usuario` varchar(45) DEFAULT NULL,
-  `telefono` int(12) DEFAULT NULL,
-  `clave` varchar(45) DEFAULT NULL,
-  `id_rol` int(10) NOT NULL,
-  `fecha_registro` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `usuario` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `telefono` int(12) DEFAULT NULL,
+  `nombre_usuario` varchar(45) NOT NULL,
+  `telefono` text NOT NULL,
   `clave` varchar(45) NOT NULL,
-  `fecha_registro` datetime NOT NULL
+  `id_rol` int(11) NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuarios` (`usuario`, `nombre`, `telefono`, `clave`, `fecha_registro`) VALUES
-('fabimar', 'fabiana', 2147483647, '0', '0000-00-00 00:00:00'),
-('fanilu', 'fanni rivero', 2147483647, '28528966', '0000-00-00 00:00:00'),
-('fer', 'luis', 45245245, '2852896', '0000-00-00 00:00:00'),
-('karela', 'karen', 416415, '$2y$04$1ZR3KDo51O3UOJJkhOgR8OLOW6nSoeCxRqEzWK', '0000-00-00 00:00:00'),
-('luifer', 'luis', 2147483647, '28528966', '0000-00-00 00:00:00');
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `clave`, `id_rol`, `fecha_registro`) VALUES
+(1, 'Administrador', 'Admin123', '00000000000', '2195240f6112a2340feb9d6dbbb773b4', 1, '2022-11-22'),
+(2, 'Encargado', 'DeliveryE', '00000000000', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
+(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', 'da1a58f2d689be33c9bbe39b9ba545c5', 3, '2022-11-22'),
+(4, 'Joseph Velis', 'JosephMVB', '04245244469', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
+(5, 'Camila Medina', 'CamiValen', '00000000000', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
+(6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23');
 
 --
 -- Índices para tablas volcadas
@@ -262,7 +272,8 @@ ALTER TABLE `conversion`
 -- Indices de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  ADD PRIMARY KEY (`id_direccion`);
+  ADD PRIMARY KEY (`id_direccion`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `metodo_pago`
@@ -299,13 +310,8 @@ ALTER TABLE `rol`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`,`id_rol`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD KEY `id_rol` (`id_rol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -333,7 +339,7 @@ ALTER TABLE `conversion`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
@@ -363,23 +369,35 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `direccion`
+--
+ALTER TABLE `direccion`
+  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `producto`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,7 +1,7 @@
 <?php
     require_once ('autoCarga.php');
 
-    class Direcciones {
+    class Direcciones extends Conexion {
         private $ID_d;
         private $direccion_d;
         private $referencia_d;
@@ -14,50 +14,23 @@
             $this->conexion = $this->conexion->conectar();
         }
 
-        // nuevo producto
-        public function registroDirecccion($direccion, $referencia, $id_usuario) {
+        // nueva direccion
+        public function registroD ($direccion, $referencia, $id_usuario) {
             $this->direccion_d = $direccion;
             $this->referencia_d = $referencia;
             $this->id_usuario_d = $id_usuario;
 
-
             $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
-
             $this->registro_d = $fechaActual;
 
-            $sql = "INSERT INTO direccion (direccion, referencia, id_usuario, fecha_registro) VALUES ('".$this->direccion_d."', '".$this->referencia_d."', '".$this->precio_pdt."', '".$this->id_usuario_d."', '".$this->registro_d."')";
+            $sql = "INSERT INTO direccion (direccion, referencia, id_usuario, fecha_registro) VALUES ('".$this->direccion_d."', '".$this->referencia_d."', '".$this->id_usuario_d."', '".$this->registro_d."')";
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
             if (isset($insertarDatos)) {
-                $ultimo_id = mysqli_insert_id($this->conexion);
-                $this->imagen_pdt['name'] = $ultimo_id;
-
-                // crear directorio
-                // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
-                //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
-                // }
-
-                // mover a directorio
-
-
-                $sql_imagen = "UPDATE producto SET imagen='".$this->imagen_pdt['name'].'.webp'."' WHERE id_producto = '$ultimo_id'";
-                $guardar_img = $this->conexion->prepare($sql_imagen);
-                $insertar_img = $guardar_img->execute();
-                
-                if (isset($insertar_img)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
-                    include $respuesta;
-
-                    return 1;
-                } else {
-                    $errorRegistro = new ErrFormularios();
-                    $errorRegistro -> registro();
-
-                    return 0;
-                }
+                $redireccion = new Redirecciones();
+                $redireccion -> misDirecciones();
             } else {
                 $errorRegistro = new ErrFormularios();
                 $errorRegistro -> registro();
@@ -66,100 +39,35 @@
             }
         }
 
-        // todos los productos
-        public function listaPdt () {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM producto");
-            return $sql;
-        }
-        
-        // todos los productos activos
-        public function activosPdt () {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE estatus = 'activo'");
+        // lista de direcciones
+        public function misDir ($ID) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM direccion WHERE id_usuario = '$ID'");
             return $sql;
         }
 
-        // cambiar estatus
-        public function estatusPdt ($ID, $estatus) {
-            if ($estatus == "activo") {
-                
-                $sql = "UPDATE producto SET estatus='inactivo' WHERE id_producto = '$ID'";
-                $cambiar = $this->conexion->prepare($sql);
-                $ejecutar = $cambiar->execute();
-
-                if (isset($ejecutar)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
-                    include $respuesta;
-
-                    return 1;
-                } else {
-                    return 0;
-                }
-            } else if ($estatus == "inactivo") {
-                $estatus = "activo";
-                
-                $sql = "UPDATE producto SET estatus='activo' WHERE id_producto = '$ID'";
-                $cambiar = $this->conexion->prepare($sql);
-                $ejecutar = $cambiar->execute();
-
-                if (isset($ejecutar)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
-                    include $respuesta;
-
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }            
-        }
-
-        // obtener producto
-        public function obtenerPdt ($ID) {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_producto = '$ID'");
+        // obtener dirección
+        public function obtenerDir ($ID_usuario, $ID_dir) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM direccion WHERE id_usuario = '$ID_usuario' AND id_direccion = '$ID_dir'");
             return $sql;
         }
 
-        public function imagenPdt ($img) {
-            $imagen = "vistas/../publico/activos/pedidos/".$img;
-            return $imagen;
-        }
-
-        // editar información de producto
-        public function editarPdt ($ID, $nombre, $descripcion, $precio, $categoria, $imagen) {
-            $this->ID_pdt = $ID;
-            $this->nombre_pdt = $nombre;
-            $this->descripcion_pdt = $descripcion;
-            $this->precio_pdt = $precio;
-            $this->categoria_pdt = $categoria;
-            $this->imagen_pdt = $imagen;
+        // editar dirección
+        public function editarDir ($ID_d, $direccion, $referencia) {
+            $this->ID_d = $ID_d;
+            $this->direccion_d = $direccion;
+            $this->referencia_d = $referencia;
 
             $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
-            $this->registro_pdt = $fechaActual;
+            $this->registro_d = $fechaActual;
 
-            if ($this->imagen_pdt['name'] == "") {
-                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
-                $editar = $this->conexion->prepare($sql);
-                $insertarDatos = $editar->execute();
-            } else {
-                $this->imagen_pdt['name'] = $ID.".webp";
-
-                // cambiar imagen en directorio
-                if (file_exists("vistas/../publico/activos/pedidos/".$ID.".webp")) {
-                    if (unlink("vistas/../publico/activos/pedidos/".$ID.".webp")) {
-                        move_uploaded_file($this->imagen_pdt['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name']);
-                    }
-                }
-
-                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', imagen='".$this->imagen_pdt['name']."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
-                $editar = $this->conexion->prepare($sql);
-                $insertarDatos = $editar->execute();
-            }
+            $sql = "UPDATE direccion SET direccion='".$this->direccion_d."', referencia='".$this->referencia_d."', fecha_registro='".$this->registro_d."' WHERE id_direccion = '".$this->ID_d."'";
+            $editar = $this->conexion->prepare($sql);
+            $insertarDatos = $editar->execute();
 
             if (isset($insertarDatos)) {
                 $respuesta = new Redirecciones();
-                $respuesta->listaPdt();
+                $respuesta->misDirecciones();
                 include $respuesta;
 
                 return 1;
@@ -171,35 +79,25 @@
             }
         }
 
-        // eliminar un producto
-        public function eliminarPdt ($ID) {
-            $this->ID_pdt = $ID;
+        // eliminar dirección
+        public function eliminarDir ($ID_d) {
+            $this->ID_d = $ID_d;
 
-            $imagen = $ID.".webp";
+            $sql = "DELETE FROM direccion WHERE id_direccion = '".$this->ID_d."'";
+            $eliminar = $this->conexion->prepare($sql);
+            $ejecutar = $eliminar->execute();
 
-            // eliminando la imagen del directorio
-            if (file_exists("vistas/../publico/activos/pedidos/".$imagen)) {
-                if (unlink("vistas/../publico/activos/pedidos/".$imagen)) {
-                    $sql = "DELETE FROM producto WHERE id_producto = '".$this->ID_pdt."'";
-                    $eliminar = $this->conexion->prepare($sql);
-                    $ejecutar = $eliminar->execute();
+            if (isset($ejecutar)) {
+                $respuesta = new Redirecciones();
+                $respuesta->misDirecciones();
+                include $respuesta;
 
-                    if (isset($ejecutar)) {
-                        $respuesta = new Redirecciones();
-                        $respuesta->listaPdt();
-                        include $respuesta;
+                return 1;
+            } else {
+                $errorEliminar = new ErrFormularios();
+                $errorEliminar->eliminar();
 
-                        return 1;
-                    } else {
-                        $errorEliminar = new ErrFormularios();
-                        $errorEliminar->eliminar();
-
-                        return 0;
-                    }
-                } else {
-                    $errorEliminar = new ErrFormularios();
-                    $errorEliminar->eliminar();
-                }
+                return 0;
             }
         }
     }

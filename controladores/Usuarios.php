@@ -89,7 +89,7 @@
 
         // lista usuarios
         public function datosUser ($usuario) {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM `usuario` WHERE id_usuario = '$usuario'");
+            $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE nombre_usuario = '$usuario'");
             return $sql;
         }
 

@@ -15,14 +15,14 @@
 
         <div class="inicio__btn my-4">
             <?php
-                if (!empty($_SESSION['usuario'])) {
+                if (isset($_SESSION['nombre_usuario'])) {
                     ?>
-                        <a href="vistas/../index.php?romanza=registro" class="btn btn-danger mx-2 my-2"> Registro </a>
-                        <a href="vistas/../index.php?romanza=login" class="btn btn-danger mx-2 my-2"> Inicio </a>
+                        <a href="vistas/../index.php?romanza=pedidos" class="btn btn-danger mx-2 my-2"> Ver Productos </a>
                     <?php
                 } else {
                     ?>
-                        <a href="vistas/../index.php?romanza=pedidos" class="btn btn-danger mx-2 my-2"> Ver Productos </a>
+                        <a href="vistas/../index.php?romanza=registro" class="btn btn-danger mx-2 my-2"> Registro </a>
+                        <a href="vistas/../index.php?romanza=login" class="btn btn-danger mx-2 my-2"> Inicio </a>
                     <?php
                 }
             ?>
