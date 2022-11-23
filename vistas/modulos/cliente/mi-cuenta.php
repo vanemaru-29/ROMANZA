@@ -1,7 +1,16 @@
+<?php
+    clearstatcache();
+
+    require_once ('vistas/../controladores/autoCarga.php');
+
+    $usuario = new Usuarios();
+    $datos = $usuario->getUsuario($ID);
+
+?>
+
 <section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Mi cuenta </h1>
-
-    <!-- navbar -->
+      <!-- navbar -->
     <div class="mi-cuenta__menu mb-5">
         <a href="index.php?romanza=mi-cuenta" class="mi-cuenta-enlace"> Mi Cuenta </a>
         <a href="index.php?romanza=mis-direcciones" class="mi-cuenta-enlace"> Direcciones </a>
@@ -12,6 +21,7 @@
     <section class="container mi-cuenta">
         <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Bienvenido@ </h2>
+     
 
         <!-- editar datos -->
         <article class="row">

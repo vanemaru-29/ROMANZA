@@ -44,12 +44,12 @@
 
             if (isset($insertarDatos)) {
                 if (!session_id()) session_start();
-                $_SESSION['usuario'] = $this->usuario_user;
+                $_SESSION['nombre_usuario'] = $this->usuario_user;
                             
                 $usuario = new Usuarios();
                 $rol = $usuario->consultarRol($this->usuario_user);
 
-                $_SESSION['rol'] = $rol;
+                $_SESSION['id_rol'] = $rol;
                             
                 $pedidos = new Redirecciones();
                 $pedidos->pedidos();
@@ -72,12 +72,12 @@
 
             if (isset($ejecutar)) {
                 if (!session_id()) session_start();
-                $_SESSION['usuario'] = $this->usuario_user;
+                $_SESSION['nombre_usuario'] = $this->usuario_user;
                                 
                 $usuario = new Usuarios();
                 $rol = $usuario->consultarRol($this->usuario_user);
 
-                $_SESSION['rol'] = $rol;
+                $_SESSION['id_rol'] = $rol;
                                 
                 $pedidos = new Redirecciones();
                 $pedidos->pedidos();
@@ -85,6 +85,12 @@
                 $loginErr = new ErrFormularios();
                 $loginErr -> login();
             }
+        }
+
+        // lista usuarios
+        public function datosUser ($usuario) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM `usuario` WHERE id_usuario = '$usuario'");
+            return $sql;
         }
 
         // lista de clientes
