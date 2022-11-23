@@ -1,7 +1,7 @@
 <?php
     require_once ('autoCarga.php');
 
-    class Usuarios {
+    class Usuarios extends Conexion {
         private $nombre_user;
         private $usuario_user;
         private $telefono_user;
@@ -85,6 +85,12 @@
                 $loginErr = new ErrFormularios();
                 $loginErr -> login();
             }
+        }
+
+        // lista de clientes
+        public function listaCli () {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE id_rol = 3");
+            return $sql;
         }
     }
 ?>

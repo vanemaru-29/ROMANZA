@@ -1,3 +1,11 @@
+<?php
+    if (!isset($_SESSION['usuario'])) {
+        ?>
+            <script> window.location.href = "vistas/../index.php?modulo=inicio"; </script>
+        <?php
+    }
+?>
+
 <section class="w-100 vh-100 d-flex justify-content-center align-items-center">
     <section class="login__cont container bg-white shadow">
         <div class="row">

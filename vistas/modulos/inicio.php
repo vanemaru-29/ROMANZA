@@ -3,11 +3,29 @@
     <div class="content text-center">
         <h2 class="text-white display-1 inicio__titulo"> Romanza </h2>
         <h2 class="text-white display-1 inicio__titulo"> Restaurante Italiano </h2>
-        <h4 class="text-white">0 Clientes Registrados</h4>
+
+        <?php
+            $clientes = new Usuarios();
+            $cant_clientes = $clientes->listaCli();
+            $totalRegistros = @mysqli_num_rows($cant_clientes);
+        ?>
+        <h4 class="text-white">
+            <?= $totalRegistros ?> Clientes Registrados
+        </h4>
 
         <div class="inicio__btn my-4">
-            <a href="vistas/../index.php?romanza=registro" class="btn btn-danger mx-2 my-2"> Registro </a>
-            <a href="vistas/../index.php?romanza=login" class="btn btn-danger mx-2 my-2"> Inicio </a>
+            <?php
+                if (!empty($_SESSION['usuario'])) {
+                    ?>
+                        <a href="vistas/../index.php?romanza=registro" class="btn btn-danger mx-2 my-2"> Registro </a>
+                        <a href="vistas/../index.php?romanza=login" class="btn btn-danger mx-2 my-2"> Inicio </a>
+                    <?php
+                } else {
+                    ?>
+                        <a href="vistas/../index.php?romanza=pedidos" class="btn btn-danger mx-2 my-2"> Ver Productos </a>
+                    <?php
+                }
+            ?>
         </div>
     </div>
 </div>

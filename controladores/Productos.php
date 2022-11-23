@@ -1,7 +1,7 @@
 <?php
     require_once ('autoCarga.php');
 
-    class Productos {
+    class Productos extends Conexion {
         private $ID_pdt;
         private $nombre_pdt;
         private $descripcion_pdt;

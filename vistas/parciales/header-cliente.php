@@ -8,13 +8,22 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="mx-auto"></div>
-            <ul class="navbar-nav">
-                <li class="nav-item mx-3"> <a href="index.php?romanza=menu" class="nav-link text-white"> La Carta </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=galeria" class="nav-link text-white"> Galeria </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=opiniones" class="nav-link text-white"> Opiniones </a> </li>
+            <ul class="navbar-nav">                
                 <li class="nav-item mx-3"> <a href="index.php?romanza=pedidos" class="nav-link text-white"> Pedidos </a> </li>
                 <li class="nav-item mx-3"> <a href="index.php?romanza=mi-cuenta" class="nav-link text-white"> Mi Cuenta </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=carrito" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">€ 00,00</span> </a> </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Más Opciones
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="index.php?romanza=menu">La Carta</a></li>
+                        <li><a class="dropdown-item" href="index.php?romanza=galeria">Galeria</a></li>
+                        <li><a class="dropdown-item" href="index.php?romanza=opiniones">Opiniones</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item mx-3"> <a href="index.php?romanza=carrito" class="header__btn btn btn-warning nav-link"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">$ 00,00</span> </a> </li>
                 
                 <li class="nav-item mx-3">
                     <form action="#" method="POST">

@@ -2,7 +2,7 @@
     require_once ('autoCarga.php');
     date_default_timezone_set("America/Caracas");
 
-    class Categorias {
+    class Categorias extends Conexion {
         private $ID_cat;
         private $nombre_cat;
         private $descripcion_cat;
