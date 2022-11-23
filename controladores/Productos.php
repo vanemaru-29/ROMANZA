@@ -40,9 +40,9 @@
                 $this->imagen_pdt['name'] = $ultimo_id;
 
                 // crear directorio
-          /*       if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
-                    mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
-                } */
+                // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
+                //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
+                // }
 
                 // mover a directorio
                 move_uploaded_file($imagen['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name'].".webp");

@@ -1,21 +1,3 @@
-<?php 
-    session_start();
-
-    require './modelos/conexion.php';
-
-    if(isset($_SESSION['usuario'])) {
-        $result->prepare('SELECT usuario, clave FROM usuarios WHERE usuario = usuario');
-        $result->bind_param(':usuario', $_SESSION['usuario']);
-        $result->execute();
-        $results = $result->fetch(PDO::FETCH_ASSOC);
-
-        $user = null;
-
-        if($result > 0) {
-            $user = $results;
-        }
-    }?>
-
 <!-- imagen -->
 <div class="inicio__img w-100 vh-100 d-flex justify-content-center align-items-center">
     <div class="content text-center">
@@ -23,15 +5,10 @@
         <h2 class="text-white display-1 inicio__titulo"> Restaurante Italiano </h2>
         <h4 class="text-white">0 Clientes Registrados</h4>
 
-        <?php if(!empty($user)):?>
-        <br>Welcome. <?= $user['usuario']?>
-        <br>Tu estas loguiado exitosamente
-        <?php else:?>   
         <div class="inicio__btn my-4">
             <a href="vistas/../index.php?romanza=registro" class="btn btn-danger mx-2 my-2"> Registro </a>
             <a href="vistas/../index.php?romanza=login" class="btn btn-danger mx-2 my-2"> Inicio </a>
         </div>
-        <?php endif;?>
     </div>
 </div>
 

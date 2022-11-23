@@ -11,5 +11,11 @@
                 <script> window.location.href = "vistas/../index.php?romanza=lista-productos"; </script>
             <?php
         }
+        
+        public function pedidos () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=pedidos"; </script>
+            <?php
+        }
     }
 ?>

@@ -37,5 +37,14 @@
                 </div>
             <?php
         }
+        
+        // error de login
+        public function login () {
+            ?>
+                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
+                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> No se ha podido iniciar sesión. </p>
+                </div>
+            <?php
+        }
     }
 ?>

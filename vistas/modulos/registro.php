@@ -1,9 +1,7 @@
-<?php 
-
-require_once ('vistas/../controladores/autoCarga.php');
-
-
+<?php
+    require_once ('vistas/../controladores/autoCarga.php');
 ?>
+
 <section class="w-100 vh-100 d-flex justify-content-center align-items-center">
     <section class="login__cont container bg-white shadow">
         <div class="row">
@@ -59,27 +57,26 @@ require_once ('vistas/../controladores/autoCarga.php');
                         <div class="d-grid m-2 formulario__grupo formulario__grupo-btn-enviar">
                             <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRARSE </button>
                         </div>
-                        <?php
-                if (empty($_POST['submit'])) {
-                    if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono']) && isset($_POST['clave'])) {
-                        if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['clave']) >= 1) {
-                            $nombre = $_POST['nombre'];
-                            $usuario = $_POST['nombre_usuario'];
-                            $telefono = $_POST['telefono'];
-                            $clave = $_POST['clave'];
-                            $rol = 1;
-                  
 
-                            $nuevoMetodo = new Usuarios();
-                            $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $clave, $rol);
-                        } else {
-                            $camposVacios = new ErrFormularios();
-                            $camposVacios -> camposVacios();
-                        }
-                    }
-                }
-            ?>
-  
+                        <?php
+                            if (empty($_POST['submit'])) {
+                                if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono']) && isset($_POST['clave'])) {
+                                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['clave']) >= 1) {
+                                        $nombre = $_POST['nombre'];
+                                        $usuario = $_POST['nombre_usuario'];
+                                        $telefono = $_POST['telefono'];
+                                        $clave = $_POST['clave'];
+                                        $rol = 3;                            
+
+                                        $nuevoMetodo = new Usuarios();
+                                        $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $clave, $rol);
+                                    } else {
+                                        $camposVacios = new ErrFormularios();
+                                        $camposVacios -> camposVacios();
+                                    }
+                                }
+                            }
+                        ?>  
                     </form>
                 </div>
             </div>

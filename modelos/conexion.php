@@ -3,7 +3,7 @@
         // variables
         public $servidor = "localhost";
         private $usuario = "root";
-        private $password = ""; // cambiar contraseña
+        private $password = "V4n32020$"; // cambiar contraseña
         private $bd = "romanza";
         private $conexion;
 
@@ -12,7 +12,7 @@
             $this->conexion = new mysqli($this->servidor, $this->usuario, $this->password, $this->bd);
 
             if (mysqli_connect_errno()) {
-                echo "La conexion a la base de datos Mysql ha fallado: ".mysqli_connect_errno();
+                echo "Ha ocurrido un error con la conexión a MySQL: ".mysqli_connect_errno();
             }
 
             mysqli_query($this->conexion, "SET NAMES 'utf8'");
