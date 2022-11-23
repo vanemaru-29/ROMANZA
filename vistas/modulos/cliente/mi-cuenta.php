@@ -80,10 +80,26 @@
                 <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
                     <button type="submit" name="actualizar-info" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
+
+                <?php
+                    if (empty($_POST['actualizar-info'])) {
+                        if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono'])) {
+                            if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1 && strlen($_POST['telefono']) >= 1) {
+                                $nombre = $_POST['nombre'];
+                                $nombre_usuario = $_POST['nombre_usuario'];
+                                $telefono = $_POST['telefono'];
+                                $ID_user = $datos_usuario['id_usuario'];
+        
+                                $editarCat = new Usuarios();
+                                $editarCat -> editarUser($ID_user, $nombre, $nombre_usuario, $telefono);
+                            } else {
+                                $camposVacios = new ErrFormularios();
+                                $camposVacios -> camposVacios();
+                            }
+                        }
+                    }
+                ?>
             </form>
-        <?php
-            }
-        ?>
 
             <hr class="my-5">
 
@@ -124,8 +140,30 @@
                 <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
                     <button type="submit" name="actualizar-clave" class="formulario__btn btn btn-danger"> ACTUALIZAR </button>
                 </div>
+
+                <?php
+                    if (empty($_POST['actualizar-clave'])) {
+                        if (isset($_POST['clave']) && isset($_POST['clave2']) && isset($_POST['clave3'])) {
+                            if (strlen($_POST['clave']) >= 1 && strlen($_POST['clave2']) >= 1 && strlen($_POST['clave3']) >= 1) {
+                                $clave = $_POST['clave'];
+                                $clave2 = $_POST['clave2'];
+                                $ID_user = $datos_usuario['id_usuario'];
+                                $nombre_usuario = $datos_usuario['nombre_usuario'];
+        
+                                $editarCat = new Usuarios();
+                                $editarCat -> editarClave($ID_user, $nombre_usuario, $clave, $clave2);
+                            } else {
+                                $camposVacios = new ErrFormularios();
+                                $camposVacios -> camposVacios();
+                            }
+                        }
+                    }
+                ?>
             </form>
         </article>
+        <?php
+            }
+        ?>
     </section>
 </section>
 

@@ -71,9 +71,9 @@ inputsInfo.forEach((input) => {
 
 // validando que todos los campos sean correctos en formulario 1
 formularioInfo.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    if (campos.nombre && campos.nombre_usuario && campos.telefono) {
+    if (campos.nombre || campos.nombre_usuario || campos.telefono) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });
@@ -136,9 +136,9 @@ inputsClave.forEach((input) => {
 
 // validando que todos los campos sean correctos en formulario 1
 formularioClave.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
-    if (campos.clave && campos.clave2 && campos.clave3) {
+    if (campos.clave || campos.clave2 || campos.clave3) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

@@ -18,6 +18,12 @@
             <?php
         }
         
+        public function miCuenta () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=mi-cuenta"; </script>
+            <?php
+        }
+
         public function misDirecciones () {
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=mis-direcciones"; </script>

@@ -12,7 +12,7 @@ Usuarios Principales
 
 * Vanessa
     Usuario: Vanemaru29
-    Clave: vanemaru29
+    Clave: Vanemaru29
 
 * Fabi
     Usuario:

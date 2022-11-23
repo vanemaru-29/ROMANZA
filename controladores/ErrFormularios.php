@@ -46,5 +46,23 @@
                 </div>
             <?php
         }
+        
+        // error de login
+        public function datosLogin () {
+            ?>
+                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
+                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> Los datos son incorrectos. </p>
+                </div>
+            <?php
+        }
+        
+        // error de clave
+        public function errClave () {
+            ?>
+                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
+                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> La contraseña actual no es correcta. </p>
+                </div>
+            <?php
+        }
     }
 ?>

@@ -2,10 +2,12 @@
     require_once ('autoCarga.php');
 
     class Usuarios extends Conexion {
+        private $ID_user;
         private $nombre_user;
         private $usuario_user;
         private $telefono_user;
         private $clave_user;
+        private $clave_nueva_user;
         private $rol_user;
         private $registro_user;
 
@@ -61,36 +63,53 @@
             }
         }
 
+        // lista usuarios
+        public function datosUser ($usuario) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE nombre_usuario = '$usuario'");
+            return $sql;
+        }
+
         // login
         public function login ($usuario, $clave) {
             $this->usuario_user = $usuario;
             $this->clave_user = md5($clave);
 
-            $sql = "SELECT * FROM usuario WHERE nombre_usuario = '".$this->usuario_user."' AND clave = '".$this->clave_user."'";
-            $consultar = $this->conexion->prepare($sql);
-            $ejecutar = $consultar->execute();
+            $usuario = new Usuarios();
+            $datos = $usuario -> datosUser($this->usuario_user);
+            while ($datos_usuario = mysqli_fetch_array($datos)) {
+                $clave_usuario = $datos_usuario['clave'];
 
-            if (isset($ejecutar)) {
-                if (!session_id()) session_start();
-                $_SESSION['nombre_usuario'] = $this->usuario_user;
-                                
-                $usuario = new Usuarios();
-                $rol = $usuario->consultarRol($this->usuario_user);
+                if ($this->clave_user == $clave_usuario) {
+                    $sql = "SELECT * FROM usuario WHERE nombre_usuario = '".$this->usuario_user."' AND clave = '".$this->clave_user."'";
+                    $consultar = $this->conexion->prepare($sql);
+                    $ejecutar = $consultar->execute();
 
-                $_SESSION['id_rol'] = $rol;
-                                
-                $pedidos = new Redirecciones();
-                $pedidos->pedidos();
-            } else {
-                $loginErr = new ErrFormularios();
-                $loginErr -> login();
+                    if (isset($ejecutar)) {
+                        if (!session_id()) session_start();
+                        $_SESSION['nombre_usuario'] = $this->usuario_user;
+                                        
+                        $usuario = new Usuarios();
+                        $rol = $usuario->consultarRol($this->usuario_user);
+
+                        $_SESSION['id_rol'] = $rol;
+                                        
+                        $pedidos = new Redirecciones();
+                        $pedidos->pedidos();
+
+                        return 1;
+                    } else {
+                        $loginErr = new ErrFormularios();
+                        $loginErr -> login();
+
+                        return 0;
+                    }
+                } else {
+                    $loginErr = new ErrFormularios();
+                    $loginErr -> datosLogin();
+                    
+                    return 0;
+                }
             }
-        }
-
-        // lista usuarios
-        public function datosUser ($usuario) {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE nombre_usuario = '$usuario'");
-            return $sql;
         }
 
         // lista de clientes
@@ -98,5 +117,72 @@
             $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE id_rol = 3");
             return $sql;
         }
+
+        // editar información de usuario
+        public function editarUser ($ID_user, $nombre, $nombre_usuario, $telefono) {
+            $this->ID_user = $ID_user;
+            $this->nombre_user = $nombre;
+            $this->usuario_user = $nombre_usuario;
+            $this->telefono_user = $telefono;
+
+            $sql = "UPDATE usuario SET nombre='".$this->nombre_user."', nombre_usuario='".$this->usuario_user."', telefono='".$this->telefono_user."' WHERE id_usuario = '".$this->ID_user."'";
+            $editar = $this->conexion->prepare($sql);
+            $insertarDatos = $editar->execute();
+
+            if (isset($insertarDatos)) {
+                $_SESSION['nombre_usuario'] = $this->usuario_user;
+
+                $respuesta = new Redirecciones();
+                $respuesta->miCuenta();
+                include $respuesta;
+
+                return 1;
+            } else {
+                $errorRegistro = new ErrFormularios();
+                $errorRegistro -> editar();
+
+                return 0;
+            }
+        }
+
+        // editar clave
+        public function editarClave ($ID_user, $nombre_usuario, $clave, $nueva_clave) {
+            $this->ID_user = $ID_user;
+            $this->usuario_user = $nombre_usuario;
+            $this->clave_user = md5($clave);
+            $this->clave_nueva_user = md5($nueva_clave);
+
+            $usuario = new Usuarios();
+            $datos = $usuario -> datosUser($this->usuario_user);
+            while ($datos_usuario = mysqli_fetch_array($datos)) {
+                $clave_usuario = $datos_usuario['clave'];
+
+                if ($this->clave_user == $clave_usuario) {
+                    $sql = "UPDATE usuario SET clave='".$this->clave_nueva_user."' WHERE id_usuario = '".$this->ID_user."'";
+                    $editar = $this->conexion->prepare($sql);
+                    $insertarDatos = $editar->execute();
+
+                    if (isset($insertarDatos)) {
+                        $respuesta = new Redirecciones();
+                        $respuesta->miCuenta();
+                        include $respuesta;
+
+                        return 1;
+                    } else {
+                        $errorRegistro = new ErrFormularios();
+                        $errorRegistro -> editar();
+
+                        return 0;
+                    }
+                } else {
+                    $errorRegistro = new ErrFormularios();
+                    $errorRegistro -> errClave();
+
+                    return 0;
+                }
+            }
+        }
+
+        // eliminar cuenta ¿?
     }
 ?>
