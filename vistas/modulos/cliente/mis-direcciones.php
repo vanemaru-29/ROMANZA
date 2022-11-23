@@ -1,3 +1,10 @@
+<?php
+require_once('vistas/../controladores/autoCarga.php');
+$usuario = new Usuarios();
+$datos = $usuario->getUsuario($ID);
+?>
+
+
 <section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Direcciones </h1>
 
@@ -46,8 +53,29 @@
                 </div>
 
                 <div class="d-grid m-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
-                    <button type="submit" name="actualizar-direccion" class="formulario__btn btn btn-danger"> REGISTRAR </button>
+                    <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRAR </button>
                 </div>
+
+                <?php
+            if (empty($_POST['submit'])) {
+                if (isset($_POST['direccion']) && isset($_POST['referencia'])) {
+                    if (strlen($_POST['direccion']) >= 1 && strlen($_POST['referencia']) >= 1 ) {
+                        $direccion = $_POST['direccion'];
+                        $referencia = $_POST['referencia'];
+                        $id_usuario = 5;
+                        
+
+
+                        $nuevoDireccion = new Direcciones();
+                        $nuevoDireccion->registroDirecccion($direccion, $referencia, $id_usuario);
+                    } else {
+                        $camposVacios = new ErrFormularios();
+                        $camposVacios->camposVacios();
+                    }
+                }
+            }
+            ?>
+
             </form>
         </article>
     </section>

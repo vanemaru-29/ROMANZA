@@ -86,5 +86,9 @@
                 $loginErr -> login();
             }
         }
+        public function getUsuario ($ID) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM `usuario` WHERE id_usuario = '$ID'");
+            return $sql;
+        }
     }
 ?>
