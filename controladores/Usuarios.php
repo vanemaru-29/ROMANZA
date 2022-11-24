@@ -118,6 +118,12 @@
             return $sql;
         }
 
+        // obtener usuario
+        public function obtenerUser ($id_user) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE id_usuario = '$id_user'");
+            return $sql;
+        }
+
         // editar información de usuario
         public function editarUser ($ID_user, $nombre, $nombre_usuario, $telefono) {
             $this->ID_user = $ID_user;

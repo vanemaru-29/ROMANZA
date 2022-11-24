@@ -13,7 +13,7 @@
 
     <article class="container row reportes__contenedor">    
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn"> Usuarios Registrados </a>
+            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/clientes-registrados.php" target="_blank"> Clientes Registrados </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
             <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/productos-registrados.php" target="_blank"> Productos Registrados </a>
@@ -25,7 +25,7 @@
             <a type="submit" class="btn btn-danger reportes__btn"> Facturas Generadas </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn"> Opiniones Registradas </a>
+            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/opiniones-registradas.php" target="_blank"> Opiniones Registradas </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
             <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/categorias-registradas.php" target="_blank"> Categorias Registradas </a>

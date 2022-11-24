@@ -30,7 +30,6 @@
 
     <!-- editar producto -->
     <section class="container bg-light carrito__tabla p-5">
-        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Editar Producto </h2>
 
         <form action="#" method="POST" class="formulario" id="producto" enctype="multipart/form-data">

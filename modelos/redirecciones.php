@@ -29,5 +29,17 @@
                 <script> window.location.href = "vistas/../index.php?romanza=mis-direcciones"; </script>
             <?php
         }
+        
+        public function opiniones () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=opiniones"; </script>
+            <?php
+        }
+        
+        public function precios () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=administrar"; </script>
+            <?php
+        }
     }
 ?>

@@ -2,7 +2,7 @@ const formulario = document.getElementById('conversion');
 const inputs = document.querySelectorAll('#conversion input');
 
 const expresiones = {
-	bolivares: /^[0-9]+[,]+[0-9]{2,2}$/ // formato 00,00
+	bolivares: /^[0-9]+[.]+[0-9]{2,2}$/ // formato 00.00
 }
 
 // inicializando campos
@@ -50,7 +50,7 @@ inputs.forEach((input) => {
 
 // validando que todos los campos sean correctos
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (campos.bolivares) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {

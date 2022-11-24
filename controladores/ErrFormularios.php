@@ -64,5 +64,23 @@
                 </div>
             <?php
         }
+        
+        // error de registro de opinion
+        public function registrarOpn () {
+            ?>
+                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
+                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> No se ha publicado la opinión. </p>
+                </div>
+            <?php
+        }
+        
+        // error de edición de equivalencia
+        public function errEdicion () {
+            ?>
+                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn mt-2 mb-0" role="alert" id="formulario__mensaje">
+                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> No se puede realizar el cambio hasta dentro de 24 horas. </p>
+                </div>
+            <?php
+        }
     }
 ?>

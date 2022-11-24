@@ -18,7 +18,6 @@
 
     <!-- pedidos -->
     <section class="container mi-cuenta">
-        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5">Productos Registrados</h2>
 
         <!-- formulario reportes por fecha -->

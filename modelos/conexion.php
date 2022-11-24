@@ -3,7 +3,7 @@
         // variables
         public $servidor = "localhost";
         private $usuario = "root";
-        private $password = ""; // cambiar contraseña
+        private $password = ""; // cambiar contraseña 
         private $bd = "romanza";
         private $conexion;
 
