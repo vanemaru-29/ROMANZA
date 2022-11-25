@@ -1,6 +1,4 @@
 <?php
-    clearstatcache();
-
     require_once ('vistas/../controladores/autoCarga.php');
 
     $productos = new Productos();
@@ -48,30 +46,40 @@
                                 <td>
                                     <div class="pedidos__producto categoria">
 
-                                        <?php
-                                            $categoria = new Categorias();
-                                            $cat = $categoria->obtenerCat($resultado['id_categoria']);
-    
-                                            while ($catDatos = $cat->fetch_object()) {
-                                                ?>
-                                                    <p hidden><?= $catDatos->nombre ?></p>
-                                                <?php
-                                            }
-                                        ?>
+                                        <form id="formulario" name="formulario" method="POST" action="vistas/../index.php?romanza=carta" >
+                                            <?php
+                                                $categoria = new Categorias();
+                                                $cat = $categoria->obtenerCat($resultado['id_categoria']);
+        
+                                                while ($catDatos = $cat->fetch_object()) {
+                                                    ?>
+                                                        <input type="hidden" name="categoria" id="categoria" value="<?= $catDatos->nombre ?>"/>
+                                                    <?php
+                                                }
+                                            ?>
 
-                                        <div class="pedidos__producto-img">
-                                            <img src="vistas/../publico/activos/pedidos/<?= $resultado['imagen'] ?>" alt="Producto ROMANZA">
-                                        </div>
-                                        <div class="pedidos__card-contenido shadow px-2">
-                                            <button type="button" class="btn btn-danger pedidos__card-detalles" data-bs-toggle="modal" data-bs-target="#producto<?= $resultado['id_producto'] ?>"> Detalles </button>
-                                            <p class="pedidos__card-nombre"> <?= $resultado['nombre'] ?> </p>
-                                            <span class="pedidos__card-precio"> $ <?= $resultado['precio'] ?> </span>
-                                        </div>
+                                            <div class="pedidos__producto-img">
+                                                <img src="vistas/../publico/activos/pedidos/<?= $resultado['imagen'] ?>" alt="Producto ROMANZA">
+                                            </div>
+                                            <div class="pedidos__card-contenido shadow px-2">
+                                                <button type="submit" class="btn btn-danger pedidos__card-detalles"> <img src="vistas/../publico/activos/iconos/add-claro.svg" alt="Añadir al Carrito" class="pedidos__card-detalles-img"> </button>
+                                                
+                                                <p class="pedidos__card-nombre"><?= $resultado['nombre'] ?></p>
+                                                <span class="pedidos__card-descripcion carrito__categoria-producto"> <?= $resultado['descripcion'] ?> </span>
+                                                <p class="pedidos__card-precio mb-3">$ <?= $resultado['precio'] ?></p>
+                                                
+                                                <input type="hidden" name="id" id="id" value="<?= $resultado['id_producto'] ?>"/>
+                                                <input type="hidden" name="nombre" id="nombre" value="<?= $resultado['nombre'] ?>"/>
+                                                <input type="hidden" name="precio" id="precio" value="<?= $resultado['precio'] ?>"/> 
+                                                <input type="hidden" name="cantidad" id="cantidad" value="1"/>
+                                            </div>
+                                        </form>
+    
                                     </div>
 
                                     <!-- Modal detalles -->
                                     <?php
-                                        include ('modal/modal-detalles.php');
+                                        // include ('modal/modal-detalles.php');
                                     ?>
                                 </td>
                             </tr>

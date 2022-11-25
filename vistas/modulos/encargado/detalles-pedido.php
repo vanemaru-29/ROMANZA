@@ -3,7 +3,6 @@
 
     <!-- cards -->
     <section class="container mi-cuenta">
-        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <a href="#" class="btn btn-warning orden__factura my-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <span class="header__info-cuenta">Ver Productos</span></a>
         <h2 class="fw-bold text-center">Orden #1</h2>
         <p class="text-center m-0">22/10/2022</p>

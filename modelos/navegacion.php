@@ -5,7 +5,7 @@
             // general
             if ($enlace == "menu") {
                 $modulo = "vistas/modulos/".$enlace.".html";
-            } else if ($enlace == "galeria" || $enlace == "opiniones" || $enlace == "pedidos" || $enlace == "contacto" || $enlace == "registro" || $enlace == "login") {
+            } else if ($enlace == "galeria" || $enlace == "opiniones" || $enlace == "pedidos" || $enlace == "carta" || $enlace == "vaciar-carro" || $enlace == "contacto" || $enlace == "registro" || $enlace == "login") {
                 $modulo = "vistas/modulos/".$enlace.".php";
 
             // cliente

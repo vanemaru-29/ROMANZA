@@ -76,6 +76,12 @@ body::-webkit-scrollbar-thumb {
     font-size: 20px;
 }
 
+/* modal */
+.modal__carrito-usd {
+    float: right;
+    font-weight: 500;
+}
+
 /* -- footer -- */
 .footer {
     width: 100%;
@@ -488,18 +494,30 @@ body::-webkit-scrollbar-thumb {
 .pedidos__card-contenido {
     float: right;
     width: 200px;
-    height: 200px;
     background-color: var(--blanco);
     border-radius: 20px;
 }
 
 .pedidos__card-detalles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     float: right;
     margin: 70px 0 0 98px;
 }
 
+.pedidos__card-detalles-img {
+    display: block;
+}
+
 .pedidos__card-nombre {
     margin: 140px 0 0 0;
+}
+
+.pedidos__card-descripcion {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .pedidos__card-precio {

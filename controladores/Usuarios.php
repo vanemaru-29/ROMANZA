@@ -69,7 +69,7 @@
             return $sql;
         }
 
-        // login
+        // login 
         public function login ($usuario, $clave) {
             $this->usuario_user = $usuario;
             $this->clave_user = md5($clave);

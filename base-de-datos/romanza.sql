@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2022 a las 22:43:26
+-- Tiempo de generación: 25-11-2022 a las 15:16:01
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -70,9 +70,17 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`, `descripcion`, `fecha_registr
 
 CREATE TABLE `conversion` (
   `id_conversion` int(11) NOT NULL,
-  `bs_equivalencia` double DEFAULT NULL,
-  `fecha_registro` datetime DEFAULT NULL
+  `dolar` int(11) NOT NULL,
+  `bs_equivalencia` text NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `conversion`
+--
+
+INSERT INTO `conversion` (`id_conversion`, `dolar`, `bs_equivalencia`, `fecha_registro`) VALUES
+(1, 1, '10.23', '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -113,15 +121,23 @@ CREATE TABLE `metodo_pago` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `opiniones`
+-- Estructura de tabla para la tabla `opinion`
 --
 
-CREATE TABLE `opiniones` (
+CREATE TABLE `opinion` (
   `id_opinion` int(11) NOT NULL,
-  `opinion` varchar(200) DEFAULT NULL,
-  `fecha_registro` datetime DEFAULT NULL,
-  `id_usuario` int(11) NOT NULL
+  `opinion` varchar(200) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `opinion`
+--
+
+INSERT INTO `opinion` (`id_opinion`, `opinion`, `id_usuario`, `fecha_registro`) VALUES
+(1, 'Muy buen restaurante de comida italiana Hemos comido CANELONES súper ricos, y un plato que se llama BOLOGNA.', 3, '2022-11-23'),
+(3, 'Por 16 euros comimos canelones de vegetales y de carne y dos postres caseros enormes, el tiramisú estaba increíble. Si volvemos por aquí repetiremos sitio.', 5, '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -241,10 +257,11 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `clave`, `id_rol`, `fecha_registro`) VALUES
 (1, 'Administrador', 'Admin123', '00000000000', '2195240f6112a2340feb9d6dbbb773b4', 1, '2022-11-22'),
 (2, 'Encargado', 'DeliveryE', '00000000000', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
-(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', 'da1a58f2d689be33c9bbe39b9ba545c5', 3, '2022-11-22'),
+(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', '4fbdbea696045fb0af973a8c8198325f', 3, '2022-11-23'),
 (4, 'Joseph Velis', 'JosephMVB', '04245244469', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
 (5, 'Camila Medina', 'CamiValen', '00000000000', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
-(6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23');
+(6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
+(7, 'Rosali Barboza', 'RosyAnarel', '04125356484', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23');
 
 --
 -- Índices para tablas volcadas
@@ -282,10 +299,11 @@ ALTER TABLE `metodo_pago`
   ADD PRIMARY KEY (`id_metodo_pago`);
 
 --
--- Indices de la tabla `opiniones`
+-- Indices de la tabla `opinion`
 --
-ALTER TABLE `opiniones`
-  ADD PRIMARY KEY (`id_opinion`);
+ALTER TABLE `opinion`
+  ADD PRIMARY KEY (`id_opinion`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `orden`
@@ -333,7 +351,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `conversion`
 --
 ALTER TABLE `conversion`
-  MODIFY `id_conversion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_conversion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
@@ -348,10 +366,10 @@ ALTER TABLE `metodo_pago`
   MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `opiniones`
+-- AUTO_INCREMENT de la tabla `opinion`
 --
-ALTER TABLE `opiniones`
-  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `opinion`
+  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `orden`
@@ -375,7 +393,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas
@@ -386,6 +404,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `direccion`
   ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `opinion`
+--
+ALTER TABLE `opinion`
+  ADD CONSTRAINT `opinion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`
