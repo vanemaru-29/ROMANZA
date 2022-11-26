@@ -42,7 +42,7 @@
                             }}}}
 
                             if (!isset($total)) { $total = '0'; } else { $total = $total; }
-                            ?>
+                        ?>
                                 <span class="modal__carrito-usd">$ <?= number_format($total, 2) ?></span>
                             </td>
                         </tr>
