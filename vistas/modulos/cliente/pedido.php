@@ -3,8 +3,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="text-center">
-                    <h1 class="">Mi Pedido</h1>
+                    <h1 class="mb-5">Mi Pedido</h1>
                 </div>
+
+                <?php
+                    // quitar producto del carrito
+                    if (!empty($_GET['id_pdt'])) {
+                        $quitar = new Carrito();
+                        $quitar->quitarPdt($_GET['id_pdt']);
+                    }
+                ?>
 
                 <div class="modal-body">
                     <table class="table table-hover m-0">
@@ -19,54 +27,56 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <?php
-                                if (isset($_SESSION['carrito'])) {
-                                    $mi_carrito = $_SESSION['carrito'];
-                                    $total = 0;
-                                for ($i=0; $i < count($mi_carrito); $i++) { 
-                                    if (isset($mi_carrito[$i])) {
-                                    if ($mi_carrito[$i]!=NULL) {
-                            ?>
-
-                            <tr>     
-                                <td><?= $mi_carrito[$i]['id'] ?></td>
-
-                                <td><?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span></td>
-                                        
-                                <td><input type="text" class="pedidos__cantidad-producto" name="cantidad" id="cantidad<?= $mi_carrito[$i]['id'] ?>" onkeyup="calcular(<?= $mi_carrito[$i]['id'] ?>)" value="<?= $mi_carrito[$i]['cantidad'] ?>"></td>
-
-                                <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" id="precio<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
-
-                                <td>$ <input type="text" class="pedidos__cantidad-producto" name="total" id="total<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
-                                
-                                <td><a href="vistas/../index.php?romanza=pedido&&id_pdt=<?= $mi_carrito[$i]['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Quitar</a></td>
-                            </tr>
-
-                            <?php
-                                $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
-                                }}}} else { ?> <tr><td class="text-center">No hay productos añadidos al carrito</td></tr> <?php }
-                            ?>
-                        </tbody>
-
-                        <tfoot>
-                            <tr>
-                                <td colspan="4">Total (USD)</td>
+                        <form action="#" method="POST">
+                            <tbody>
                                 <?php
                                     if (isset($_SESSION['carrito'])) {
-                                    $total = 0;
+                                        $mi_carrito = $_SESSION['carrito'];
+                                        $total = 0;
                                     for ($i=0; $i < count($mi_carrito); $i++) { 
-                                    if (isset($mi_carrito[$i])) {
-                                    if ($mi_carrito[$i]!=NULL) {
-                                        $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
-                                    }}}}
-
-                                    if (!isset($total)) { $total = '0'; } else { $total = $total; }
+                                        if (isset($mi_carrito[$i])) {
+                                        if ($mi_carrito[$i]!=NULL) {
                                 ?>
-                                <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio_total" id="precio_total" value="<?= $total ?>" disabled></td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
+
+                                <tr id="datos_producto">     
+                                    <td><?= $mi_carrito[$i]['id'] ?></td>
+
+                                    <td><?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span></td>
+                                            
+                                    <td><input type="text" class="pedidos__cantidad-producto" name="cantidad" id="cantidad<?= $mi_carrito[$i]['id'] ?>" onkeyup="calcular(<?= $mi_carrito[$i]['id'] ?>)" value="<?= $mi_carrito[$i]['cantidad'] ?>"></td>
+
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" id="precio<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
+
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto total" name="total" id="total<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
+                                    
+                                    <td><a href="vistas/../index.php?romanza=pedido&&id_pdt=<?= $mi_carrito[$i]['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Quitar</a></td>
+                                </tr>
+
+                                <?php
+                                    $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
+                                    }}}} else { ?> <tr><td colspan="6" class="text-center">No hay productos añadidos al carrito</td></tr> <?php }
+                                ?>
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">Total (USD)</td>
+                                    <?php
+                                        if (isset($_SESSION['carrito'])) {
+                                        $total = 0;
+                                        for ($i=0; $i < count($mi_carrito); $i++) { 
+                                        if (isset($mi_carrito[$i])) {
+                                        if ($mi_carrito[$i]!=NULL) {
+                                            $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
+                                        }}}}
+
+                                        if (!isset($total)) { $total = '0'; } else { $total = $total; }
+                                    ?>
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio_total" id="precio_total" value="<?= $total ?>" disabled></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </form>
                     </table>
                 </div>
 
