@@ -36,7 +36,7 @@
                 <li class="nav-item mx-3"> <a href="index.php?romanza=pedidos" class="nav-link text-white"> Pedidos </a> </li>
                 <li class="nav-item mx-3"> <a href="index.php?romanza=mi-cuenta" class="nav-link text-white"> Mi Cuenta </a> </li>
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown mx-3">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Más Opciones
                     </a>
@@ -45,7 +45,7 @@
                         <li><a class="dropdown-item" href="index.php?romanza=galeria">Galeria</a></li>
                         <li><a class="dropdown-item" href="index.php?romanza=opiniones">Opiniones</a></li>
                     </ul>
-                </li>
+                </li> 
 
                 <button type="button" class="header__btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta"><?= $total_cantidad ?></span>

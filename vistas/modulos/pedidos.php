@@ -53,6 +53,7 @@
         
                                                 while ($catDatos = $cat->fetch_object()) {
                                                     ?>
+                                                        <p hidden><?= $catDatos->nombre ?></p>
                                                         <input type="hidden" name="categoria" id="categoria" value="<?= $catDatos->nombre ?>"/>
                                                     <?php
                                                 }

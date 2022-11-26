@@ -22,7 +22,6 @@
 
     <!-- mis datos -->
     <section class="container mi-cuenta">
-        <img src="vistas/../publico/activos/iconos/icono-oscuro.svg" class="icono__romanza" width="" alt="Logo ROMANZA">
         <h2 class="fw-bold text-center pb-5"> Bienvenido@ </h2>
      
         <?php
@@ -37,7 +36,7 @@
             </div>
             
             <div class="col-sm-12 col-md-6">
-                <p class="text-center">No hay pedidos añadidos al carrito</p>
+                <p class="text-center">No hay productos añadidos al carrito</p>
                 <a href="index.php?romanza=pedidos" class="btn btn-warning mx-2 mi-cuenta__cta"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">Ordene ahora</span> </a>
             </div>
 

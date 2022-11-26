@@ -1,4 +1,4 @@
-<section class="w-100 vh-100 py-5">
+<section class="w-100 py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Registrar Categoria </h1>
 
     <!-- navbar -->

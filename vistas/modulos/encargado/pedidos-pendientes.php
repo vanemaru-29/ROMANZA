@@ -34,14 +34,6 @@
                         <td>€ 32.96 (6 productos)</td>
                         <td><a href="index.php?romanza=detalles-pedido" class="header__btn btn btn-warning nav-link header__salir mx-3"> <span class="header__info-cuenta">Ver</span></a></td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Cabudare la Piedad, Barquisimeto. United Kingdom, Lara</td>
-                        <td>En Proceso</td>
-                        <td>22/10/2022</td>
-                        <td>€ 32.96 (6 productos)</td>
-                        <td><a href="index.php?romanza=detalles-pedido" class="header__btn btn btn-warning nav-link header__salir mx-3"> <span class="header__info-cuenta">Ver</span></a></td>
-                    </tr>
                 </tbody>
             </table>
         </article>

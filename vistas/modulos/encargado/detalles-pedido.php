@@ -37,24 +37,24 @@
                             <tr>
                                 <td>Jugo de Papaya <span class="carrito__categoria-producto">Bebidas</span></td>
                                 <td>2</td>
-                                <td>€ 00,00</td>
+                                <td>$ 00,00</td>
                             </tr>
                             <tr>
                                 <td>Pollo y Tocino <span class="carrito__categoria-producto">Pizza</span></td>
                                 <td>1</td>
-                                <td>€ 00,00</td>
+                                <td>$ 00,00</td>
                             </tr>
                             <tr>
                                 <td>Tarta de Queso <span class="carrito__categoria-producto">Postres</span></td>
                                 <td>1</td>
-                                <td>€ 00,00</td>
+                                <td>$ 00,00</td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>Total</th>
                                 <th></th>
-                                <td>€ 16,00</td>
+                                <td>$ 16,00</td>
                             </tr>
                         </tfoot>
                     </table>
