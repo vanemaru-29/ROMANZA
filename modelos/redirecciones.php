@@ -24,9 +24,9 @@
             <?php
         }
         
-        public function pedido () {
+        public function miPedido () {
             ?>
-                <script> window.location.href = "vistas/../index.php?romanza=pedido"; </script>
+                <script> window.location.href = "vistas/../index.php?romanza=mi-pedido"; </script>
             <?php
         }
 

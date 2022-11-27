@@ -52,7 +52,7 @@
 
             <div class="modal-footer">
                 <a href="vistas/../index.php?romanza=vaciar-carro" class="btn btn-danger">Vaciar Carrito</a>
-                <a href="vistas/../index.php?romanza=pedido" class="btn btn-warning">Ir al Pedido</a>
+                <a href="vistas/../index.php?romanza=mi-pedido" class="btn btn-warning">Ir al Pedido</a>
             </div>
         </div>
     </div>

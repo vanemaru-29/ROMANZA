@@ -9,7 +9,7 @@
                 $modulo = "vistas/modulos/".$enlace.".php";
 
             // cliente
-            } else if ($enlace == "carta" || $enlace == "vaciar-carro" || $enlace == "pedido" || $enlace == "registrar-pedido" || $enlace == "mi-cuenta" || $enlace == "mis-ordenes" || $enlace == "orden" || $enlace == "mis-direcciones" || $enlace == "editar-direccion") {
+            } else if ($enlace == "carta" || $enlace == "vaciar-carro" || $enlace == "mi-pedido" || $enlace == "registrar-pedido" || $enlace == "mi-cuenta" || $enlace == "mis-ordenes" || $enlace == "orden" || $enlace == "mis-direcciones" || $enlace == "editar-direccion") {
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
 
             // administrador
