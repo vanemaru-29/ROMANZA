@@ -34,4 +34,5 @@
 
     $redireccion = new Redirecciones();
     $redireccion->pedidos();
+    
 ?>

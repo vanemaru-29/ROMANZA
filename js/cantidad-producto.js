@@ -13,5 +13,5 @@ function calcular(ID) {
     for (let n of array) {
         sum += parseFloat(n.value);
     }
-    document.getElementById('precio_total').value = sum;
+    document.getElementById('precio_total').value = sum.toFixed(2);
 }

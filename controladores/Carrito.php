@@ -13,10 +13,11 @@
 
         // quitar producto del carrito
         public function quitarPdt ($id_pdt) {
-            $this->id_pdt = $id_pdt;
-            // $mi_carrito = $_SESSION['carrito'];
-
-            unset($_SESSION[$this->id_pdt]['carrito']);
+            if (isset($id_pdt)) {
+                $this->id_pdt = $id_pdt;
+                $mi_carrito = $_SESSION['carrito'];
+                $mi_carrito[$this->id_pdt]=NULL;
+            }
 
             $redireccion = new Redirecciones();
             $redireccion -> pedido();
