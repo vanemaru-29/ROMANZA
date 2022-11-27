@@ -13,28 +13,10 @@
             $this->conexion = $this->conexion->conectar();
         }
 
-        // calcular tienpo de edicion de equivalencia
-        public function fechaEdc ($edicion) {
-            $this->edicion = $edicion;
-
-            $conversion = new Conversion();
-            $datos = $conversion -> equivalenciaBs();
-
-            $fecha = new Fechas();
-            while ($datos_conversion = mysqli_fetch_array($datos)) {
-                $fechaEdc = $fecha -> fechaFormato($datos_conversion['fecha_registro']);
-                $this->registro = $fechaEdc;
-            }
-
-            if ($this->registro == $this->edicion) {
-                $errEdicion = new ErrFormularios();
-                $errEdicion -> errEdicion();
-
-                return 0;
-            } else {
-                
-                return 1;
-            }
+        // obtener datos
+        public function equivalenciaBs () {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM conversion WHERE id_conversion = 1");
+            return $sql;
         }
 
         // registrar equivalencia
@@ -45,37 +27,33 @@
             $fechaActual = $fecha->fechaActual();
             $this->registro = $fechaActual;
 
-            $evaluarEdc = new Conversion();
-            $edicion = $evaluarEdc -> fechaEdc($this->registro);
+            $fechaEdc = new Conversion();
+            $fecha_edicion = $fechaEdc->equivalenciaBs();
 
-            if (!$edicion) {
-                $sql = "UPDATE conversion SET bs_equivalencia='".$this->bolivares."', fecha_registro='".$this->registro."' WHERE id_conversion = 1";
-                $editar = $this->conexion->prepare($sql);
-                $insertarDatos = $editar->execute();
+            while ($resultado = mysqli_fetch_array($fecha_edicion)) {
+                if ($resultado['fecha_registro'] != $fechaActual) {
+                    $sql = "UPDATE conversion SET bs_equivalencia='".$this->bolivares."', fecha_registro='".$this->registro."' WHERE id_conversion = 1";
+                    $editar = $this->conexion->prepare($sql);
+                    $insertarDatos = $editar->execute();
 
-                if (isset($insertarDatos)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->precios();
+                    if (isset($insertarDatos)) {
+                        $respuesta = new Redirecciones();
+                        $respuesta->precios();
 
-                    return 1;
+                        return 1;
+                    } else {
+                        $errorRegistro = new ErrFormularios();
+                        $errorRegistro -> editar();
+
+                        return 0;
+                    }
                 } else {
-                    $errorRegistro = new ErrFormularios();
-                    $errorRegistro -> editar();
-
+                    $errEdicion = new ErrFormularios();
+                    $errEdicion -> errEdicion();
+                    
                     return 0;
                 }
-            } else {
-                $errEdicion = new ErrFormularios();
-                $errEdicion -> errEdicion();
-                
-                return 0;
             }
-        }
-
-        // obtener equivalencia en bs
-        public function equivalenciaBs () {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM conversion WHERE id_conversion = 1");
-            return $sql;
         }
 
         // ¿?
