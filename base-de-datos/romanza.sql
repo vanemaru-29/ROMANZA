@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2022 a las 15:16:01
+-- Tiempo de generación: 27-11-2022 a las 03:58:45
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -137,23 +137,8 @@ CREATE TABLE `opinion` (
 
 INSERT INTO `opinion` (`id_opinion`, `opinion`, `id_usuario`, `fecha_registro`) VALUES
 (1, 'Muy buen restaurante de comida italiana Hemos comido CANELONES súper ricos, y un plato que se llama BOLOGNA.', 3, '2022-11-23'),
-(3, 'Por 16 euros comimos canelones de vegetales y de carne y dos postres caseros enormes, el tiramisú estaba increíble. Si volvemos por aquí repetiremos sitio.', 5, '2022-11-23');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `orden`
---
-
-CREATE TABLE `orden` (
-  `id_orden` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
-  `id_carrito` int(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL,
-  `hora` time DEFAULT NULL,
-  `estatus` varchar(45) DEFAULT NULL,
-  `fecha_registro` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(3, 'Por 16 euros comimos canelones de vegetales y de carne y dos postres caseros enormes, el tiramisú estaba increíble. Si volvemos por aquí repetiremos sitio.', 5, '2022-11-23'),
+(4, 'Fue un servicio rápido y eficiente, la camarera que nos atendió exelente, es súper simpática.', 4, '2022-11-26');
 
 -- --------------------------------------------------------
 
@@ -172,6 +157,32 @@ CREATE TABLE `pago` (
   `estatus` varchar(45) DEFAULT NULL,
   `fecha_registro` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedido`
+--
+
+CREATE TABLE `pedido` (
+  `id_pedido` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(1000) NOT NULL,
+  `precio` text NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `estatus` varchar(45) DEFAULT NULL,
+  `fecha_registro` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `id_producto`, `nombre`, `precio`, `cantidad`, `estatus`, `fecha_registro`) VALUES
+(1, 3, 1, 'Jugo de Papaya', '0.50', 1, 'enviado', '2022-11-27 02:30:03'),
+(2, 3, 12, 'Pasta Italiana Básica', '4.50', 1, 'enviado', '2022-11-27 02:30:03'),
+(3, 3, 21, 'Tarta de fresa', '03.80', 1, 'enviado', '2022-11-27 02:30:03');
 
 -- --------------------------------------------------------
 
@@ -196,7 +207,7 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `precio`, `estatus`, `id_categoria`, `fecha_registro`) VALUES
 (1, 'Jugo de Papaya', 'Jugo natural de papaya', '1.webp', '0.50', 'activo', 1, '2022-11-18'),
-(2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '1.85', 'inactivo', 4, '2022-11-17'),
+(2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '1.85', 'activo', 4, '2022-11-17'),
 (3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '2.50', 'inactivo', 1, '2022-11-14'),
 (4, 'Té de Hierbas', 'Té natural de hierbas con miel', '4.webp', '0.80', 'inactivo', 1, '2022-11-14'),
 (5, 'Té de Burbujas', 'Té de frutas con leche y bolitas de tapioca', '5.webp', '3.00', 'activo', 1, '2022-11-14'),
@@ -212,7 +223,9 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `preci
 (17, 'Caldo de Res', 'Caldo de res con tallarines', '17.webp', '04.00', 'activo', 5, '2022-11-20'),
 (18, 'Patatas con Queso', 'Patatas con queso y carne', '18.webp', '3.30', 'activo', 2, '2022-11-20'),
 (19, 'Brownie', 'Torta brownie con nueces', '19.webp', '2.00', 'activo', 4, '2022-11-20'),
-(20, 'Extra Queso', 'Pizza sin carne con queso extra', '20.webp', '5.00', 'activo', 8, '2022-11-20');
+(20, 'Extra Queso', 'Pizza sin carne con queso extra', '20.webp', '5.00', 'activo', 8, '2022-11-20'),
+(21, 'Tarta de fresa', 'Tarta de fresa con queso', '21.webp', '03.80', 'activo', 4, '2022-11-25'),
+(22, 'Ensalada de Mariscos', 'Ensalada de camarones y otros mariscos', '22.webp', '2.00', 'activo', 7, '2022-11-26');
 
 -- --------------------------------------------------------
 
@@ -261,7 +274,8 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `cl
 (4, 'Joseph Velis', 'JosephMVB', '04245244469', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
 (5, 'Camila Medina', 'CamiValen', '00000000000', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
 (6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
-(7, 'Rosali Barboza', 'RosyAnarel', '04125356484', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23');
+(7, 'Rosali Barboza', 'RosyAnarel', '04125356484', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23'),
+(8, 'Jonathan Barboza', 'Jothanak', '04145445583', '32467c2e0d2d69d1b9ba3d4c41a3b548', 3, '2022-11-25');
 
 --
 -- Índices para tablas volcadas
@@ -306,10 +320,11 @@ ALTER TABLE `opinion`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `orden`
+-- Indices de la tabla `pedido`
 --
-ALTER TABLE `orden`
-  ADD PRIMARY KEY (`id_orden`);
+ALTER TABLE `pedido`
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `producto`
@@ -345,7 +360,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `conversion`
@@ -369,19 +384,19 @@ ALTER TABLE `metodo_pago`
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `orden`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
-ALTER TABLE `orden`
-  MODIFY `id_orden` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pedido`
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -393,7 +408,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
@@ -410,6 +425,12 @@ ALTER TABLE `direccion`
 --
 ALTER TABLE `opinion`
   ADD CONSTRAINT `opinion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

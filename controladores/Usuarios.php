@@ -86,6 +86,7 @@
 
                     if (isset($ejecutar)) {
                         if (!session_id()) session_start();
+                        $_SESSION['id_usuario'] = $datos_usuario['id_usuario'];
                         $_SESSION['nombre_usuario'] = $this->usuario_user;
                                         
                         $usuario = new Usuarios();
