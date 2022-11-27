@@ -663,6 +663,13 @@ body::-webkit-scrollbar-thumb {
     margin-right: auto;
 }
 
+/* -- mis ordenes -- */
+.detalles__orden {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 /* navegación */
 .mi-cuenta__menu {
     display: flex;

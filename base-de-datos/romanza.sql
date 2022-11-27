@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2022 a las 03:58:45
+-- Tiempo de generación: 27-11-2022 a las 19:17:53
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -143,6 +143,28 @@ INSERT INTO `opinion` (`id_opinion`, `opinion`, `id_usuario`, `fecha_registro`) 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `orden`
+--
+
+CREATE TABLE `orden` (
+  `id_orden` varchar(45) NOT NULL,
+  `total` text NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `estatus` varchar(45) NOT NULL,
+  `fecha_registro` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `orden`
+--
+
+INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_registro`) VALUES
+('khs4', '7.00', 3, 'pendiente', '2022-11-27'),
+('roywyb', '9.00', 5, 'pendiente', '2022-11-27');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pago`
 --
 
@@ -166,23 +188,22 @@ CREATE TABLE `pago` (
 
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
+  `codigo` varchar(45) NOT NULL,
   `id_producto` int(11) NOT NULL,
-  `nombre` varchar(1000) NOT NULL,
-  `precio` text NOT NULL,
+  `total` text NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `estatus` varchar(45) DEFAULT NULL,
-  `fecha_registro` timestamp NULL DEFAULT NULL
+  `fecha_registro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `id_producto`, `nombre`, `precio`, `cantidad`, `estatus`, `fecha_registro`) VALUES
-(1, 3, 1, 'Jugo de Papaya', '0.50', 1, 'enviado', '2022-11-27 02:30:03'),
-(2, 3, 12, 'Pasta Italiana Básica', '4.50', 1, 'enviado', '2022-11-27 02:30:03'),
-(3, 3, 21, 'Tarta de fresa', '03.80', 1, 'enviado', '2022-11-27 02:30:03');
+INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`, `fecha_registro`) VALUES
+(1, 'khs4', 5, '3.00', 1, '2022-11-27'),
+(2, 'khs4', 11, '4.00', 1, '2022-11-27'),
+(3, 'roywyb', 22, '2.00', 1, '2022-11-27'),
+(4, 'roywyb', 8, '7.00', 2, '2022-11-27');
 
 -- --------------------------------------------------------
 
@@ -320,11 +341,17 @@ ALTER TABLE `opinion`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `orden`
+--
+ALTER TABLE `orden`
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_producto` (`id_producto`);
 
 --
 -- Indices de la tabla `producto`
@@ -390,7 +417,7 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -427,10 +454,16 @@ ALTER TABLE `opinion`
   ADD CONSTRAINT `opinion_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `orden`
+--
+ALTER TABLE `orden`
+  ADD CONSTRAINT `orden_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `producto`

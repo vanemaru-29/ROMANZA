@@ -6,8 +6,6 @@
                     <h1 class="mb-5">Mi Pedido</h1>
                 </div>
 
-                <!-- formulario -->
-                <!-- <form action="vistas/../index.php?romanza=registrar-pedido" method="POST"> -->
                     <div class="modal-body">
                         <table class="table table-hover m-0">
                             <thead>
@@ -116,11 +114,8 @@
                     </div>
 
                     <div class="mt-4 text-center">
-                        <a href="vistas/../index.php?romanza=pedidos" class="btn btn-secondary mx-3">Agregar Productos</a>
-                        <a href="vistas/../index.php?romanza=registrar-pedido" name="registrar-pedido" class="btn btn-warning mx-3">Continuar Pedido</a>
+                        <a href="vistas/../index.php?romanza=registrar-pedido&&precio_final=<?= number_format($total, 2) ?>" name="registrar-pedido" class="btn btn-warning mx-3">Continuar Pedido</a>
                     </div>
-                <!-- </form> -->
-            </div>
         </div>
     </div>
 </section>

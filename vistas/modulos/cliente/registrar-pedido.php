@@ -36,18 +36,27 @@
                             $fecha = new Fechas();
                             $fechaActual = $fecha -> fechaActual();
 
-                            $sql = "INSERT  INTO pedido (codigo, id_usuario, id_producto, cantidad, total, estatus, fecha_registro)
-                                            VALUES ('$codigo', '$cliente', '$id', '$cantidad', '$total', 'pendiente', '$fechaActual')";
+                            $sql = "INSERT  INTO pedido (codigo, id_producto, cantidad, total, fecha_registro)
+                                            VALUES ('$codigo', '$id', '$cantidad', '$total', '$fechaActual')";
                             $insertar = $this->conexion->prepare($sql);
                             $insertarDatos = $insertar->execute();
                         }
 
-                        unset($_SESSION['carrito']);
-
-                        $redireccion = new Redirecciones();
-                        $redireccion -> pedidos();
                     }
                 }
+
+                if (isset($_GET['precio_final'])) {
+                    $precio_final = $_GET['precio_final'];
+                }
+                
+                $sql_orden = "INSERT INTO orden (id_orden, total, id_usuario, estatus, fecha_registro) VALUES ('$codigo', '$precio_final', '$cliente', 'pendiente', '$fechaActual')";
+                $insertar_orden = $this->conexion->prepare($sql_orden);
+                $insertarDatos_orden = $insertar_orden->execute();
+
+                unset($_SESSION['carrito']);
+
+                $redireccion = new Redirecciones();
+                $redireccion -> pedidos();
             }
         }
     }

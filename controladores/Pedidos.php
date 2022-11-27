@@ -20,7 +20,8 @@
 
         // ver pedido
         public function verPedido ($codigo) {
-            $sql = "SELECT * FROM pedido WHERE codigo = '$codigo'";
+            $sql = mysqli_query($this->conexion, "SELECT * FROM pedido WHERE codigo = '$codigo'");
+            return $sql;
         }
     }
 ?>
