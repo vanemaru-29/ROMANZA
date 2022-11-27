@@ -23,21 +23,29 @@
             $fechaActual = $fecha->fechaActual();
             $this->registro_cat = $fechaActual;
             
-            $sql = "INSERT INTO categoria (nombre, descripcion, fecha_registro) VALUES ('".$this->nombre_cat."', '".$this->descripcion_cat."', '".$this->registro_cat."')";
-            $insertar = $this->conexion->prepare($sql);
-            $insertarDatos = $insertar->execute();
+            // categoria ya existe
+            $evaluar_cat = mysqli_query($this->conexion, "SELECT * FROM categoria WHERE nombre = '$this->nombre_cat'");
 
-            if (isset($insertarDatos)) {
-                $respuesta = new Redirecciones();
-                $respuesta->listaCat();
-                include $respuesta;
-
-                return 1;
+            if ($evaluar_cat->num_rows > 0) {
+                $catExiste = new MsjFormularios();
+                $catExiste -> catExiste();
             } else {
-                $errorRegistro = new ErrFormularios();
-                $errorRegistro -> registro();
+                $sql = "INSERT INTO categoria (nombre, descripcion, fecha_registro) VALUES ('".$this->nombre_cat."', '".$this->descripcion_cat."', '".$this->registro_cat."')";
+                $insertar = $this->conexion->prepare($sql);
+                $insertarDatos = $insertar->execute();
 
-                return 0;
+                if (isset($insertarDatos)) {
+                    $respuesta = new Redirecciones();
+                    $respuesta->listaCat();
+                    include $respuesta;
+
+                    return 1;
+                } else {
+                    $errorRegistro = new ErrFormularios();
+                    $errorRegistro -> registro();
+
+                    return 0;
+                }
             }
         }
 
@@ -59,11 +67,7 @@
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
 
-            $fecha = new Fechas();
-            $fechaActual = $fecha->fechaActual();
-            $this->registro_cat = $fechaActual;
-
-            $sql = "UPDATE categoria SET nombre='".$this->nombre_cat."', descripcion='".$this->descripcion_cat."', fecha_registro='".$this->registro_cat."' WHERE id_categoria = '".$this->ID_cat."'";
+            $sql = "UPDATE categoria SET nombre='".$this->nombre_cat."', descripcion='".$this->descripcion_cat."', WHERE id_categoria = '".$this->ID_cat."'";
             $editar = $this->conexion->prepare($sql);
             $insertarDatos = $editar->execute();
 
@@ -85,21 +89,27 @@
         public function eliminarCat ($ID_cat) {
             $this->ID_cat = $ID_cat;
 
-            $sql = "DELETE FROM categoria WHERE id_categoria = '".$this->ID_cat."'";
-            $eliminar = $this->conexion->prepare($sql);
-            $ejecutar = $eliminar->execute();
+            $pdtsCat = "DELETE FROM producto WHERE id_categoria = '".$this->ID_cat."'";
+            $eliminarPdts = $this->conexion->prepare($pdtsCat);
+            $ejecutarPdts = $eliminarPdts->execute();
 
-            if (isset($ejecutar)) {
-                $respuesta = new Redirecciones();
-                $respuesta->listaCat();
-                include $respuesta;
+            if ($ejecutarPdts) {
+                $sql = "DELETE FROM categoria WHERE id_categoria = '".$this->ID_cat."'";
+                $eliminar = $this->conexion->prepare($sql);
+                $ejecutar = $eliminar->execute();
 
-                return 1;
-            } else {
-                $errorEliminar = new ErrFormularios();
-                $errorEliminar->eliminar();
+                if (isset($ejecutar)) {
+                    $respuesta = new Redirecciones();
+                    $respuesta->listaCat();
+                    include $respuesta;
 
-                return 0;
+                    return 1;
+                } else {
+                    $errorEliminar = new ErrFormularios();
+                    $errorEliminar->eliminar();
+
+                    return 0;
+                }
             }
         }
     }

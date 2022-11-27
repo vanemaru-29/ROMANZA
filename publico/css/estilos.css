@@ -207,8 +207,17 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
 }
 
-.formulario__grupo-incorrecto .formulario__label {
+.color-incorrecto {
     color: var(--rojo-incorrecto);
+}
+
+.color-incorrecto-icono {
+    font-size: 80px;
+    color: var(--rojo-incorrecto);
+}
+
+.color-mensaje {
+    color: var(--gris-medio);
 }
 
 .formulario__grupo-incorrecto .formulario__validacion-estado {
@@ -506,8 +515,8 @@ body::-webkit-scrollbar-thumb {
     margin: 70px 0 0 98px;
 }
 
-.pedidos__card-detalles-img {
-    display: block;
+.pedidos__card-detalles i {
+    font-size: 30px;
 }
 
 .pedidos__card-nombre {

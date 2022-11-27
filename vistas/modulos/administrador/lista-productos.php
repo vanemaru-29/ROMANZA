@@ -60,12 +60,6 @@
         </article>
 
         <?php
-            // eliminar producto
-            if (!empty($_GET['producto'])) {
-                $eliminar = new Productos();
-                $eliminar->eliminarPdt($_GET['producto']);
-            }
-
             // cambiar estatus del producto
             if (!empty($_GET['estatus'])) {
                 $producto = new Productos();
@@ -94,9 +88,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        while ($resultado = mysqli_fetch_array($datos)) {
-                            ?>
+                    <?php while ($resultado = mysqli_fetch_array($datos)) { ?>
                                 <tr>
                                     <td><?= $resultado['id_producto'] ?></td>
                                     <td><?= $resultado['nombre'] ?></td>
@@ -122,11 +114,16 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="index.php?romanza=lista-productos&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
+                                        <!-- eliminar -->
+                                        <a href="#" class="direcciones__icono direcciones__icono-borrar" data-bs-toggle="modal" data-bs-target="#eliminarPdt-<?= $resultado['id_producto'] ?>">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </a>
+
                                         <a href="index.php?romanza=editar-producto&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
                                     </td>
                                 </tr>
-                            <?php
+                    <?php
+                            include ('vistas/modulos/modal/eliminar-pdt.php');
                         }
                     ?>
                 </tbody>

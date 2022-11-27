@@ -57,14 +57,6 @@
             </form>
         </article>
 
-        <?php
-            // eliminar categoria
-            if (!empty($_GET['categoria'])) {
-                $eliminar = new Categorias();
-                $eliminar->eliminarCat($_GET['categoria']);
-            }
-        ?>
-
         <article>
             <table class="table table-hover" id="table_data">
                 <thead>
@@ -77,9 +69,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        while ($resultado = mysqli_fetch_array($datos)) {
-                            ?>
+                    <?php while ($resultado = mysqli_fetch_array($datos)) { ?>
                                 <tr>
                                     <td><?= $resultado['id_categoria'] ?></td>
                                     <td><?= $resultado['nombre'] ?></td>
@@ -92,11 +82,16 @@
                                         ?>
                                     </td>
                                     <td>
-                                        <a href="index.php?romanza=lista-categorias&&categoria=<?= $resultado['id_categoria'] ?>" class="direcciones__icono direcciones__icono-borrar" id="eliminar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
+                                        <!-- eliminar -->
+                                        <a href="#" class="direcciones__icono direcciones__icono-borrar" data-bs-toggle="modal" data-bs-target="#eliminarCat-<?= $resultado['id_categoria'] ?>">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </a>
+
                                         <a href="index.php?romanza=editar-categoria&&categoria=<?= $resultado['id_categoria'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
                                     </td>
                                 </tr>
                             <?php
+                            include ('vistas/modulos/modal/eliminar-cat.php');
                         }
                     ?>
                 </tbody>

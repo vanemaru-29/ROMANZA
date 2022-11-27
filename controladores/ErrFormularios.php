@@ -10,6 +10,15 @@
                 </div>
             <?php
         }
+        
+        // campos vacíos alerta
+        public function camposVaciosAlerta () {
+            ?>
+                <p class="color-incorrecto">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>Se debe completar el formulario correctamente.
+                </p>
+            <?php
+        }
 
         // error de registro
         public function registro () {
@@ -17,6 +26,15 @@
                 <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
                     <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> No se ha podido completar el registro. </p>
                 </div>
+            <?php
+        }
+        
+        // alerta de registro
+        public function registroAlerta () {
+            ?>
+                <p class="color-incorrecto">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>No se ha podido completar el registro.
+                </p>
             <?php
         }
 
@@ -41,18 +59,18 @@
         // error de login
         public function login () {
             ?>
-                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
-                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> No se ha podido iniciar sesión. </p>
-                </div>
+                <p class="color-incorrecto">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>No se ha podido iniciar sesión.
+                </p>
             <?php
         }
         
         // error de login
         public function datosLogin () {
             ?>
-                <div class="formulario__mensaje-activo alert alert-danger editarInfo__tlfn" role="alert" id="formulario__mensaje">
-                    <p class="m-0"> <i class="fa-solid fa-triangle-exclamation"></i> <b>Error:</b> Los datos son incorrectos. </p>
-                </div>
+                <p class="color-incorrecto">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>Los datos ingresados son incorrectos.
+                </p>
             <?php
         }
         

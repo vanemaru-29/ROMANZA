@@ -41,7 +41,7 @@
                                         $login -> login($usuario, $clave);
                                     } else {
                                         $camposVacios = new ErrFormularios();
-                                        $camposVacios -> camposVacios();
+                                        $camposVacios -> camposVaciosAlerta();
                                     }
                                 }
                             }
