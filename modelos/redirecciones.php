@@ -18,6 +18,12 @@
             <?php
         }
 
+        public function miPedido () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=mi-pedido"; </script>
+            <?php
+        }
+
         public function pedidos () {
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=pedidos"; </script>
