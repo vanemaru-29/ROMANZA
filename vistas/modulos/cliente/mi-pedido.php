@@ -59,12 +59,24 @@
 
                                 <!-- quitar producto del carrito -->
                                 <td>
-                                    <form action="vistas/../index.php?romanza=carta" method="POST">
+                                    <form action="" method="POST">
                                         <input type="hidden" name="id_pdt2" value="<?= $mi_carrito[$i]['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm btn-rounded" name="quitar_pdt"><i class="fa-solid fa-trash"></i> Quitar</button>
 
                                         <?php
-                                            
+                                            if (isset($_POST['id_pdt2'])) {
+                                                if ($mi_carrito[$i]['id'] == $_POST['id_pdt2']) {
+                                                    $id_pdt = $_POST['id_pdt2'];
+
+                                                    unset($mi_carrito[$i]);
+                                                    unset($mi_carrito[$id_pdt]);
+
+                                                    $_SESSION['carrito'] = $mi_carrito;
+                                                        
+                                                    $redireccion = new Redirecciones();
+                                                    $redireccion->miPedido();
+                                                }
+                                            }
                                         ?>
                                     </form>
                                 </td>
