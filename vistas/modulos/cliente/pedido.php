@@ -6,14 +6,6 @@
                     <h1 class="mb-5">Mi Pedido</h1>
                 </div>
 
-                <?php
-                    // quitar producto del carrito
-                    if (!empty($_GET['id_pdt'])) {
-                        $quitar = new Carrito();
-                        $quitar->quitarPdt($_GET['id_pdt']);
-                    }
-                ?>
-
                 <div class="modal-body">
                     <table class="table table-hover m-0">
                         <thead>
@@ -27,7 +19,7 @@
                             </tr>
                         </thead>
 
-                        <form action="#" method="POST">
+                        <!-- <form action="#" method="POST"> -->
                             <tbody>
                                 <?php
                                     if (isset($_SESSION['carrito'])) {
@@ -48,8 +40,28 @@
                                     <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" id="precio<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
 
                                     <td>$ <input type="text" class="pedidos__cantidad-producto total" name="total" id="total<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
-                                    
-                                    <td><a href="vistas/../index.php?romanza=pedido&&id_pdt=<?= $mi_carrito[$i]['id'] ?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Quitar</a></td>
+
+                                    <td>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="id_pdt" value="<?= $mi_carrito[$i]['id'] ?>">
+                                            <button type="submit" name="quitar_pdt" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Quitar</button>
+                                        
+                                            <?php
+                                                if (isset($_POST['id_pdt'])) {
+                                                    if ($mi_carrito[$i]['id'] == $_POST['id_pdt']) {
+                                                        $id_pdt = $_POST['id_pdt'];
+                                                        $mi_carrito[$i]=NULL;
+                                                        $mi_carrito[$id_pdt]=NULL;
+
+                                                        $_SESSION['carrito'] = $mi_carrito;
+                                                        
+                                                        $redireccion = new Redirecciones();
+                                                        $redireccion->pedido();
+                                                    }
+                                                }
+                                            ?>
+                                        </form>
+                                    </td>
                                 </tr>
 
                                 <?php
@@ -72,17 +84,17 @@
 
                                         if (!isset($total)) { $total = '0'; } else { $total = $total; }
                                     ?>
-                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio_total" id="precio_total" value="<?= $total ?>" disabled></td>
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio_total" id="precio_total" value="<?= number_format($total, 2) ?>" disabled></td>
                                     <td></td>
                                 </tr>
                             </tfoot>
-                        </form>
+                        <!-- </form> -->
                     </table>
                 </div>
 
                 <div class="mt-4 text-center">
                     <a href="vistas/../index.php?romanza=pedidos" class="btn btn-secondary mx-3">Agregar Productos</a>
-                    <a href="#" class="btn btn-warning mx-3">Continuar Pedido</a>
+                    <a href="vistas/../index.php?romanza=pago-pedido" class="btn btn-warning mx-3">Continuar Pedido</a>
                 </div>
             </div>
         </div>
