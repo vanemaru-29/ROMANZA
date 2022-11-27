@@ -31,7 +31,7 @@
                 $fechaPrimera = $fecha->fechaPrimera($nombreTabla);
             ?>
 
-            <form action="vistas/reportes/productos-registrados.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
+            <form action="vistas/reportes/metodos-registrados.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
                 <?php
                     while ($verFecha = mysqli_fetch_array($fechaPrimera)) {
                 ?>
@@ -61,7 +61,24 @@
             </form>
         </article>
 
+        <?php
+            // eliminar producto
+            if (!empty($_GET['metodo_pago'])) {
+                $eliminar = new Metodos();
+                $eliminar->eliminarM($_GET['metodo_pago']);
+            }
 
+            // cambiar estatus del producto
+            if (!empty($_GET['estatus'])) {
+                $metodo = new Metodos();
+                $mp = $metodo->obtenerM($_GET['estatus']);
+
+                while ($mpDatos = $mp->fetch_object()) {
+                    $estatus = new Metodos();
+                    $estatus->estatusM($_GET['estatus'], $mpDatos->estatus);
+                }
+            }
+        ?>
 
         <article>
             <table class="table table-hover" id="table_data">
@@ -70,6 +87,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre del banco</th>
                         <th scope="col">Descripción</th>
+                        <th scope="col">TItular de la cuenta</th>
                         <th scope="col" class="text-center">Numero de cuenta</th>
                         <th scope="col" class="text-center">Cedula</th>
                         <th scope="col">Telefono</th>
@@ -85,6 +103,7 @@
                                     <td><?= $resultado['id_metodo_pago'] ?></td>
                                     <td><?= $resultado['nombre'] ?></td>
                                     <td><?= $resultado['descripcion'] ?></td>
+                                    <td><?= $resultado['titular'] ?></td>
                                     <td><?= $resultado['numero_cuenta'] ?></td>
                                     <td><?= $resultado['cedula'] ?></td>
                                     <td><?= $resultado['telefono'] ?></td>
@@ -92,7 +111,7 @@
                               
                                    
                                     <td>
-                                        <a href="index.php?romanza=lista-metodo-pago&&metodo-pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
+                                        <a href="index.php?romanza=lista-metodo-pago&&metodo_pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
                                         <a href="index.php?romanza=editar-producto&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
                                     </td>
                                 </tr>
