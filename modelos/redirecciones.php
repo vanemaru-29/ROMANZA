@@ -41,6 +41,12 @@
                 <script> window.location.href = "vistas/../index.php?romanza=lista-productos"; </script>
             <?php
         }
+
+        public function listaM () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=lista-metodo-pago"; </script>
+            <?php
+        }
         
         public function precios () {
             ?>

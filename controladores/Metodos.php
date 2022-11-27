@@ -3,12 +3,13 @@
     date_default_timezone_set("America/Caracas");
 
     class Metodos {
-        private $ID_pdt;
+        private $ID_mp;
         private $nombre_metodo;
         private $descripcion_metodo;
         private $numero_cuenta_m;
         private $cedula_m;
         private $telefono_m;
+        private $titular_m;
         private $estatus_metodo;
         private $registro_metodo;
 
@@ -19,16 +20,22 @@
         }
 
         // nuevo producto
-        public function registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus) {
+        public function registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus, $titular) {
             $this->nombre_metodo = $nombre;
             $this->descripcion_metodo = $descripcion;
             $this->numero_cuenta_m = $numero_cuenta;
             $this->cedula_m = $cedula;
             $this->telefono_m = $telefono;
             $this->estatus_metodo = $estatus;
-            $this->registro_metodo = date("d/m/Y");
+            $this->titular_m = $titular;
 
-            $sql = "INSERT INTO metodo_pago (nombre, descripcion, numero_cuenta, cedula, telefono, fecha_registro, estatus) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->numero_cuenta_m."', '".$this->cedula_m."', '".$this->telefono_m."','".$this->registro_metodo."', '".$this->estatus_metodo."')";
+
+            $fecha = new Fechas();
+            $fechaActual = $fecha->fechaActual();
+
+            $this->registro_metodo = $fechaActual;
+
+            $sql = "INSERT INTO metodo_pago (nombre, descripcion, numero_cuenta, cedula, telefono, fecha_registro, estatus, titular) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->numero_cuenta_m."', '".$this->cedula_m."', '".$this->telefono_m."','".$this->registro_metodo."', '".$this->estatus_metodo."', '".$this->titular_m."')";
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
@@ -60,16 +67,16 @@
         }
 
         // cambiar estatus
-        public function estatusPdt ($ID, $estatus) {
+        public function estatusM ($ID, $estatus) {
             if ($estatus == "activo") {
                 
-                $sql = "UPDATE producto SET estatus='inactivo' WHERE id_producto = '$ID'";
+                $sql = "UPDATE metodo_pago SET estatus='inactivo' WHERE id_metodo_pago = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();
 
                 if (isset($ejecutar)) {
                     $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
+                    $respuesta->listaM();
                     include $respuesta;
 
                     return 1;
@@ -79,13 +86,13 @@
             } else if ($estatus == "inactivo") {
                 $estatus = "activo";
                 
-                $sql = "UPDATE producto SET estatus='activo' WHERE id_producto = '$ID'";
+                $sql = "UPDATE metodo_pago SET estatus='activo' WHERE id_metodo_pago = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();
 
                 if (isset($ejecutar)) {
                     $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
+                    $respuesta->listaM();
                     include $respuesta;
 
                     return 1;
@@ -96,8 +103,8 @@
         }
 
         // obtener producto
-        public function obtenerPdt ($ID) {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_producto = '$ID'");
+        public function obtenerM ($ID) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM metodo_pago WHERE id_metodo_pago = '$ID'");
             return $sql;
         }
 
@@ -114,35 +121,26 @@
             var_dump($this->categoria_pdt);
         }
 
-        // eliminar un producto
-        public function eliminarPdt ($ID) {
-            $this->ID_pdt = $ID;
-
-            $imagen = $ID.".webp";
-
-            if (file_exists("vistas/../publico/activos/pedidos/".$imagen)) {
-                if (unlink("vistas/../publico/activos/pedidos/".$imagen)) {
-                    $sql = "DELETE FROM producto WHERE id_producto = '".$this->ID_pdt."'";
-                    $eliminar = $this->conexion->prepare($sql);
-                    $ejecutar = $eliminar->execute();
-
-                    if (isset($ejecutar)) {
-                        $respuesta = new Redirecciones();
-                        $respuesta->listaPdt();
-                        include $respuesta;
-
-                        return 1;
-                    } else {
-                        $errorEliminar = new ErrFormularios();
-                        $errorEliminar->eliminar();
-
-                        return 0;
-                    }
+              // eliminar una categoria
+              public function eliminarM ($ID_mp) {
+                $this->ID_mp = $ID_mp;
+    
+                $sql = "DELETE FROM metodo_pago WHERE id_metodo_pago = '".$this->ID_mp."'";
+                $eliminar = $this->conexion->prepare($sql);
+                $ejecutar = $eliminar->execute();
+    
+                if (isset($ejecutar)) {
+                    $respuesta = new Redirecciones();
+                    $respuesta->listaM();
+                    include $respuesta;
+    
+                    return 1;
                 } else {
                     $errorEliminar = new ErrFormularios();
                     $errorEliminar->eliminar();
+    
+                    return 0;
                 }
             }
-        }
     }
 ?>

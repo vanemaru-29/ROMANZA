@@ -63,6 +63,7 @@
                                                 <img src="vistas/../publico/activos/pedidos/<?= $resultado['imagen'] ?>" alt="Producto ROMANZA">
                                             </div>
                                             <div class="pedidos__card-contenido shadow px-2">
+                                        
                                                 <button type="submit" class="btn btn-danger pedidos__card-detalles"> <img src="vistas/../publico/activos/iconos/add-claro.svg" alt="Añadir al Carrito" class="pedidos__card-detalles-img"> </button>
                                                 
                                                 <p class="pedidos__card-nombre"><?= $resultado['nombre'] ?></p>

@@ -40,6 +40,14 @@ require_once('vistas/../controladores/autoCarga.php');
 
             <!-- Grupo: Nombre -->
             <div class="formulario__grupo" id="grupo__nombre">
+                <label for="nombre" class="form-label login__label"> Nombre del titular de la cuenta</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="form-control formulario__input" placeholder=". . ." name="titular" id="nombre">
+                    <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                </div>
+<!--                 <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
+            </div>
+            <div class="formulario__grupo" id="grupo__nombre">
                 <label for="nombre" class="form-label login__label"> Numero de cuenta </label>
                 <div class="formulario__grupo-input">
                     <input type="text" class="form-control formulario__input" placeholder=". . ." name="numero_cuenta" id="nombre">
@@ -86,18 +94,19 @@ require_once('vistas/../controladores/autoCarga.php');
 
             <?php
             if (empty($_POST['registrar-metodo'])) {
-                if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['numero_cuenta']) && isset($_POST['cedula']) && isset($_POST['telefono']) && isset($_POST['estatus'])) {
-                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['descripcion']) >= 1  && strlen($_POST['numero_cuenta']) >= 1  && strlen($_POST['cedula']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['estatus']) >= 1) {
+                if (isset($_POST['nombre'])) {
+                    if (strlen($_POST['nombre'])) {
                         $nombre = $_POST['nombre'];
                         $descripcion = $_POST['descripcion'];
                         $estatus = $_POST['estatus'];
                         $numero_cuenta = $_POST['numero_cuenta'];
                         $cedula = $_POST['cedula'];
                         $telefono = $_POST['telefono'];
+                        $titular = $_POST['titular'];
 
 
                         $nuevoMetodo = new Metodos();
-                        $nuevoMetodo->registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus);
+                        $nuevoMetodo->registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus, $titular);
                     } else {
                         $camposVacios = new ErrFormularios();
                         $camposVacios->camposVacios();
