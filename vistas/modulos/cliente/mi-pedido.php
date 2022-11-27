@@ -1,115 +1,128 @@
-<section class="my-5 py-5">
-    <article class="container mi-cuenta">
-        <div class="p-3">
-            <h1 class="fw-bold text-center pb-5"> Mi Pedido </h1>
+<section class="container py-5">
+    <div class="login__cont bg-white my-5 p-5">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="text-center">
+                    <h1 class="mb-5">Mi Pedido</h1>
+                </div>
 
-            <div class="modal-body">
-                <table class="table table-hover m-0">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Quitar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            if (isset($_SESSION['carrito'])) {
-                                $mi_carrito = $_SESSION['carrito'];
-                                $total = 0;
-                            for ($i=0; $i < count($mi_carrito); $i++) {
-                                if (isset($mi_carrito[$i])) {
-                                if ($mi_carrito[$i]!=NULL) {
-                        ?>
-                            <tr>
-                                <td><?= $mi_carrito[$i]['id'] ?></td>
-                                <td><?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span></td>
-                                
-                                <!-- CANTIDAD -->
-                                <td>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="id_pdt1" value="<?= $mi_carrito[$i]['id'] ?>">
-                                        <input type="number" class="pedidos__cantidad-producto" name="cantidad_nueva" value="<?= $mi_carrito[$i]['cantidad'] ?>">
-                                        <button type="submit" class="btn btn-secondary btn-sm btn-rounded" name="actualizar_pdt"><img src="vistas/../publico/activos/iconos/actualizar-claro.svg" alt="Actualizar"></button>
+                <!-- formulario -->
+                <!-- <form action="vistas/../index.php?romanza=registrar-pedido" method="POST"> -->
+                    <div class="modal-body">
+                        <table class="table table-hover m-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Quitar</th>
+                                </tr>
+                            </thead>
 
-                                        <?php
-                                            if (isset($_POST['cantidad_nueva'])) {
-                                                if ($mi_carrito[$i]['id'] == $_POST['id_pdt1']) {
-                                                    $id_pdt = $_POST['id_pdt1'];
-                                                    $cant_nueva = $_POST['cantidad_nueva'];
+                            <tbody>
+                                <?php
+                                    if (isset($_SESSION['carrito'])) {
+                                        $mi_carrito = $_SESSION['carrito'];
+                                        $total = 0;
+                                    for ($i=0; $i < count($mi_carrito); $i++) { 
+                                        if (isset($mi_carrito[$i])) {
+                                        if ($mi_carrito[$i]!=NULL) {
+                                ?>
 
-                                                    $mi_carrito[$i]['cantidad'] = $cant_nueva;
-                                                    $mi_carrito[$id_pdt]['cantidad'] = $cant_nueva;
-                                    
-                                                    $_SESSION['carrito'] = $mi_carrito;
-                                                        
-                                                    $redireccion = new Redirecciones();
-                                                    $redireccion->miPedido();
+                                <tr id="datos_producto">     
+                                    <td><?= $mi_carrito[$i]['id'] ?></td>
+                                    <td><?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span></td>
+                                                
+                                    <td>
+                                        <form action="#" method="POST">
+                                            <input type="hidden" name="id_pdt1" value="<?= $mi_carrito[$i]['id'] ?>">
+                                            <input type="number" class="pedidos__cantidad-producto" name="cantidad_nueva" value="<?= $mi_carrito[$i]['cantidad'] ?>">
+                                            <button type="submit" class="btn btn-secondary btn-sm btn-rounded" name="actualizar_pdt"><img src="vistas/../publico/activos/iconos/actualizar-claro.svg" alt="Actualizar"></button>
+
+                                            <?php
+                                                if (isset($_POST['cantidad_nueva'])) {
+                                                    if ($mi_carrito[$i]['id'] == $_POST['id_pdt1']) {
+                                                        $id_pdt = $_POST['id_pdt1'];
+                                                        $cant_nueva = $_POST['cantidad_nueva'];
+
+                                                        $mi_carrito[$i]['cantidad'] = $cant_nueva;
+                                                        $mi_carrito[$id_pdt]['cantidad'] = $cant_nueva;
+                                        
+                                                        $_SESSION['carrito'] = $mi_carrito;
+                                                            
+                                                        $redireccion = new Redirecciones();
+                                                        $redireccion->miPedido();
+                                                    }
                                                 }
-                                            }
-                                        ?>
-                                    </form>
-                                </td>
-                                
-                                <td>$ <?= number_format($mi_carrito[$i]['precio'], 2) ?></td>
-                                <td><strong>$ <?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?></strong></td>
+                                            ?>
+                                        </form>
+                                    </td>
 
-                                <!-- quitar producto del carrito -->
-                                <td>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="id_pdt2" value="<?= $mi_carrito[$i]['id'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm btn-rounded" name="quitar_pdt"><i class="fa-solid fa-trash"></i> Quitar</button>
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" value="<?= $mi_carrito[$i]['precio'] ?>" disabled></td>
 
-                                        <?php
-                                            if (isset($_POST['id_pdt2'])) {
-                                                if ($mi_carrito[$i]['id'] == $_POST['id_pdt2']) {
-                                                    $id_pdt = $_POST['id_pdt2'];
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto total" name="total" id="total<?= $mi_carrito[$i]['id'] ?>" value="<?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?>" disabled></td>
 
-                                                    unset($mi_carrito[$i]);
-                                                    unset($mi_carrito[$id_pdt]);
+                                    <td>
+                                        <form action="#" method="POST">
+                                            <input type="hidden" name="id_pdt2" value="<?= $mi_carrito[$i]['id'] ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm btn-rounded" name="quitar_pdt"><i class="fa-solid fa-trash"></i> Quitar</button>
 
-                                                    $_SESSION['carrito'] = $mi_carrito;
-                                                        
-                                                    $redireccion = new Redirecciones();
-                                                    $redireccion->miPedido();
+                                            <?php
+                                                if (isset($_POST['id_pdt2'])) {
+                                                    if ($mi_carrito[$i]['id'] == $_POST['id_pdt2']) {
+                                                        $id_pdt = $_POST['id_pdt2'];
+
+                                                        unset($mi_carrito[$i]);
+                                                        unset($mi_carrito[$id_pdt]);
+
+                                                        $_SESSION['carrito'] = $mi_carrito;
+                                                            
+                                                        $redireccion = new Redirecciones();
+                                                        $redireccion->miPedido();
+                                                    }
                                                 }
-                                            }
-                                        ?>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php
-                            $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
-                            }}}} else { ?> <tr><td class="text-center">No hay productos añadidos al carrito</td></tr> <?php }
-                        ?>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <?php
-                                if (isset($_SESSION['carrito'])) {
-                                $total = 0;
-                                for ($i=0; $i < count($mi_carrito)-1; $i++) { 
-                                if (isset($mi_carrito[$i])) {
-                                if ($mi_carrito[$i]!=NULL) {
+                                            ?>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                                <?php
                                     $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
-                                }}}}
+                                    }}}} else { ?> <tr><td colspan="6" class="text-center">No hay productos añadidos al carrito</td></tr> <?php }
+                                ?>
+                            </tbody>
 
-                                if (!isset($total)) { $total = '0'; } else { $total = $total; }
-                            ?>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">Total (USD)</td>
+                                    <?php
+                                        if (isset($_SESSION['carrito'])) {
+                                        $total = 0;
+                                        for ($i=0; $i < count($mi_carrito); $i++) { 
+                                        if (isset($mi_carrito[$i])) {
+                                        if ($mi_carrito[$i]!=NULL) {
+                                            $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
+                                        }}}}
 
-                            <td colspan="4">Total (USD)</td>
-                            <td colspan="2"><strong>$ <?= number_format($total, 2) ?></strong></td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
+                                        if (!isset($total)) { $total = '0'; } else { $total = $total; }
+                                    ?>
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio_total" id="precio_total" value="<?= number_format($total, 2) ?>" disabled></td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
 
-            <div class="text-center pt-4">
-                <a href="vistas/../index.php?romanza=" class="btn btn-warning">Continuar Pedido</a>
+                    <div class="mt-4 text-center">
+                        <a href="vistas/../index.php?romanza=pedidos" class="btn btn-secondary mx-3">Agregar Productos</a>
+                        <a href="vistas/../index.php?romanza=registrar-pedido" name="registrar-pedido" class="btn btn-warning mx-3">Continuar Pedido</a>
+                    </div>
+                <!-- </form> -->
             </div>
         </div>
-    </artic>
+    </div>
 </section>
+
+<script src="vistas/../js/cantidad-producto.js"></script>
