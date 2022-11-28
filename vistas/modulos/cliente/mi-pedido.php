@@ -59,10 +59,7 @@
                                     </td>
 
                                     <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" value="<?= $mi_carrito[$i]['precio'] ?>" disabled></td>
-                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" value="<?= $mi_carrito[$i]['precio']*$mi_carrito[$i]['cantidad'] ?>" disabled></td>
-
-                                                                <!--     $mi_carrito[$i]['cantidad'] = $cant_nueva;
-                                                                    $mi_carrito[$id_pdt]['cantidad'] = $cant_nueva; -->
+                                    <td>$ <input type="text" class="pedidos__cantidad-producto" name="precio" value="<?= number_format($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad'], 2) ?>" disabled></td>
 
                                     <td>
                                         <form action="#" method="POST">
@@ -85,18 +82,20 @@
                                                 }
                                             ?>
                                         </form>
-                                    </td> -->
-                                                </tr>
+                                    </td>
+                                </tr>
 
                                     <?php
-                                                $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
+                                                        $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
-                                } else { ?> <tr>
+                                        } else {
+                                    ?> 
+                                    <tr>
                                         <td colspan="6" class="text-center">No hay productos añadidos al carrito</td>
-                                    </tr> <?php }
-                                            ?>
+                                    </tr> 
+                                <?php } ?>
                             </tbody>
 
                             <tfoot>
