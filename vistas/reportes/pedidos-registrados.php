@@ -2,7 +2,7 @@
     require ('../../modelos/Conexion.php');
     require ('../../controladores/autoCarga.php');
 
-    $tabla = "orden";
+    $tabla = "pedido";
     $fecha = new Fechas();
     $fechaPrimera = $fecha->fechaPrimera($tabla);
     $fechaActual = $fecha->fechaActual();
@@ -40,11 +40,11 @@
     }
 
     $fpdf = new PDF();
-    $fpdf->SetTitle('Pedidos Generados', 0);
+    $fpdf->SetTitle('Pedidos Registrados', 0);
     $fpdf->AddPage('portrait', 'letter');
     $fpdf->SetFont('Arial', 'B', 12);
     $fpdf->Cell(75);
-    $fpdf->Cell(50, 5, 'Pedidos Generados', 0, 1, 'C');
+    $fpdf->Cell(50, 5, 'Pedidos Registrados', 0, 1, 'C');
     $fpdf->Ln(5);
     $fpdf->Cell(75);
     $fpdf->Cell(50, 5, 'Desde: '.$fecha->fechaFormato($desde).' - Hasta: '.$fecha->fechaFormato($hasta), 0, 1, 'C');
@@ -60,27 +60,29 @@
 
     $fpdf->SetFillColor(173, 181, 189);
     $fpdf->SetFont('Arial', 'B', 10);
-    $fpdf->Cell(40, 8, utf8_decode('Código de la Orden'), 1, 0, 'C', 1);
-    $fpdf->Cell(45, 8, 'Cliente', 1, 0, 'C', 1);
+    $fpdf->Cell(15, 8, '#', 1, 0, 'C', 1);
+    $fpdf->Cell(25, 8, utf8_decode('Código'), 1, 0, 'C', 1);
+    $fpdf->Cell(50, 8, 'Producto', 1, 0, 'C', 1);
+    $fpdf->Cell(35, 8, 'Cantidad', 1, 0, 'C', 1);
     $fpdf->Cell(30, 8, 'Precio Total', 1, 0, 'C', 1);
-    $fpdf->Cell(30, 8, 'Estatus', 1, 0, 'C', 1);
-    $fpdf->Cell(50, 8, 'Fecha de la Orden', 1, 1, 'C', 1);
+    $fpdf->Cell(40, 8, 'Fecha de Registro', 1, 1, 'C', 1);
 
     $fpdf->SetFont('Arial', '', 10);
         
     while ($resultado = mysqli_fetch_array($datosPdt)) {
-        $fpdf->Cell(40, 8, $resultado['id_orden'], 1, 0, 'C');
+        $fpdf->Cell(15, 8, $resultado['id_pedido'], 1, 0, 'C');
+        $fpdf->Cell(25, 8, $resultado['codigo'], 1, 0, 'C');
         
-        $usuario = new Usuarios();
-        $datosUser = $usuario->obtenerUser($resultado['id_usuario']);
+        $usuario = new Productos();
+        $datosUser = $usuario->obtenerPdt($resultado['id_producto']);
         while ($inforUser = mysqli_fetch_array($datosUser)) {
-            $fpdf->Cell(45, 8, $inforUser['nombre'], 1, 0, 'C');
+            $fpdf->Cell(50, 8, $inforUser['nombre'], 1, 0, 'C');
         }
 
+        $fpdf->Cell(35, 8, $resultado['cantidad'], 1, 0, 'C');
         $fpdf->Cell(30, 8, '$ '.$resultado['total'], 1, 0, 'C');
-        $fpdf->Cell(30, 8, $resultado['estatus'], 1, 0, 'C');
-        $fpdf->Cell(50, 8, $fecha->fechaFormato($resultado['fecha_registro']), 1, 1, 'C');
+        $fpdf->Cell(40, 8, $fecha->fechaFormato($resultado['fecha_registro']), 1, 1, 'C');
     }
 
-    $fpdf->OutPut('I', 'Pedidos Generados.pdf', true);
+    $fpdf->OutPut('I', 'Pedidos Registrados.pdf', true);
 ?>

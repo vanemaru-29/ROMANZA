@@ -6,18 +6,17 @@
 ?>
 
 <section class="w-100 py-5">
-    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Lista de metodos de pago </h1>
+    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Métodos de Pago </h1>
 
     <!-- navbar -->
     <div class="mi-cuenta__menu mb-5">
-        <a href="index.php?romanza=lista-metodo-pago" class="mi-cuenta-enlace"> Lista de metodos de pago </a>
-        <a href="index.php?romanza=registrar-metodo-pago" class="mi-cuenta-enlace"> Registrar metodo de pago </a>
-        <a href="index.php?romanza=conversion" class="mi-cuenta-enlace"> Conversion </a>
+        <a href="index.php?romanza=lista-metodo-pago" class="mi-cuenta-enlace"> Metodos de Pago </a>
+        <a href="index.php?romanza=registrar-metodo-pago" class="mi-cuenta-enlace"> Registrar </a>
     </div>
 
     <!-- pedidos -->
     <section class="container mi-cuenta">
-        <h2 class="fw-bold text-center pb-5">Metodos de pago registrados</h2>
+        <h2 class="fw-bold text-center pb-5">Métodos de Pago Registrados</h2>
 
         <!-- formulario reportes por fecha -->
         <article>
@@ -57,12 +56,6 @@
         </article>
 
         <?php
-            // eliminar metodo de pago
-            if (!empty($_GET['metodo_pago'])) {
-                $eliminar = new Metodos();
-                $eliminar->eliminarM($_GET['metodo_pago']);
-            }
-
             // cambiar estatus del metodo de pago
             if (!empty($_GET['estatus'])) {
                 $metodo = new Metodos();
@@ -82,10 +75,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Banco</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">TItular</th>
-                        <th scope="col" class="text-center">Cuenta</th>
-                        <th scope="col" class="text-center">CI</th>
                         <th scope="col">Telefono</th>
+                        <th scope="col" class="text-center">CI</th>
                         <th scope="col">Estatus</th>
                         <th scope="col">Opciones</th>
                     </tr>
@@ -98,19 +89,22 @@
                                     <td><?= $resultado['id_metodo_pago'] ?></td>
                                     <td><?= $resultado['nombre'] ?></td>
                                     <td><?= $resultado['descripcion'] ?></td>
-                                    <td><?= $resultado['titular'] ?></td>
-                                    <td><?= $resultado['numero_cuenta'] ?></td>
-                                    <td><?= $resultado['cedula'] ?></td>
                                     <td><?= $resultado['telefono'] ?></td>
+                                    <td><?= $resultado['cedula'] ?></td>
+                                    <td><?= $resultado['estatus'] ?></td>
                                     <td class="text-center"> <a href="index.php?romanza=lista-metodo-pago&&estatus=<?= $resultado['id_metodo_pago'] ?>" class="btn" id="estatus-<?= $resultado['estatus'] ?>"><?= $resultado['estatus'] ?></a> </td>
                               
-                                   
                                     <td>
-                                        <a href="index.php?romanza=lista-metodo-pago&&metodo_pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
-                                        <a href="index.php?romanza=editar-metodo-pago&&metodo_pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
+                                        <!-- eliminar -->
+                                        <a href="#" class="direcciones__icono direcciones__icono-borrar" data-bs-toggle="modal" data-bs-target="#eliminarMtd-<?= $resultado['id_metodo_pago'] ?>">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </a>
+
+                                        <a href="#" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
                                     </td>
                                 </tr>
                             <?php
+                            include ('vistas/modulos/modal/eliminar-mtd.php');
                         }
                     ?>
                 </tbody>

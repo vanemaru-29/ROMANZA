@@ -59,5 +59,11 @@
                 <script> window.location.href = "vistas/../index.php?romanza=administrar"; </script>
             <?php
         }
+        
+        public function metodosPago () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=lista-metodo-pago"; </script>
+            <?php
+        }
     }
 ?>

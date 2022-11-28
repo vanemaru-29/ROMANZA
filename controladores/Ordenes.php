@@ -16,11 +16,11 @@
             return $sql;
         }
 
+        // no trae la fecha de la orden
         public function listaOrden () {
             $sql = mysqli_query($this->conexion, "SELECT * FROM orden o LEFT OUTER JOIN usuario u ON u.id_usuario = o.id_usuario ");
             return $sql;
         }
-
         
         // lista usuarios
         public function orden ($id_orden) {

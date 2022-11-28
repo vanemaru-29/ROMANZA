@@ -40,11 +40,11 @@
     }
 
     $fpdf = new PDF();
-    $fpdf->SetTitle('Ordenes registradas', 0);
+    $fpdf->SetTitle('Ordenes Registradas', 0);
     $fpdf->AddPage('portrait', 'letter');
     $fpdf->SetFont('Arial', 'B', 12);
     $fpdf->Cell(75);
-    $fpdf->Cell(50, 5, 'Ordenes registradas', 0, 1, 'C');
+    $fpdf->Cell(50, 5, 'Ordenes Registradas', 0, 1, 'C');
     $fpdf->Ln(5);
     $fpdf->Cell(75);
     $fpdf->Cell(50, 5, 'Desde: '.$fecha->fechaFormato($desde).' - Hasta: '.$fecha->fechaFormato($hasta), 0, 1, 'C');
@@ -60,25 +60,27 @@
 
     $fpdf->SetFillColor(173, 181, 189);
     $fpdf->SetFont('Arial', 'B', 10);
-    $fpdf->Cell(15, 8, '#', 1, 0, 'C', 1);
-    $fpdf->Cell(60, 8, 'Total de la orden', 1, 0, 'C', 1);
-/*     $fpdf->Cell(80, 8, 'Descripion', 1, 0, 'C', 1); */
-    $fpdf->Cell(60, 8, 'Estatus', 1, 0, 'C', 1);
+    $fpdf->Cell(25, 8, '#', 1, 0, 'C', 1);
+    $fpdf->Cell(50, 8, 'Cliente', 1, 0, 'C', 1);
+    $fpdf->Cell(30, 8, 'Precio Total', 1, 0, 'C', 1);
+    $fpdf->Cell(30, 8, 'Estatus', 1, 0, 'C', 1);
     $fpdf->Cell(60, 8, 'Fecha de registro', 1, 1, 'C', 1);
 
     $fpdf->SetFont('Arial', '', 10);
 
-
     while ($resultado = mysqli_fetch_array($datosPdt)) {
-        $fpdf->Cell(15, 8, $resultado['id_orden'], 1, 0, 'C');
-        $fpdf->Cell(60, 8, utf8_decode($resultado['total']), 1, 0, 'C');
-/*         $fpdf->Cell(80, 8, '$ '.$resultado['descripcion'], 1, 0, 'C'); */
-        $fpdf->Cell(60, 8, $resultado['estatus'], 1, 0, 'C');
+        $fpdf->Cell(25, 8, $resultado['id_orden'], 1, 0, 'C');
 
+        $usuario = new Usuarios();
+        $datos_user = $usuario -> obtenerUser($resultado['id_usuario']);
+        while ($info_user = mysqli_fetch_array($datos_user)) {
+            $fpdf->Cell(50, 8, utf8_decode($info_user['nombre']), 1, 0, 'C');
+        }
+        
+        $fpdf->Cell(30, 8, '$ '.$resultado['total'], 1, 0, 'C');
+        $fpdf->Cell(30, 8, $resultado['estatus'], 1, 0, 'C');
         $fpdf->Cell(60, 8, $fecha->fechaFormato($resultado['fecha_registro']), 1, 1, 'C');
     }
 
-    $fpdf->OutPut('I', 'Ordenes Registrados.pdf', true);
-
-
+    $fpdf->OutPut('I', 'Ordenes Registradas.pdf', true);
 ?>

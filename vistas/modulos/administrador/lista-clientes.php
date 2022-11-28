@@ -3,18 +3,12 @@
     
     require_once ('vistas/../controladores/autoCarga.php');
 
-    $productos = new Usuarios();
-    $datos = $productos->listaUser();
+    $clientes = new Usuarios();
+    $datos = $clientes->listaCli();
 ?>
 
 <section class="w-100 py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Lista de Clientes</h1>
-
-    <!-- navbar -->
-    <div class="mi-cuenta__menu mb-5">
-        <a href="index.php?romanza=lista-productos" class="mi-cuenta-enlace"> Lista de Productos </a>
-        <a href="index.php?romanza=registrar-producto" class="mi-cuenta-enlace"> Registrar Producto </a>
-    </div>
 
     <!-- pedidos -->
     <section class="container mi-cuenta">
@@ -39,7 +33,6 @@
                         <div class="formulario__grupo-input">
                             <input type="date" class="form-control formulario__input" name="desde" id="desde" value="<?= $verFecha['fecha_registro'] ?>">
                         </div>
-                        <!-- <p class="formulario__input-error m-2">Algo.</p> -->
                     </div>
                 <?php } ?>
 
@@ -49,7 +42,6 @@
                     <div class="formulario__grupo-input">
                         <input type="date" class="form-control formulario__input" name="hasta" id="hasta" value="<?= $fechaActual ?>">
                     </div>
-                    <!-- <p class="formulario__input-error m-2">Algo.</p> -->
                 </div>
                 
                 <div class="d-grid my-4 formulario__grupo">
@@ -59,25 +51,6 @@
             </form>
         </article>
 
-        <?php
-            // eliminar producto
-            if (!empty($_GET['producto'])) {
-                $eliminar = new Productos();
-                $eliminar->eliminarPdt($_GET['producto']);
-            }
-
-            // cambiar estatus del producto
-            if (!empty($_GET['estatus'])) {
-                $producto = new Productos();
-                $pdt = $producto->obtenerPdt($_GET['estatus']);
-
-                while ($pdtDatos = $pdt->fetch_object()) {
-                    $estatus = new Productos();
-                    $estatus->estatusPdt($_GET['estatus'], $pdtDatos->estatus);
-                }
-            }
-        ?>
-
         <article>
             <table class="table table-hover" id="table_data">
                 <thead>
@@ -85,9 +58,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Teléfono</th>
                         <th scope="col" class="text-center">Fecha de registro</th>
-             
-                        
                     </tr>
                 </thead>
                 <tbody>
@@ -98,12 +70,8 @@
                                     <td><?= $resultado['id_usuario'] ?></td>
                                     <td><?= $resultado['nombre'] ?></td>
                                     <td><?= $resultado['nombre_usuario'] ?></td>
-                               
-                                    <td class="text-center"><?= $resultado['fecha_registro'] ?></td>
-                              
-                                 
-                                 
-                                
+                                    <td><?= $resultado['telefono'] ?></td>
+                                    <td class="text-center"><?= $fecha->fechaFormato($resultado['fecha_registro']) ?></td>
                                 </tr>
                             <?php
                         }
@@ -115,4 +83,3 @@
 </section>
 
 <script src="vistas/../js/dataTables.js"></script>
-<script src="vistas/../publico/js/estatus.js"></script>

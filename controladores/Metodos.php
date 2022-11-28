@@ -10,6 +10,7 @@
         private $cedula_m;
         private $telefono_m;
         private $titular_m;
+        private $asunto_m;
         private $estatus_metodo;
         private $registro_metodo;
 
@@ -19,37 +20,28 @@
             $this->conexion = $this->conexion->conectar();
         }
 
-        // nuevo producto
-        public function registroMetodo($nombre, $descripcion, $numero_cuenta, $cedula, $telefono, $estatus, $titular) {
+        // nuevo metodo de pago
+        public function registroMtd($nombre, $cedula, $telefono, $asunto) {
             $this->nombre_metodo = $nombre;
-            $this->descripcion_metodo = $descripcion;
-            $this->numero_cuenta_m = $numero_cuenta;
             $this->cedula_m = $cedula;
             $this->telefono_m = $telefono;
-            $this->estatus_metodo = $estatus;
-            $this->titular_m = $titular;
-
+            $this->asunto_m = $asunto;
 
             $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
-
             $this->registro_metodo = $fechaActual;
 
-            $sql = "INSERT INTO metodo_pago (nombre, descripcion, numero_cuenta, cedula, telefono, fecha_registro, estatus, titular) VALUES ('".$this->nombre_metodo."', '".$this->descripcion_metodo."', '".$this->numero_cuenta_m."', '".$this->cedula_m."', '".$this->telefono_m."','".$this->registro_metodo."', '".$this->estatus_metodo."', '".$this->titular_m."')";
+            $sql = "INSERT INTO metodo_pago (nombre, telefono, cedula, descripcion, estatus, fecha_registro) VALUES ('".$this->nombre_metodo."', '".$this->telefono_m."', '".$this->cedula_m."', '".$this->asunto_m."', 'activo', '".$this->registro_metodo."')";
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
             if (isset($insertarDatos)) {
-                $ultimo_id = mysqli_insert_id($this->conexion);
-              
-                // crear directorio
-          /*       if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
-                    mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
-                } */
+                $redireccion = new Redirecciones();
+                $redireccion -> metodosPago();
+                return 1;
             } else {
                 $errorRegistro = new ErrFormularios();
                 $errorRegistro -> registro();
-
                 return 0;
             }
         }
@@ -127,26 +119,23 @@
             var_dump($this->categoria_pdt);
         }
 
-              // eliminar una categoria
-              public function eliminarM ($ID_mp) {
-                $this->ID_mp = $ID_mp;
+        // eliminar una categoria
+        public function eliminarM ($ID_mp) {
+            $this->ID_mp = $ID_mp;
+        
+            $sql = "DELETE FROM metodo_pago WHERE id_metodo_pago = '".$this->ID_mp."'";
+            $eliminar = $this->conexion->prepare($sql);
+            $ejecutar = $eliminar->execute();
     
-                $sql = "DELETE FROM metodo_pago WHERE id_metodo_pago = '".$this->ID_mp."'";
-                $eliminar = $this->conexion->prepare($sql);
-                $ejecutar = $eliminar->execute();
-    
-                if (isset($ejecutar)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaM();
-                    include $respuesta;
-    
-                    return 1;
-                } else {
-                    $errorEliminar = new ErrFormularios();
-                    $errorEliminar->eliminar();
-    
-                    return 0;
-                }
+            if (isset($ejecutar)) {
+                $respuesta = new Redirecciones();
+                $respuesta->listaM();    
+                return 1;
+            } else {
+                $errorEliminar = new ErrFormularios();
+                $errorEliminar->eliminar();    
+                return 0;
             }
+        }
     }
 ?>
