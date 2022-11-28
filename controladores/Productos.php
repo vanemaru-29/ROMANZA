@@ -91,11 +91,11 @@
             return $sql;
         }
         
-        // todos los productos según categoria
-        // public function categoriaPdt ($cat) {
-        //     $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_categoria = '$cat'");
-        //     return $sql;
-        // }
+        // todos los productos activos
+        public function categoriaPdt ($cat) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_categoria = '$cat'");
+            return $sql;
+        }
 
         // cambiar estatus
         public function estatusPdt ($ID, $estatus) {
@@ -186,8 +186,8 @@
             }
         }
 
-        // eliminar un producto
-        public function eliminarPdt ($ID) {
+         // eliminar un producto
+         public function eliminarPdt ($ID) {
             $this->ID_pdt = $ID;
 
             $imagen = $ID.".webp";

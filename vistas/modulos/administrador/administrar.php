@@ -10,13 +10,7 @@
 ?>
 
 <section class="w-100 vh-100 py-5">
-    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Administración </h1>
-
-    <!-- navbar -->
-    <div class="mi-cuenta__menu mb-5">
-        <a href="index.php?romanza=administrar" class="mi-cuenta-enlace"> Precios </a>
-        <a href="index.php?romanza=reportes" class="mi-cuenta-enlace"> Reportes </a>
-    </div>
+    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Conversión </h1>
 
     <!-- precios -->
     <section class="container mi-cuenta">

@@ -1,8 +1,6 @@
 <?php
     clearstatcache();
     
-    require_once ('vistas/../controladores/autoCarga.php');
-
     $metodos = new Metodos();
     $datos = $metodos->listaM();
 ?>
@@ -40,7 +38,6 @@
                         <div class="formulario__grupo-input">
                             <input type="date" class="form-control formulario__input" name="desde" id="desde" value="<?= $verFecha['fecha_registro'] ?>">
                         </div>
-                        <!-- <p class="formulario__input-error m-2">Algo.</p> -->
                     </div>
                 <?php } ?>
 
@@ -50,7 +47,6 @@
                     <div class="formulario__grupo-input">
                         <input type="date" class="form-control formulario__input" name="hasta" id="hasta" value="<?= $fechaActual ?>">
                     </div>
-                    <!-- <p class="formulario__input-error m-2">Algo.</p> -->
                 </div>
                 
                 <div class="d-grid my-4 formulario__grupo">
@@ -61,13 +57,13 @@
         </article>
 
         <?php
-            // eliminar producto
+            // eliminar metodo de pago
             if (!empty($_GET['metodo_pago'])) {
                 $eliminar = new Metodos();
                 $eliminar->eliminarM($_GET['metodo_pago']);
             }
 
-            // cambiar estatus del producto
+            // cambiar estatus del metodo de pago
             if (!empty($_GET['estatus'])) {
                 $metodo = new Metodos();
                 $mp = $metodo->obtenerM($_GET['estatus']);
@@ -84,11 +80,11 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre del banco</th>
+                        <th scope="col">Banco</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">TItular de la cuenta</th>
-                        <th scope="col" class="text-center">Numero de cuenta</th>
-                        <th scope="col" class="text-center">Cedula</th>
+                        <th scope="col">TItular</th>
+                        <th scope="col" class="text-center">Cuenta</th>
+                        <th scope="col" class="text-center">CI</th>
                         <th scope="col">Telefono</th>
                         <th scope="col">Estatus</th>
                         <th scope="col">Opciones</th>
@@ -111,7 +107,7 @@
                                    
                                     <td>
                                         <a href="index.php?romanza=lista-metodo-pago&&metodo_pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-borrar" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></a>
-                                        <a href="index.php?romanza=editar-producto&&producto=<?= $resultado['id_producto'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
+                                        <a href="index.php?romanza=editar-metodo-pago&&metodo_pago=<?= $resultado['id_metodo_pago'] ?>" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
                                     </td>
                                 </tr>
                             <?php
