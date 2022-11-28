@@ -60,6 +60,12 @@
             return $sql;
         }
         
+        // lista usuarios
+        public function metodo ($id_metodo) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM metodo_pago WHERE id_metodo_pago = '$id_metodo'");
+            return $sql;
+        }
+
         // todos los productos activos
         public function activosPdt () {
             $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE estatus = 'activo'");

@@ -12,6 +12,12 @@
             <?php
         }
 
+        public function misOrdenes () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=mis-ordenes"; </script>
+            <?php
+        }
+
         public function opiniones () {
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=opiniones"; </script>
@@ -27,12 +33,6 @@
         public function pedidos () {
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=pedidos"; </script>
-            <?php
-        }
-        
-        public function pedido () {
-            ?>
-                <script> window.location.href = "vistas/../index.php?romanza=pedido"; </script>
             <?php
         }
 

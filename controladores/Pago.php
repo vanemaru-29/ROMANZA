@@ -1,12 +1,15 @@
 <?php
     require_once ('autoCarga.php');
 
-    class Direcciones extends Conexion {
-        private $ID_d;
-        private $direccion_d;
-        private $referencia_d;
-        private $id_usuario_d;
-        private $registro_d;
+    class Pago extends Conexion {
+        private $ID_p;
+        private $id_direccion_p;
+        private $id_orden_p;
+        private $id_metodo_pago_p;
+        private $referencia_p;
+        private $comprobante_p;
+        private $estatus_p;
+        private $registro_p;
 
         // constructor
         public function __construct () {
@@ -15,22 +18,26 @@
         }
 
         // nueva direccion
-        public function registroD ($direccion, $referencia, $id_usuario) {
-            $this->direccion_d = $direccion;
-            $this->referencia_d = $referencia;
-            $this->id_usuario_d = $id_usuario;
+        public function registroP ($id_direccion, $id_orden, $id_metodo_pago, $referencia, $comprobante, $estatus) {
+            $this->id_direccion_p = $id_direccion;
+            $this->id_orden_p = $id_orden;
+            $this->id_metodo_pago_p = $id_metodo_pago;
+            $this->referencia_p = $referencia;
+            $this->comprobante_p = $comprobante;
+            $this->estatus_p = $estatus;
 
             $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
-            $this->registro_d = $fechaActual;
+            $this->registro_p = $fechaActual;
 
-            $sql = "INSERT INTO direccion (direccion, referencia, id_usuario, fecha_registro) VALUES ('".$this->direccion_d."', '".$this->referencia_d."', '".$this->id_usuario_d."', '".$this->registro_d."')";
+            $sql = "INSERT INTO pago (id_direccion, id_orden, id_metodo_pago, referencia, comprobante, estatus, fecha_registro) VALUES ('".$this->id_direccion_p."', '".$this->id_orden_p."', '".$this->id_metodo_pago_p."', '".$this->referencia_p."', '".$this->comprobante_p."', '".$this->estatus_p."', '".$this->registro_p."')";
+
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
             if (isset($insertarDatos)) {
                 $redireccion = new Redirecciones();
-                $redireccion -> misDirecciones();
+                $redireccion -> misOrdenes();
             } else {
                 $errorRegistro = new ErrFormularios();
                 $errorRegistro -> registro();
@@ -41,15 +48,9 @@
 
         // lista de direcciones
         public function misDir ($ID) {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM direccion WHERE id_usuario = '$ID'");
+            $sql = mysqli_query($this->conexion, "SELECT * FROM pago WHERE id_direccion = '$ID'");
             return $sql;
         }
-
-               // lista de direcciones
-               public function direccion ($ID) {
-                $sql = mysqli_query($this->conexion, "SELECT * FROM direccion WHERE id_orden = '$ID'");
-                return $sql;
-            }
 
         // obtener dirección
         public function obtenerDir ($ID_usuario, $ID_dir) {

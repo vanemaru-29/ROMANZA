@@ -58,9 +58,9 @@ require_once('vistas/../controladores/autoCarga.php');
         <h2 class="fw-bold text-center pb-5"> Metodo de pago </h2>
 
         <b>Registrar metodo de pago por pago movil?</b>
-        <input type="checkbox" name="check" id="check" value="1" onchange="javascript:showContentt()" />
+        <input type="radio" name="check" id="check" value="1" onchange="javascript:showContentt()" />
         <b>Registrar metodo de pago por pago movil?</b>
-        <input type="checkbox" name="check2" id="check2" value="1" onchange="javascript:showContentt()" />
+        <input type="radio" name="check2" id="check2" value="1" onchange="javascript:showContentt()" />
         <div id="content" style="display: none;">
             <form action="#" method="POST" class="formulario" id="metodo">
 

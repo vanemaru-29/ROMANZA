@@ -9,11 +9,11 @@
                 $modulo = "vistas/modulos/".$enlace.".php";
 
             // cliente
-            } else if ($enlace == "carta" || $enlace == "vaciar-carro" || $enlace == "pedido" || $enlace == "registrar-pedido" || $enlace == "mi-cuenta" || $enlace == "mis-ordenes" || $enlace == "orden" || $enlace == "mis-direcciones" || $enlace == "editar-direccion") {
+            } else if ($enlace == "carta" || $enlace == "vaciar-carro" || $enlace == "mi-pedido" || $enlace == "registrar-pedido" || $enlace == "mi-cuenta" || $enlace == "mis-ordenes" || $enlace == "orden" || $enlace == "mis-direcciones" || $enlace == "editar-direccion") {
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
 
             // administrador
-            } else if ($enlace == "reportes" || $enlace == "registrar-producto" || $enlace == "editar-producto" || $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "editar-categoria" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "lista-metodo-pago" || $enlace == "conversion" || $enlace == "administrar") {
+            } else if ($enlace == "reportes" || $enlace == "registrar-producto" || $enlace == "editar-producto" || $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "editar-categoria" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "lista-metodo-pago" || $enlace == "conversion" || $enlace == "administrar" || $enlace == "lista-clientes" || $enlace == "lista-ordenes" ) {
                 $modulo = "vistas/modulos/administrador/".$enlace.".php";
                 
             // encargado

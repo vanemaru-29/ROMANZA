@@ -1,3 +1,5 @@
+<!-- <section class="my-5 py-5"></section> -->
+
 <?php
     // carrito
     if (isset($_SESSION['carrito']) || isset($_POST['id'])) {
@@ -19,6 +21,7 @@
                     $mi_carrito[] = array("id"=>$id, "categoria"=>$categoria, "nombre"=>$nombre, "precio"=>$precio, "cantidad"=>$cantidad);
                 }
             }
+            
         } else {
             $id = $_POST['id'];
             $categoria = $_POST['categoria'];
@@ -34,5 +37,4 @@
 
     $redireccion = new Redirecciones();
     $redireccion->pedidos();
-    
 ?>
