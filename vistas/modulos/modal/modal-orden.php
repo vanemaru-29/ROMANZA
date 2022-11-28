@@ -127,13 +127,13 @@ $datosM = $metodos->listaM();
                     <input type="text" hidden value="<?= $codigo_od ?>" class="form-control formulario__input" placeholder=". . ." name="id_orden" id="nombre">
 
 
-                    <!-- Grupo: Imagen -->
-                    <div class="formulario__grupo" id="grupo__imagen">
-                        <label for="imagen" class="form-label login__label"> Imagen </label>
-                        <div class="formulario__grupo-input">
-                            <input type="file" class="form-control" name="imagen" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
-                        </div>
-                    </div>
+            <!-- Grupo: Imagen -->
+            <div class="formulario__grupo" id="grupo__imagen">
+                <label for="imagen" class="form-label login__label"> Comprobante de pago </label>
+                <div class="formulario__grupo-input">
+                    <input type="file" class="form-control" name="imagen" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
+                </div>
+            </div>
 
                     
 
@@ -190,8 +190,8 @@ $datosM = $metodos->listaM();
                                 } */
 
 
-                          /*       $nuevoPago = new Pago();
-                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus); */
+                                $nuevoPago = new Pago();
+                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus);
                             } else {
                                 $camposVacios = new ErrFormularios();
                                 $camposVacios->camposVacios();
