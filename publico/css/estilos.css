@@ -84,6 +84,7 @@ body::-webkit-scrollbar-thumb {
     max-width: 250px;
     background: var(--gris-oscuro);
     height: 100vh;
+    padding-top: 55px;
     position: relative;
     transition: all 500ms ease;
     transform: translateX(-100%);
@@ -97,7 +98,7 @@ body::-webkit-scrollbar-thumb {
 .cont-menu nav a{
     display: block;
     text-decoration: none;
-    padding: 20px;
+    padding: 10px 0 10px 10px;
     color: #c7c7c7;
     border-left: 5px solid transparent;
     transition: all 400ms ease;
