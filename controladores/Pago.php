@@ -7,7 +7,7 @@
         private $id_orden_p;
         private $id_metodo_pago_p;
         private $referencia_p;
-        private $comprobante_p;
+        private $imagen_pdt;
         private $estatus_p;
         private $registro_p;
 
@@ -18,24 +18,59 @@
         }
 
         // nueva direccion
-        public function registroP ($id_direccion, $id_orden, $id_metodo_pago, $referencia, $comprobante, $estatus) {
+        public function registroP ($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus) {
             $this->id_direccion_p = $id_direccion;
             $this->id_orden_p = $id_orden;
             $this->id_metodo_pago_p = $id_metodo_pago;
             $this->referencia_p = $referencia;
-            $this->comprobante_p = $comprobante;
+            $this->imagen_pdt = $imagen;
             $this->estatus_p = $estatus;
 
             $fecha = new Fechas();
             $fechaActual = $fecha->fechaActual();
             $this->registro_p = $fechaActual;
 
-            $sql = "INSERT INTO pago (id_direccion, id_orden, id_metodo_pago, referencia, comprobante, estatus, fecha_registro) VALUES ('".$this->id_direccion_p."', '".$this->id_orden_p."', '".$this->id_metodo_pago_p."', '".$this->referencia_p."', '".$this->comprobante_p."', '".$this->estatus_p."', '".$this->registro_p."')";
+            $sql = "INSERT INTO pago (id_direccion, id_orden, id_metodo_pago, referencia, imagen, estatus, fecha_registro) VALUES ('".$this->id_direccion_p."', '".$this->id_orden_p."', '".$this->id_metodo_pago_p."', '".$this->referencia_p."', '".$this->estatus_p."', '".$this->registro_p."')";
 
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
             if (isset($insertarDatos)) {
+                $ultimo_id = mysqli_insert_id($this->conexion);
+                $this->imagen_pdt['name'] = $ultimo_id;
+
+                // crear directorio
+                // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
+                //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
+                // }
+
+                // mover a directorio
+                move_uploaded_file($imagen['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name'].".webp");
+
+                $sql_imagen = "UPDATE pago SET imagen='".$this->imagen_pdt['name'].'.webp'."' WHERE id_pago = '$ultimo_id'";
+                $guardar_img = $this->conexion->prepare($sql_imagen);
+                $insertar_img = $guardar_img->execute();
+                
+                if (isset($insertar_img)) {
+                    $respuesta = new Redirecciones();
+                    $respuesta->misOrdenes();
+                    include $respuesta;
+
+                    return 1;
+                } else {
+                    $errorRegistro = new ErrFormularios();
+                    $errorRegistro -> registro();
+
+                    return 0;
+                }
+            } else {
+                $errorRegistro = new ErrFormularios();
+                $errorRegistro -> registro();
+
+                return 0;
+            }
+
+       /*      if (isset($insertarDatos)) {
                 $redireccion = new Redirecciones();
                 $redireccion -> misOrdenes();
             } else {
@@ -43,7 +78,7 @@
                 $errorRegistro -> registro();
 
                 return 0;
-            }
+            } */
         }
 
         // lista de direcciones
