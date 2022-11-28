@@ -4,7 +4,7 @@
     require_once ('vistas/../controladores/autoCarga.php');
 
     $productos = new Ordenes();
-    $datos = $productos->listaOrdenes();
+    $datos = $productos->listaOrden();
 ?>
 
 <section class="w-100 py-5">
@@ -12,8 +12,8 @@
 
     <!-- navbar -->
     <div class="mi-cuenta__menu mb-5">
-        <a href="index.php?romanza=lista-productos" class="mi-cuenta-enlace"> Lista de Productos </a>
-        <a href="index.php?romanza=registrar-producto" class="mi-cuenta-enlace"> Registrar Producto </a>
+        <a href="#" class="mi-cuenta-enlace"> Lista de ordenes </a>
+
     </div>
 
     <!-- pedidos -->
@@ -83,8 +83,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Precio total de la orden</th>
+                        <th scope="col">Estatus</th>
                         <th scope="col" class="text-center">Fecha de registro</th>
              
                         
@@ -96,15 +96,13 @@
                             ?>
                                 <tr>
                                     <td scope="col"><?= $resultado['id_orden'] ?></td>
+                                    <td scope="col"><?= $resultado['nombre'] ?></td>
                                     <td scope="col"><?= $resultado['total'] ?></td>
                                   
                                     <td scope="col"><?= $resultado['estatus'] ?></td>
+                            
                                     <td scope="col"><?= $resultado['fecha_registro'] ?></td>
-                              
-                              
-                                 
-                                 
-                                
+                             
                                 </tr>
                             <?php
                         }

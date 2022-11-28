@@ -25,6 +25,8 @@
     <!-- pedidos -->
     <section class="container mi-cuenta">
         <h2 class="fw-bold text-center pb-5">Pedidos Recientes</h2>
+        <? var_dump($_POST['id_metodo_pago'])?>
+        <? var_dump($_POST['submit'])?>
 
         <article>
             <table class="table table-hover">
@@ -39,6 +41,7 @@
                 </thead>
 
                 <tbody>
+                   
                     <?php
                         while ($datos_od = mysqli_fetch_array($ordenes)) {
                     ?>

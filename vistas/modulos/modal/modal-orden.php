@@ -48,7 +48,7 @@ $datosM = $metodos->listaM();
             </div>
 
             <div class="modal-body">
-                <form action="" method="POST" class="formulario" id="pago">
+                <form action="#" method="POST" class="formulario" id="pago" enctype="multipart/form-data">
                     <?php while ($datos_od = mysqli_fetch_array($producto)) { ?>
                         <div class="detalles__orden">
                             <p class="">Cantidad <?= $datos_od['cantidad'] ?>:</p>
@@ -101,18 +101,19 @@ $datosM = $metodos->listaM();
                     <?php
                     }
                     ?>
-            
-                    <form class="pedidos__formulario">
+ <? var_dump($_POST['submit'])?>
+ <? var_dump($_POST['id_metodo_pago'])?>
+
                         <select class="form-select form-select-lg mb-3" name="id_metodo_pago" id="buscar-banco">
                             <?php
                             while ($metodo = mysqli_fetch_array($datosM)) {
                             ?>
-                                <option value=<?= $metodo['id_metodo_pago'] ?> data-cedula=<?= $metodo['cedula'] ?> data-tlf=<?= $metodo['telefono'] ?> data-titular=<?= $metodo['titular'] ?>><?= $metodo['nombre'] ?> - Titular: <?= $metodo['titular'] ?> - Cedula: <?= $metodo['cedula'] ?> - Telefono: <?= $metodo['telefono'] ?></option>
+                                <option value=<?= $metodo['id_metodo_pago'] ?>><?= $metodo['nombre'] ?> - Titular: <?= $metodo['titular'] ?> - Cedula: <?= $metodo['cedula'] ?> - Telefono: <?= $metodo['telefono'] ?></option>
                             <?php
                             }
                             ?>
                         </select>
-                    </form>
+           
 
                     <div class="formulario__grupo" id="grupo__nombre">
                         <label for="nombre" class="form-label login__label"> Referencia </label>
@@ -122,36 +123,35 @@ $datosM = $metodos->listaM();
                         </div>
                         <!--                 <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
                     </div>
-                    <div class="formulario__grupo" id="grupo__nombre">
-                        <label for="nombre" class="form-label login__label"> Referencia </label>
-                        <div class="formulario__grupo-input">
-                            <input type="text" class="form-control formulario__input" placeholder=". . ." name="comprobante" id="nombre">
-                            <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
-                        </div>
-                        <!--                 <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
-                    </div>
 
                     <input type="text" hidden value="<?= $codigo_od ?>" class="form-control formulario__input" placeholder=". . ." name="id_orden" id="nombre">
 
 
                     <!-- Grupo: Imagen -->
-                    <!-- <div class="formulario__grupo" id="grupo__imagen">
+                    <div class="formulario__grupo" id="grupo__imagen">
                         <label for="imagen" class="form-label login__label"> Imagen </label>
                         <div class="formulario__grupo-input">
-                            <input type="file" class="form-control" name="comprobante" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
+                            <input type="file" class="form-control" name="imagen" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
                         </div>
-                    </div> -->
+                    </div>
+
+                    
+
+
+                    <div class="mt-2 mx-auto formulario__grupo editarInfo__actualizar grupo__verArchivo" id="ver-archivo"></div>
 
                     <div class="d-grid my-2 mx-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
-                        <button type="submit" name="submit" class="formulario__btn btn btn-danger"> Registrar pago </button>
-                    </div>
+                <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRAR </button>
+            </div>
+
+                
 
                     <?php
                     if (empty($_POST['submit'])) {
-                        if (isset($_POST['referencia']) && isset($_POST['comprobante'])) {
-                            if (strlen($_POST['referencia']) >= 1 && strlen($_POST['comprobante']) >= 1) {
+                        if (isset($_POST['referencia']) && isset($_FILES['imagen'])) {
+                            if (strlen($_POST['referencia']) >= 1 && strlen($_FILES['imagen']['name']) >= 1) {
                                 $referencia = $_POST['referencia'];
-                                $comprobante = $_POST['comprobante'];
+                                $imagen = $_FILES['imagen'];
                                 $id_metodo_pago = $_POST['id_metodo_pago'];
                                 $id_direccion = $_POST['id_direccion'];
                                 $id_orden = $_POST['id_orden'];
@@ -190,8 +190,8 @@ $datosM = $metodos->listaM();
                                 } */
 
 
-                                $nuevoPago = new Pago();
-                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $comprobante, $estatus);
+                          /*       $nuevoPago = new Pago();
+                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus); */
                             } else {
                                 $camposVacios = new ErrFormularios();
                                 $camposVacios->camposVacios();
@@ -208,4 +208,5 @@ $datosM = $metodos->listaM();
     </div>
 </div>
 
+<script src="vistas/../js/validacion-producto.js"></script>
 <script src="vistas/../js/buscar-banco.js"></script>
