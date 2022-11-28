@@ -76,7 +76,7 @@
                                         $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $clave, $rol);
                                     } else {
                                         $camposVacios = new ErrFormularios();
-                                        $camposVacios -> camposVacios();
+                                        $camposVacios -> camposVaciosAlerta();
                                     }
                                 }
                             }

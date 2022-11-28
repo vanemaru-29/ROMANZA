@@ -44,26 +44,34 @@ class Usuarios extends Conexion
 
         $this->registro_user = $fechaActual;
 
-        $sql = "INSERT INTO usuario (nombre, nombre_usuario, telefono, clave, id_rol, fecha_registro) VALUES ('" . $this->nombre_user . "', '" . $this->usuario_user . "', '" . $this->telefono_user . "', '" . $this->clave_user . "', '" . $this->rol_user . "', '" . $this->registro_user . "')";
-        $insertar = $this->conexion->prepare($sql);
-        $insertarDatos = $insertar->execute();
+        // nombre de usuario ya existe
+        $evaluar_usuario = mysqli_query($this->conexion, "SELECT * FROM usuario WHERE nombre_usuario = '$this->usuario_user'");
 
-        if (isset($insertarDatos)) {
-            if (!session_id()) session_start();
-            $_SESSION['nombre_usuario'] = $this->usuario_user;
-
-            $usuario = new Usuarios();
-            $rol = $usuario->consultarRol($this->usuario_user);
-
-            $_SESSION['id_rol'] = $rol;
-
-            $pedidos = new Redirecciones();
-            $pedidos->pedidos();
+        if ($evaluar_usuario->num_rows > 0) {
+            $usuarioExiste = new MsjFormularios();
+            $usuarioExiste->usuarioExiste();
         } else {
-            $errorRegistro = new ErrFormularios();
-            $errorRegistro->registro();
+            $sql = "INSERT INTO usuario (nombre, nombre_usuario, telefono, clave, id_rol, fecha_registro) VALUES ('" . $this->nombre_user . "', '" . $this->usuario_user . "', '" . $this->telefono_user . "', '" . $this->clave_user . "', '" . $this->rol_user . "', '" . $this->registro_user . "')";
+            $insertar = $this->conexion->prepare($sql);
+            $insertarDatos = $insertar->execute();
 
-            return 0;
+            if (isset($insertarDatos)) {
+                if (!session_id()) session_start();
+                $_SESSION['nombre_usuario'] = $this->usuario_user;
+
+                $usuario = new Usuarios();
+                $rol = $usuario->consultarRol($this->usuario_user);
+
+                $_SESSION['id_rol'] = $rol;
+
+                $pedidos = new Redirecciones();
+                $pedidos->pedidos();
+            } else {
+                $errorRegistro = new ErrFormularios();
+                $errorRegistro->registroAlerta();
+
+                return 0;
+            }
         }
     }
 

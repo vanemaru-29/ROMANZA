@@ -1,6 +1,9 @@
 <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg">
     <div class="container">
-        <a href="index.php" class="navbar-brand header__titulo"> <img src="vistas/../publico/activos/iconos/icono-claro.svg" alt="Logo ROMANZA" class="header__logo"> Romanza </a>
+        <div class="btn-menu navbar-brand header__titulo">
+            <label for="btn-menu"><img src="vistas/../publico/activos/iconos/icono-claro.svg" alt="Logo ROMANZA" class="header__logo"> Romanza</label>
+        </div>
+        
 
         <button type="button" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navbar">
             <span class="navbar-toggler-icon"></span>
@@ -9,8 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="mx-auto"></div>
             <ul class="navbar-nav">
-                <li class="nav-item mx-3"> <a href="index.php?romanza=lista-productos" class="nav-link text-white"> Productos </a> </li>
-                <li class="nav-item mx-3"> <a href="index.php?romanza=lista-categorias" class="nav-link text-white"> Categorias </a> </li>
+                <li class="nav-item mx-3"> <a href="index.php?romanza=lista-metodo-pago" class="nav-link text-white"> Métodos de Pago </a> </li>
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,25 +25,33 @@
                         <li><a class="dropdown-item" href="index.php?romanza=pedidos"> Pedidos </a> </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Más Opciones
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="index.php?romanza=lista-productos">Productos</a></li>
-                        <li><a class="dropdown-item" href="index.php?romanza=lista-categorias">Categorias</a></li>
-                        <li><a class="dropdown-item" href="index.php?romanza=lista-metodo-pago">Metodos de pago</a></li>
-                    </ul>
-                </li>
 
                 <li class="nav-item mx-3"> <a href="index.php?romanza=administrar" class="header__btn btn btn-warning nav-link"> <span class="header__carrito-cuenta">Administrar</span> </a> </li>
                 
                 <li class="nav-item mx-3">
                     <form action="#" method="POST">
-                        <button type="submit" name="salir" class="header__btn btn btn-warning nav-link header__salir"> <i class="fa-solid fa-power-off"></i> </button>
+                        <button type="submit" name="salir" class="header__btn btn btn-warning nav-link header__salir"> Salir </button>
                     </form>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
+<div class="capa"></div>
+
+<!-- menu -->
+<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			<a href="index.php?romanza=">Clientes</a>
+			<a href="index.php?romanza=lista-productos">Productos</a>
+			<a href="index.php?romanza=lista-categorias">Categorias</a>
+			<a href="index.php?romanza=">Pedidos</a>
+			<!-- <a href="index.php?romanza=">Pedidos</a>
+			<a href="index.php?romanza=">Pedidos</a> -->
+		</nav>
+		<label for="btn-menu" class="btn-close btn-close-white" aria-label="Close"></label>
+	</div>
+</div>

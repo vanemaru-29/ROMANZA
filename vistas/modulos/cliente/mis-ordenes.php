@@ -44,7 +44,7 @@
                     ?>
                         <tr class="text-center">
                             <td><?= $datos_od['id_orden'] ?></td>
-                            <td><?= $datos_od['total'] ?></td>
+                            <td>$ <?= $datos_od['total'] ?></td>
                             <td><?= $datos_od['estatus'] ?></td>
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
                             <td>

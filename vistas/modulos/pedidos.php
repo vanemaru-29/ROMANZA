@@ -6,6 +6,10 @@
 
     $categorias = new Categorias();
     $cat = $categorias->listaCat();
+
+    if (isset($_SESSION['id_rol'])) {
+        $id_rol = $_SESSION['id_rol'];
+    }
 ?>
 
 <section class="pedidos py-5">
@@ -32,7 +36,7 @@
     </div>
 
     <article class="container">
-        <table class="pedidos__cartas-cont">
+        <table class="pedidos__cartas-cont" id="table_data">
             <thead>
                 <tr>
                     <th></th>
@@ -64,7 +68,9 @@
                                             </div>
                                             <div class="pedidos__card-contenido shadow px-2">
                                         
-                                                <button type="submit" class="btn btn-danger pedidos__card-detalles"> <img src="vistas/../publico/activos/iconos/add-claro.svg" alt="Añadir al Carrito" class="pedidos__card-detalles-img"> </button>
+                                                <?php if ($id_rol == 3) { ?>
+                                                    <button type="submit" class="btn btn-danger pedidos__card-detalles"> <i class="fa-solid fa-circle-plus"></i> </button>
+                                                <?php } ?>
                                                 
                                                 <p class="pedidos__card-nombre"><?= $resultado['nombre'] ?></p>
                                                 <span class="pedidos__card-descripcion carrito__categoria-producto"> <?= $resultado['descripcion'] ?> </span>
@@ -76,13 +82,7 @@
                                                 <input type="hidden" name="cantidad" id="cantidad" value="1"/>
                                             </div>
                                         </form>
-    
                                     </div>
-
-                                    <!-- Modal detalles -->
-                                    <?php
-                                        // include ('modal/modal-detalles.php');
-                                    ?>
                                 </td>
                             </tr>
                         <?php
@@ -93,4 +93,5 @@
     </article>
 </section>
 
+<!-- <script src="vistas/../js/dataTables.js"></script> -->
 <script src="vistas/../js/buscar-producto.js"></script>

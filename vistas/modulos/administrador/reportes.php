@@ -13,22 +13,22 @@
 
     <article class="container row reportes__contenedor">    
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/clientes-registrados.php" target="_blank"> Clientes Registrados </a>
+            <a class="btn btn-danger reportes__btn" href="vistas/reportes/clientes-registrados.php" target="_blank"> Clientes Registrados </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/productos-registrados.php" target="_blank"> Productos Registrados </a>
+            <a class="btn btn-danger reportes__btn" href="vistas/reportes/productos-registrados.php" target="_blank"> Productos Registrados </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn"> Pedidos Generados </a>
+            <a class="btn btn-danger reportes__btn" href="vistas/reportes/pedidos-registrados.php" target="_blank"> Pedidos Generados </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn"> Facturas Generadas </a>
+            <a class="btn btn-danger reportes__btn"> Facturas Generadas </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/opiniones-registradas.php" target="_blank"> Opiniones Registradas </a>
+            <a class="btn btn-danger reportes__btn" href="vistas/reportes/opiniones-registradas.php" target="_blank"> Opiniones Registradas </a>
         </div>
         <div class="col-sm-12 col-md-6 my-4">
-            <a type="submit" class="btn btn-danger reportes__btn" href="vistas/reportes/categorias-registradas.php" target="_blank"> Categorias Registradas </a>
+            <a class="btn btn-danger reportes__btn" href="vistas/reportes/categorias-registradas.php" target="_blank"> Categorias Registradas </a>
         </div>
     </article>
 </section>

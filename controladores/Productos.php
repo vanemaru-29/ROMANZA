@@ -31,43 +31,51 @@
 
             $this->registro_pdt = $fechaActual;
 
-            $sql = "INSERT INTO producto (nombre, descripcion, precio, estatus, id_categoria, imagen, fecha_registro) VALUES ('".$this->nombre_pdt."', '".$this->descripcion_pdt."', '".$this->precio_pdt."', '".$this->estatus_pdt."', '".$this->categoria_pdt."', NULL, '".$this->registro_pdt."')";
-            $insertar = $this->conexion->prepare($sql);
-            $insertarDatos = $insertar->execute();
+            // producto ya existe
+            $evaluar_pdt = mysqli_query($this->conexion, "SELECT * FROM producto WHERE nombre = '$this->nombre_pdt'");
 
-            if (isset($insertarDatos)) {
-                $ultimo_id = mysqli_insert_id($this->conexion);
-                $this->imagen_pdt['name'] = $ultimo_id;
+            if ($evaluar_pdt->num_rows > 0) {
+                $pdtExiste = new MsjFormularios();
+                $pdtExiste -> pdtExiste();
+            } else {
+                $sql = "INSERT INTO producto (nombre, descripcion, precio, estatus, id_categoria, imagen, fecha_registro) VALUES ('".$this->nombre_pdt."', '".$this->descripcion_pdt."', '".$this->precio_pdt."', '".$this->estatus_pdt."', '".$this->categoria_pdt."', NULL, '".$this->registro_pdt."')";
+                $insertar = $this->conexion->prepare($sql);
+                $insertarDatos = $insertar->execute();
 
-                // crear directorio
-                // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
-                //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
-                // }
+                if (isset($insertarDatos)) {
+                    $ultimo_id = mysqli_insert_id($this->conexion);
+                    $this->imagen_pdt['name'] = $ultimo_id;
 
-                // mover a directorio
-                move_uploaded_file($imagen['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name'].".webp");
+                    // crear directorio
+                    // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
+                    //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
+                    // }
 
-                $sql_imagen = "UPDATE producto SET imagen='".$this->imagen_pdt['name'].'.webp'."' WHERE id_producto = '$ultimo_id'";
-                $guardar_img = $this->conexion->prepare($sql_imagen);
-                $insertar_img = $guardar_img->execute();
-                
-                if (isset($insertar_img)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaPdt();
-                    include $respuesta;
+                    // mover a directorio
+                    move_uploaded_file($imagen['tmp_name'], 'vistas/../publico/activos/pedidos/'.$this->imagen_pdt['name'].".webp");
 
-                    return 1;
+                    $sql_imagen = "UPDATE producto SET imagen='".$this->imagen_pdt['name'].'.webp'."' WHERE id_producto = '$ultimo_id'";
+                    $guardar_img = $this->conexion->prepare($sql_imagen);
+                    $insertar_img = $guardar_img->execute();
+                    
+                    if (isset($insertar_img)) {
+                        $respuesta = new Redirecciones();
+                        $respuesta->listaPdt();
+                        include $respuesta;
+
+                        return 1;
+                    } else {
+                        $errorRegistro = new ErrFormularios();
+                        $errorRegistro -> registro();
+
+                        return 0;
+                    }
                 } else {
                     $errorRegistro = new ErrFormularios();
                     $errorRegistro -> registro();
 
                     return 0;
                 }
-            } else {
-                $errorRegistro = new ErrFormularios();
-                $errorRegistro -> registro();
-
-                return 0;
             }
         }
 
@@ -82,6 +90,12 @@
             $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE estatus = 'activo'");
             return $sql;
         }
+        
+        // todos los productos según categoria
+        // public function categoriaPdt ($cat) {
+        //     $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_categoria = '$cat'");
+        //     return $sql;
+        // }
 
         // cambiar estatus
         public function estatusPdt ($ID, $estatus) {
@@ -139,12 +153,8 @@
             $this->categoria_pdt = $categoria;
             $this->imagen_pdt = $imagen;
 
-            $fecha = new Fechas();
-            $fechaActual = $fecha->fechaActual();
-            $this->registro_pdt = $fechaActual;
-
             if ($this->imagen_pdt['name'] == "") {
-                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
+                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
                 $editar = $this->conexion->prepare($sql);
                 $insertarDatos = $editar->execute();
             } else {
@@ -157,7 +167,7 @@
                     }
                 }
 
-                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', imagen='".$this->imagen_pdt['name']."', fecha_registro='".$this->registro_pdt."' WHERE id_producto = '".$this->ID_pdt."'";
+                $sql = "UPDATE producto SET nombre='".$this->nombre_pdt."', descripcion='".$this->descripcion_pdt."', precio='".$this->precio_pdt."', id_categoria='".$this->categoria_pdt."', imagen='".$this->imagen_pdt['name']."' WHERE id_producto = '".$this->ID_pdt."'";
                 $editar = $this->conexion->prepare($sql);
                 $insertarDatos = $editar->execute();
             }

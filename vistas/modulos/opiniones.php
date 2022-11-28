@@ -3,6 +3,7 @@
         
     } else {
         $nombre_usuario = $_SESSION['nombre_usuario'];
+        $id_rol = $_SESSION['id_rol'];
 
         // obtener datos del usuario
         $usuario = new Usuarios();
@@ -20,36 +21,38 @@
 <section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Opiniones </h1>
 
-    <form action="#" method="POST" class="opiniones__form">
-        <div class="mb-4">
-            <label for="opinion" class="form-label text-white"> Aportar una Opinión </label>
-            <input type="text" class="form-control" placeholder="Escribe una opinión. . ." name="opinion" id="opinion">
-        </div>
+    <?php if ($id_rol == 3) { ?>
+        <form action="#" method="POST" class="opiniones__form">
+            <div class="mb-4">
+                <label for="opinion" class="form-label text-white"> Aportar una Opinión </label>
+                <input type="text" class="form-control" placeholder="Escribe una opinión. . ." name="opinion" id="opinion">
+            </div>
 
-        <div class="d-grid mt-2 mb-5 opiniones__enviar">
-            <button type="submit" name="enviar-opinion" class="btn btn-danger"> ENVIAR OPINIÓN </button>
-        </div>
+            <div class="d-grid mt-2 mb-5 opiniones__enviar">
+                <button type="submit" name="enviar-opinion" class="btn btn-danger"> ENVIAR OPINIÓN </button>
+            </div>
 
-        <?php
-            if (empty($_POST['enviar-opinion'])) {
-                if (isset($_POST['opinion'])) {
-                    if (strlen($_POST['opinion']) >= 1) {
-                        $opinion = $_POST['opinion'];
+            <?php
+                if (empty($_POST['enviar-opinion'])) {
+                    if (isset($_POST['opinion'])) {
+                        if (strlen($_POST['opinion']) >= 1) {
+                            $opinion = $_POST['opinion'];
 
-                        while ($datos_usuario = mysqli_fetch_array($datos)) {
-                            $id_usuario = $datos_usuario['id_usuario'];
+                            while ($datos_usuario = mysqli_fetch_array($datos)) {
+                                $id_usuario = $datos_usuario['id_usuario'];
+                            }
+
+                            $registrarOpn = new Opiniones();
+                            $registrarOpn -> registrarOpn($id_usuario, $opinion);
+                        } else {
+                            $camposVacios = new ErrFormularios();
+                            $camposVacios -> camposVacios();
                         }
-
-                        $registrarOpn = new Opiniones();
-                        $registrarOpn -> registrarOpn($id_usuario, $opinion);
-                    } else {
-                        $camposVacios = new ErrFormularios();
-                        $camposVacios -> camposVacios();
                     }
                 }
-            }
-        ?>
-    </form>
+            ?>
+        </form>
+    <?php } ?>
 
     <article class="inicio__opiniones-cont">
         <?php
