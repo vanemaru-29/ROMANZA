@@ -20,69 +20,34 @@ class Pago extends Conexion
     }
 
     // nueva direccion
-    public function registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus)
+    public function registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $estatus)
     {
         $this->id_direccion_p = $id_direccion;
         $this->id_orden_p = $id_orden;
         $this->id_metodo_pago_p = $id_metodo_pago;
         $this->referencia_p = $referencia;
-        $this->imagen_pdt = $imagen;
+
         $this->estatus_p = $estatus;
 
         $fecha = new Fechas();
         $fechaActual = $fecha->fechaActual();
         $this->registro_p = $fechaActual;
 
-        $sql = "INSERT INTO pago (id_direccion, id_orden, id_metodo_pago, referencia, imagen, estatus, fecha_registro) VALUES ('" . $this->id_direccion_p . "', '" . $this->id_orden_p . "', '" . $this->id_metodo_pago_p . "', '" . $this->referencia_p . "', '" . $this->estatus_p . "', '" . $this->registro_p . "')";
+        $sql = "INSERT INTO pago (id_direccion, id_orden, id_metodo_pago, referencia_p, estatus, fecha_registro) VALUES ('" . $this->id_direccion_p . "', '" . $this->id_orden_p . "', '" . $this->id_metodo_pago_p . "', '" . $this->referencia_p . "', '" . $this->estatus_p . "', '" . $this->registro_p . "')";
 
         $insertar = $this->conexion->prepare($sql);
         $insertarDatos = $insertar->execute();
 
+
         if (isset($insertarDatos)) {
-            $ultimo_id = mysqli_insert_id($this->conexion);
-            $this->imagen_pdt['name'] = $ultimo_id;
-
-            // crear directorio
-            // if (!is_dir(filename: "vistas/../publico/activos/pedidos")) {
-            //     mkdir(pathname: "vistas/../publico/activos/pedidos", mode: 0777);
-            // }
-
-            // mover a directorio
-            move_uploaded_file($imagen['tmp_name'], 'vistas/../publico/pagos/' . $this->imagen_pdt['name'] . ".webp");
-
-            $sql_imagen = "UPDATE pago SET imagen='" . $this->imagen_pdt['name'] . '.webp' . "' WHERE id_pago = '$ultimo_id'";
-            $guardar_img = $this->conexion->prepare($sql_imagen);
-            $insertar_img = $guardar_img->execute();
-
-            if (isset($insertar_img)) {
-                $respuesta = new Redirecciones();
-                $respuesta->misOrdenes();
-                include $respuesta;
-
-                return 1;
-            } else {
-                $errorRegistro = new ErrFormularios();
-                $errorRegistro->registro();
-
-                return 0;
-            }
-            
+            $redireccion = new Redirecciones();
+            $redireccion->misOrdenes();
         } else {
             $errorRegistro = new ErrFormularios();
             $errorRegistro->registro();
 
             return 0;
         }
-
-        /*      if (isset($insertarDatos)) {
-                $redireccion = new Redirecciones();
-                $redireccion -> misOrdenes();
-            } else {
-                $errorRegistro = new ErrFormularios();
-                $errorRegistro -> registro();
-
-                return 0;
-            } */
     }
 
     // todas los pagos
@@ -92,13 +57,36 @@ class Pago extends Conexion
         return $sql;
     }
 
-    public function listaOrden () {
+    public function listaOrden()
+    {
 
-        $sql = mysqli_query($this->conexion, "SELECT * FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario");
+        $sql = mysqli_query($this->conexion, "SELECT *, u.estatus as estatus_p FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario");
         return $sql;
     }
 
-/*     c.nombre, m.nombre, m.nombre as payment_name */
+    public function listaOrdenPendientes()
+    {
+
+        $sql = mysqli_query($this->conexion, "SELECT *, u.estatus as estatus_p FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario WHERE u.estatus = 'pendiente' OR u.estatus = 'aprobado'");
+        return $sql;
+    }
+
+    public function listaOrdenAprobadas()
+    {
+
+        $sql = mysqli_query($this->conexion, "SELECT *, u.estatus as estatus_p FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario WHERE u.estatus = 'enviado'");
+        return $sql;
+    }
+
+    /*     c.nombre, m.nombre, m.nombre as payment_name */
+
+
+    // obtener producto
+    public function obtenerP($ID)
+    {
+        $sql = mysqli_query($this->conexion, "SELECT * FROM pago WHERE id_pago = '$ID'");
+        return $sql;
+    }
 
     // lista de direcciones
     public function misDir($ID)
@@ -142,6 +130,42 @@ class Pago extends Conexion
             return 0;
         }
     }
+
+            // cambiar estatus
+            public function estatusP ($ID, $estatus) {
+                if ($estatus == "activo") {
+                    
+                    $sql = "UPDATE pago SET estatus='inactivo' WHERE id_orden = '$ID'";
+                    $cambiar = $this->conexion->prepare($sql);
+                    $ejecutar = $cambiar->execute();
+    
+                    if (isset($ejecutar)) {
+                        $respuesta = new Redirecciones();
+                        $respuesta->listaP();
+                        include $respuesta;
+    
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                } else if ($estatus == "inactivo") {
+                    $estatus = "activo";
+                    
+                    $sql = "UPDATE pago SET estatus='activo' WHERE id_pago = '$ID'";
+                    $cambiar = $this->conexion->prepare($sql);
+                    $ejecutar = $cambiar->execute();
+    
+                    if (isset($ejecutar)) {
+                        $respuesta = new Redirecciones();
+                        $respuesta->listaPdt();
+                        include $respuesta;
+    
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }            
+            }
 
     // eliminar dirección
     public function eliminarDir($ID_d)

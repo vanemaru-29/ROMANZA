@@ -13,11 +13,15 @@
                 $modulo = "vistas/modulos/cliente/".$enlace.".php";
 
             // administrador
-            } else if ($enlace == "reportes" || $enlace == "registrar-producto" || $enlace == "editar-producto" || $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "editar-categoria" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "lista-metodo-pago"  || $enlace == "lista-pagos" || $enlace == "conversion" || $enlace == "administrar" || $enlace == "lista-clientes" || $enlace == "lista-ordenes" ) {
+            } else if   ($enlace == "registrar-producto" || $enlace == "registrar-categoria" || $enlace == "registrar-metodo-pago" || $enlace == "administrar" || $enlace == "editar-producto" || $enlace == "editar-categoria" ||
+                        // reportes
+                        $enlace == "lista-productos" || $enlace == "lista-categorias" || $enlace == "lista-metodo-pago" || $enlace == "lista-clientes" || $enlace == "lista-opiniones" || $enlace == "lista-ordenes" || $enlace == "lista-pedidos" || $enlace == "lista-pagos") {
+                
                 $modulo = "vistas/modulos/administrador/".$enlace.".php";
+
                 
             // encargado
-            } else if ($enlace == "pedidos-pendientes" || $enlace == "detalles-pedido") {
+            } else if ($enlace == "pedidos-pendientes" || $enlace == "detalles-pedido" || $enlace == "lista-pagos-pendientes" || $enlace == "lista-pagos-aprobados") {
                 $modulo = "vistas/modulos/encargado/".$enlace.".php";
 
             // ninguna de las anteriores

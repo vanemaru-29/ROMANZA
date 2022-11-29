@@ -7,6 +7,9 @@ if (isset($datos_od['id_orden'])) {
     $producto = $productos_od->verPedido($codigo_od);
 
     $producto_datos = new Productos();
+
+    $pagos = new Pago();
+    $datos = $pagos->listaOrden();
 }
 
 
@@ -35,7 +38,7 @@ if (isset($id_usuario['id_usuario'])) {
 
 
 $metodos = new Metodos();
-$datosM = $metodos->listaM();
+$datosM = $metodos->listaMa();
 ?>
 
 <!-- Modal -->
@@ -48,7 +51,7 @@ $datosM = $metodos->listaM();
             </div>
 
             <div class="modal-body">
-                <form action="#" method="POST" class="formulario" id="pago" enctype="multipart/form-data">
+                <form action="#" method="POST" class="formulario" id="pago">
                     <?php while ($datos_od = mysqli_fetch_array($producto)) { ?>
                         <div class="detalles__orden">
                             <p class="">Cantidad <?= $datos_od['cantidad'] ?>:</p>
@@ -66,6 +69,8 @@ $datosM = $metodos->listaM();
                     <p class="detalles__orden-total">Total: $ <?= $total_od ?></p>
 
                     <?php
+
+
                     // $categorias = new Fechas();
                     // $datosCat = $categorias->fechasRango($tabla, $desde, $hasta);
                     // $totalRegistros = @mysqli_num_rows($datosCat);
@@ -88,7 +93,8 @@ $datosM = $metodos->listaM();
                     } else {
                     ?>
                         <hr class="mb-3" />
-                        <select class="form-select mb-5" name="id_direccion" id="provincia">
+                        <label for="nombre" class="form-label login__label"> Seleccionar direccion </label>
+                        <select class="form-select mb-3" name="id_direccion" id="provincia">
                             <?php
                             while ($datos_dir = mysqli_fetch_array($cant_dir)) {
                             ?>
@@ -101,57 +107,46 @@ $datosM = $metodos->listaM();
                     <?php
                     }
                     ?>
- <? var_dump($_POST['submit'])?>
- <? var_dump($_POST['id_metodo_pago'])?>
+                    <? var_dump($_POST['submit']) ?>
+                    <? var_dump($_POST['id_metodo_pago']) ?>
+                    <label for="nombre" class="form-label login__label"> Seleccionar Metodo de pago </label>
+                    <select class="form-select mb-3" name="id_metodo_pago" id="buscar-banco">
+                        <?php
+                        while ($metodo = mysqli_fetch_array($datosM)) {
+                        ?>
+                            <option value=<?= $metodo['id_metodo_pago'] ?>><?= $metodo['nombre'] ?> - Cedula: <?= $metodo['cedula'] ?> - Telefono: <?= $metodo['telefono'] ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
 
-                        <select class="form-select form-select-lg mb-3" name="id_metodo_pago" id="buscar-banco">
-                            <?php
-                            while ($metodo = mysqli_fetch_array($datosM)) {
-                            ?>
-                                <option value=<?= $metodo['id_metodo_pago'] ?>><?= $metodo['nombre'] ?> - Titular: <?= $metodo['titular'] ?> - Cedula: <?= $metodo['cedula'] ?> - Telefono: <?= $metodo['telefono'] ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-           
 
                     <div class="formulario__grupo" id="grupo__nombre">
-                        <label for="nombre" class="form-label login__label"> Referencia </label>
+                        <label for="nombre" class="form-label login__label"> Referencia del pago realizado</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" class="form-control formulario__input" placeholder=". . ." name="referencia" id="nombre">
+                            <input type="text" class="form-control formulario__input" placeholder=". . ." name="referencia_p" id="nombre">
                             <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                         </div>
                         <!--                 <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
                     </div>
 
+
                     <input type="text" hidden value="<?= $codigo_od ?>" class="form-control formulario__input" placeholder=". . ." name="id_orden" id="nombre">
 
 
-            <!-- Grupo: Imagen -->
-            <div class="formulario__grupo" id="grupo__imagen">
-                <label for="imagen" class="form-label login__label"> Comprobante de pago </label>
-                <div class="formulario__grupo-input">
-                    <input type="file" class="form-control" name="imagen" id="imagen" onchange="return validarExt()" accept="image/png, image/webp">
-                </div>
-            </div>
-
-                    
-
-
-                    <div class="mt-2 mx-auto formulario__grupo editarInfo__actualizar grupo__verArchivo" id="ver-archivo"></div>
-
                     <div class="d-grid my-2 mx-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
-                <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRAR </button>
-            </div>
+                        <button type="submit" name="submit" class="formulario__btn btn btn-danger"> REGISTRAR </button>
+                    </div>
+           
 
-                
+
 
                     <?php
                     if (empty($_POST['submit'])) {
-                        if (isset($_POST['referencia']) && isset($_FILES['imagen'])) {
-                            if (strlen($_POST['referencia']) >= 1 && strlen($_FILES['imagen']['name']) >= 1) {
-                                $referencia = $_POST['referencia'];
-                                $imagen = $_FILES['imagen'];
+                        if (isset($_POST['referencia_p'])) {
+                            if (strlen($_POST['referencia_p']) >= 1) {
+                                $referencia = $_POST['referencia_p'];
+
                                 $id_metodo_pago = $_POST['id_metodo_pago'];
                                 $id_direccion = $_POST['id_direccion'];
                                 $id_orden = $_POST['id_orden'];
@@ -191,7 +186,7 @@ $datosM = $metodos->listaM();
 
 
                                 $nuevoPago = new Pago();
-                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $imagen, $estatus);
+                                $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $estatus);
                             } else {
                                 $camposVacios = new ErrFormularios();
                                 $camposVacios->camposVacios();

@@ -40,11 +40,11 @@
     }
 
     $fpdf = new PDF();
-    $fpdf->SetTitle('Metodos de pago Registrados', 0);
+    $fpdf->SetTitle(utf8_decode('Métodos de Pago Registrados'), 0);
     $fpdf->AddPage('portrait', 'letter');
     $fpdf->SetFont('Arial', 'B', 12);
     $fpdf->Cell(75);
-    $fpdf->Cell(50, 5, 'Metodos de pago Registrados', 0, 1, 'C');
+    $fpdf->Cell(50, 5, utf8_decode('Métodos de Pago Registrados'), 0, 1, 'C');
     $fpdf->Ln(5);
     $fpdf->Cell(75);
     $fpdf->Cell(50, 5, 'Desde: '.$fecha->fechaFormato($desde).' - Hasta: '.$fecha->fechaFormato($hasta), 0, 1, 'C');
@@ -61,24 +61,23 @@
     $fpdf->SetFillColor(173, 181, 189);
     $fpdf->SetFont('Arial', 'B', 10);
     $fpdf->Cell(15, 8, '#', 1, 0, 'C', 1);
-    $fpdf->Cell(60, 8, 'Nombre', 1, 0, 'C', 1);
-/*     $fpdf->Cell(80, 8, 'Descripion', 1, 0, 'C', 1); */
-    $fpdf->Cell(60, 8, 'Estatus', 1, 0, 'C', 1);
-    $fpdf->Cell(60, 8, 'Registro', 1, 1, 'C', 1);
+    $fpdf->Cell(40, 8, 'Nombre', 1, 0, 'C', 1);
+    $fpdf->Cell(80, 8, 'Descripion', 1, 0, 'C', 1); 
+    $fpdf->Cell(30, 8, 'Estatus', 1, 0, 'C', 1);
+    $fpdf->Cell(30, 8, 'Registro', 1, 1, 'C', 1);
 
     $fpdf->SetFont('Arial', '', 10);
 
 
     while ($resultado = mysqli_fetch_array($datosPdt)) {
         $fpdf->Cell(15, 8, $resultado['id_metodo_pago'], 1, 0, 'C');
-        $fpdf->Cell(60, 8, utf8_decode($resultado['nombre']), 1, 0, 'C');
-/*         $fpdf->Cell(80, 8, '$ '.$resultado['descripcion'], 1, 0, 'C'); */
-        $fpdf->Cell(60, 8, $resultado['estatus'], 1, 0, 'C');
-
-        $fpdf->Cell(60, 8, $fecha->fechaFormato($resultado['fecha_registro']), 1, 1, 'C');
+        $fpdf->Cell(40, 8, utf8_decode($resultado['nombre']), 1, 0, 'C');
+        $fpdf->Cell(80, 8, utf8_decode($resultado['descripcion']), 1, 0, 'C'); 
+        $fpdf->Cell(30, 8, $resultado['estatus'], 1, 0, 'C');
+        $fpdf->Cell(30, 8, $fecha->fechaFormato($resultado['fecha_registro']), 1, 1, 'C');
     }
 
-    $fpdf->OutPut('I', 'Metodo de pago Registrados.pdf', true);
+    $fpdf->OutPut('I', utf8_decode('Métodos de Pago Registrados.pdf'), true);
 
 
 ?>

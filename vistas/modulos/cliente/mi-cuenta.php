@@ -9,6 +9,28 @@
         $usuario = new Usuarios();
         $datos = $usuario -> datosUser($nombre_usuario);
     }
+
+     // se verifica usuario cliente
+     if (isset($_SESSION['id_rol'])) {
+        if ($_SESSION['id_rol'] == 3) {
+            if (isset($_SESSION['carrito'])) {
+                $mi_carrito = $_SESSION['carrito'];
+            }
+
+            // contamos el carrito
+            if (isset($_SESSION['carrito'])) {
+                for ($i=0; $i < count($mi_carrito); $i++) { 
+                    if (isset($mi_carrito[$i])) {
+                    if ($mi_carrito[$i]!=NULL) {
+                    if (!isset($mi_carrito['cantidad'])) { $mi_carrito['cantidad'] = '0'; } else { $mi_carrito['cantidad'] = $mi_carrito['cantidad']; }
+                    $total_cantidad = $i + 1;
+                }}}
+            }
+            
+            // declaramos la variable
+            if (!isset($total_cantidad)) {$total_cantidad = '0'; }
+        }
+    }
 ?>
 
 <section class="py-5">
@@ -36,7 +58,7 @@
             </div>
             
             <div class="col-sm-12 col-md-6">
-                <p class="text-center">No hay productos añadidos al carrito</p>
+                <p class="text-center">Productos en el carrito (<?= $total_cantidad ?>)</p>
                 <a href="index.php?romanza=pedidos" class="btn btn-warning mx-2 mi-cuenta__cta"> <img src="vistas/../publico/activos/iconos/carrito-oscuro.svg" alt="Mi Carrito" class="header__carrito"> <span class="header__carrito-cuenta">Ordene ahora</span> </a>
             </div>
 

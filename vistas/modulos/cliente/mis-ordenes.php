@@ -1,15 +1,15 @@
 <?php
-    if (isset($_SESSION['id_usuario'])) {
-        $id_usuario = $_SESSION['id_usuario'];
+if (isset($_SESSION['id_usuario'])) {
+    $id_usuario = $_SESSION['id_usuario'];
 
-        $lista_od = new Ordenes();
-        $ordenes = $lista_od -> obtenerOrdenes($id_usuario);
+    $lista_od = new Ordenes();
+    $ordenes = $lista_od->obtenerOrdenes($id_usuario);
 
-        $lista_pd = new Pedidos();
-        $pedidos = $lista_pd->listaPedidos($id_usuario);
+    $lista_pd = new Pedidos();
+    $pedidos = $lista_pd->listaPedidos($id_usuario);
 
-        $fecha = new Fechas();
-    }
+    $fecha = new Fechas();
+}
 ?>
 
 <section class="py-5">
@@ -25,8 +25,8 @@
     <!-- pedidos -->
     <section class="container mi-cuenta">
         <h2 class="fw-bold text-center pb-5">Pedidos Recientes</h2>
-        <? var_dump($_POST['id_metodo_pago'])?>
-        <? var_dump($_POST['submit'])?>
+        <? var_dump($_POST['id_metodo_pago']) ?>
+        <? var_dump($_POST['submit']) ?>
 
         <article>
             <table class="table table-hover">
@@ -41,24 +41,30 @@
                 </thead>
 
                 <tbody>
-                   
+
                     <?php
-                        while ($datos_od = mysqli_fetch_array($ordenes)) {
+                    while ($datos_od = mysqli_fetch_array($ordenes)) {
                     ?>
                         <tr class="text-center">
                             <td><?= $datos_od['id_orden'] ?></td>
                             <td>$ <?= $datos_od['total'] ?></td>
-                            <td><?= $datos_od['estatus'] ?></td>
+                           
+                     
+
+                            <td class="text-center"> <a href="#" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></a> </td>
+
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
+
                             <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
                                     Ver Detalles
                                 </button>
                             </td>
+
                         </tr>
                     <?php
-                            include ('vistas/modulos/modal/modal-orden.php');
-                        }
+                        include('vistas/modulos/modal/modal-orden.php');
+                    }
                     ?>
 
                 </tbody>
@@ -66,3 +72,4 @@
         </article>
     </section>
 </section>
+<script src="vistas/../publico/js/estatuspago.js"></script>

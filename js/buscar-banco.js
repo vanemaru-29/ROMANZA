@@ -7,16 +7,16 @@ document.getElementById('buscar-banco').onchange = function() {
   
     /* Referencia a los input */
     var elId = document.getElementById('id');
-    var elcedula = document.getElementById('cedula');
-    var eltelefono = document.getElementById('telefono');
+    var descripcion = document.getElementById('descripcion');
+    var nombre = document.getElementById('nombre');
     var eltitular = document.getElementById('titular');
   
   
     /* Asignamos cada dato a su input*/
-    elId.value = this.value;
-    elcedula.value = mData.dni;
-    eltelefono.value = mOption.text; /*Se usará el valor que se muestra*/
-    eltitular.value = mData.text;
+  console.log(mData)
+    descripcion.value = mData.text;
+    nombre.value = mData.text; /*Se usará el valor que se muestra*/
+
   
   
   };

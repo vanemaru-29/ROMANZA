@@ -10,7 +10,11 @@
             $this->conexion = $this->conexion->conectar();
         }
 
-        // obtener código
+        // mostrar lista de pedidos
+        public function todosPedidos () {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM pedido");
+            return $sql;
+        }
 
         // mostrar pedidos
         public function listaPedidos ($ID_usuario) {

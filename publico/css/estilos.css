@@ -182,6 +182,26 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* -- formularios -- */
+.form-check-label {
+    font-size: 20px;
+    color: var(--gris-medio);
+}
+
+.form-check-input {
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.form-check-input:focus {
+    border-color: var(--gris-oscuro);
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: var(--gris-medio);
+    border-color: var(--gris-oscuro);
+}
+
 .formulario {
     display: grid;
     grid-template-columns: 1fr 1fr;

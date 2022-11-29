@@ -4,63 +4,23 @@
     require_once ('vistas/../controladores/autoCarga.php');
 
     $pagos = new Pago();
-    $datos = $pagos->listaOrden();
+    $datos = $pagos->listaOrdenPendientes();
 ?>
 
 <section class="w-100 py-5">
-    <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Lista de ordenes</h1>
+    <h1 class="text-center text-white my-5 display-1 inicio__titulo">Ordenes Pendientes</h1>
 
     <!-- navbar -->
     <div class="mi-cuenta__menu mb-5">
-        <a href="#" class="mi-cuenta-enlace"> Lista de ordenes </a>
-
+        <a href="#" class="mi-cuenta-enlace"> Ordenes pendientes</a>
+        <a href="index.php?romanza=lista-pagos-aprobados" class="mi-cuenta-enlace"> Ordenes aprobadas</a>
     </div>
 
     <!-- pedidos -->
     <section class="container mi-cuenta">
-        <h2 class="fw-bold text-center pb-5">Ordenes Realizadas</h2>
-
-        <!-- formulario reportes por fecha -->
-        <article>
-            <?php
-                $nombreTabla = "orden";
-                $fecha = new Fechas();
-                $fechaActual = $fecha->fechaActual();
-                $fechaPrimera = $fecha->fechaPrimera($nombreTabla);
-            ?>
-
-            <form action="vistas/reportes/ordenes-registradas.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
-                <?php
-                    while ($verFecha = mysqli_fetch_array($fechaPrimera)) {
-                ?>
-                    <!-- Grupo: Desde -->
-                    <div class="formulario__grupo" id="grupo__desde">
-                        <label for="desde" class="form-label login__label"> Desde: </label>
-                        <div class="formulario__grupo-input">
-                            <input type="date" class="form-control formulario__input" name="desde" id="desde" value="<?= $verFecha['fecha_registro'] ?>">
-                        </div>
-                        <!-- <p class="formulario__input-error m-2">Algo.</p> -->
-                    </div>
-                <?php } ?>
-
-                <!-- Grupo: Hasta -->
-                <div class="formulario__grupo" id="grupo__hasta">
-                    <label for="hasta" class="form-label login__label"> Hasta </label>
-                    <div class="formulario__grupo-input">
-                        <input type="date" class="form-control formulario__input" name="hasta" id="hasta" value="<?= $fechaActual ?>">
-                    </div>
-                    <!-- <p class="formulario__input-error m-2">Algo.</p> -->
-                </div>
-                
-                <div class="d-grid my-4 formulario__grupo">
-                    <label for="exportar-pdf" class="form-label login__label">  </label>
-                    <button type="submit" name="exportar-pdf" id="exportar-pdf" class="formulario__btn btn btn-secondary"> Exportar PDF </button>
-                </div>
-            </form>
-        </article>
+        <h2 class="fw-bold text-center pb-5">Ordenes Pendientes</h2>
 
         <?php
-
 
             // cambiar estatus del producto
             if (!empty($_GET['estatus'])) {
@@ -104,9 +64,7 @@
                                   
                                     <td scope="col"><?= $resultado['total'] ?></td>
 
-                                    <td scope="col"><?= $resultado['estatus_p'] ?></td>
-
-                                   <!--  <td class="text-center"> <a href="index.php?romanza=lista-pagos&&estatus=<?= $resultado['id_orden'] ?>" class="btn" id="estatus-<?= $resultado['estatus_p'] ?>"><?= $resultado['estatus_p'] ?></a> </td> -->
+                                    <td class="text-center"> <a href="index.php?romanza=lista-pagos&&estatus=<?= $resultado['id_orden'] ?>" class="btn" id="estatus-<?= $resultado['estatus_p'] ?>"><?= $resultado['estatus_p'] ?></a> </td>
                             
                                     <td scope="col"><?= $resultado['fecha_registro'] ?></td>
                              

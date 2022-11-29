@@ -89,26 +89,35 @@
         public function eliminarCat ($ID_cat) {
             $this->ID_cat = $ID_cat;
 
-            $pdtsCat = "DELETE FROM producto WHERE id_categoria = '".$this->ID_cat."'";
-            $eliminarPdts = $this->conexion->prepare($pdtsCat);
-            $ejecutarPdts = $eliminarPdts->execute();
+            $producto = new Productos();
+            $datos_producto = $producto->categoriaPdt($ID_cat);
+            while ($info_producto = mysqli_fetch_array($datos_producto)) {
+                $imagen = $info_producto['id_producto'].".webp";
+                if (file_exists("vistas/../publico/activos/pedidos/".$imagen)) {
+                    if (unlink("vistas/../publico/activos/pedidos/".$imagen)) {
+                        $pdtsCat = "DELETE FROM producto WHERE id_categoria = '".$this->ID_cat."'";
+                        $eliminarPdts = $this->conexion->prepare($pdtsCat);
+                        $ejecutarPdts = $eliminarPdts->execute();
 
-            if ($ejecutarPdts) {
-                $sql = "DELETE FROM categoria WHERE id_categoria = '".$this->ID_cat."'";
-                $eliminar = $this->conexion->prepare($sql);
-                $ejecutar = $eliminar->execute();
+                        if ($ejecutarPdts) {
+                            $sql = "DELETE FROM categoria WHERE id_categoria = '".$this->ID_cat."'";
+                            $eliminar = $this->conexion->prepare($sql);
+                            $ejecutar = $eliminar->execute();
 
-                if (isset($ejecutar)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaCat();
-                    include $respuesta;
+                            if (isset($ejecutar)) {
+                                $respuesta = new Redirecciones();
+                                $respuesta->listaCat();
+                                include $respuesta;
 
-                    return 1;
-                } else {
-                    $errorEliminar = new ErrFormularios();
-                    $errorEliminar->eliminar();
+                                return 1;
+                            } else {
+                                $errorEliminar = new ErrFormularios();
+                                $errorEliminar->eliminar();
 
-                    return 0;
+                                return 0;
+                            }
+                        }
+                    }
                 }
             }
         }
