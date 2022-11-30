@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2022 a las 02:40:16
+-- Tiempo de generación: 30-11-2022 a las 04:29:44
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -108,7 +108,10 @@ INSERT INTO `direccion` (`id_direccion`, `direccion`, `referencia`, `id_usuario`
 (6, 'Cabudare la Piedad 1', 'Al frente del gran bonche', 9, '2022-11-27'),
 (7, 'Pueblo Nuevo calle 6 entre carrera 1 y Avenida los Horcones', 'Al frente del gran bonche', 9, '2022-11-27'),
 (8, 'Cabudare la Piedad 2', 'Al frente del gran bonche', 10, '2022-11-28'),
-(9, 'Sector 04 las casitas. Zona norte - el cují.', 'Frente al negocio de hamburguesas', 14, '2022-11-29');
+(9, 'Sector 04 las casitas. Zona norte - el cují.', 'Frente al negocio de hamburguesas', 14, '2022-11-29'),
+(10, 'Av #4 con calle #5, casa 8. Sector el cují, las casitas - zona norte', 'Frente al negocio de impresiones', 5, '2022-11-29'),
+(11, 'Sector 04 las casitas. Zona norte - el cují.', 'ninguna', 7, '2022-11-29'),
+(12, 'Av #4 con calle #5, casa 8. Sector el cují, las casitas - zona norte', 'Frente al negocio de impresiones', 8, '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -179,10 +182,13 @@ INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_regist
 ('08u', '7.00', 14, 'pendiente', '2022-11-29'),
 ('4dfg7', '11.50', 6, 'pendiente', '2022-11-29'),
 ('7kyc', '22.50', 3, 'enviado', '2022-11-29'),
+('eooizz', '9.75', 5, 'pendiente', '2022-11-29'),
 ('jdqk', '15.50', 1, 'pendiente', '2022-11-29'),
 ('kn70h', '8.30', 4, 'pendiente', '2022-11-29'),
 ('ocd1li', '10.00', 3, 'pendiente', '2022-11-29'),
-('pnz0fl', '27.00', 9, 'enviado', '2022-11-29');
+('pnz0fl', '27.00', 9, 'enviado', '2022-11-29'),
+('tf1i6', '0.80', 8, 'pendiente', '2022-11-29'),
+('wkm7o', '5.15', 7, 'enviado', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -206,7 +212,10 @@ CREATE TABLE `pago` (
 
 INSERT INTO `pago` (`id_pago`, `id_direccion`, `id_orden`, `id_metodo_pago`, `referencia_p`, `estatus`, `fecha_registro`) VALUES
 (1, 6, 'pnz0fl', 1, '1457893', 'Pendiente', '2022-11-29'),
-(3, 1, '7kyc', 1, '123456987', 'Pendiente', '2022-11-29');
+(3, 1, '7kyc', 1, '123456987', 'Pendiente', '2022-11-29'),
+(4, 10, 'eooizz', 1, '12345678', 'Pendiente', '2022-11-29'),
+(81, 11, 'wkm7o', 3, '', 'Pendiente', '2022-11-29'),
+(82, 12, 'tf1i6', 1, '12345678', 'Pendiente', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -246,7 +255,13 @@ INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`,
 (16, 'cxwjxt', 17, '4.00', 1, '2022-11-29'),
 (17, 'cxwjxt', 9, '5.25', 1, '2022-11-29'),
 (18, '08u', 10, '4.00', 1, '2022-11-29'),
-(19, '08u', 5, '3.00', 1, '2022-11-29');
+(19, '08u', 5, '3.00', 1, '2022-11-29'),
+(20, 'eooizz', 1, '0.50', 1, '2022-11-29'),
+(21, 'eooizz', 9, '5.25', 1, '2022-11-29'),
+(22, 'eooizz', 17, '4.00', 1, '2022-11-29'),
+(23, 'wkm7o', 13, '4.50', 1, '2022-11-29'),
+(24, 'wkm7o', 15, '0.65', 1, '2022-11-29'),
+(25, 'tf1i6', 4, '0.80', 1, '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -460,7 +475,7 @@ ALTER TABLE `conversion`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
@@ -478,13 +493,13 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
