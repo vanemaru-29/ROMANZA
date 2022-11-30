@@ -133,24 +133,24 @@ $datosM = $metodos->listaMa();
                     </div>
 
                     <?php
-                    if (empty($_POST['submit'])) {
-                        if (isset($_POST['referencia_p'])) {
-                            if (strlen($_POST['referencia_p']) >= 1) {
+                        if (empty($_POST['submit'])) {
+                            if (isset($_POST['referencia_p'])) {
                                 $referencia = $_POST['referencia_p'];
+                            } else {
+                                $referencia = "";
+                            }
 
+                            if (isset($_POST['id_metodo_pago']) && isset($_POST['id_direccion']) && isset($_POST['id_orden'])) {
                                 $id_metodo_pago = $_POST['id_metodo_pago'];
                                 $id_direccion = $_POST['id_direccion'];
                                 $id_orden = $_POST['id_orden'];
+                                
                                 $estatus = "Pendiente";
-
+                                
                                 $nuevoPago = new Pago();
                                 $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $estatus);
-                            } else {
-                                $camposVacios = new ErrFormularios();
-                                $camposVacios->camposVacios();
                             }
                         }
-                    }
                     ?>
                 </form>
             </div>
