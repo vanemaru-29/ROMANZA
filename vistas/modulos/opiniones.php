@@ -1,27 +1,26 @@
 <?php
-    if (!isset($_SESSION['nombre_usuario'])) {
-        
-    } else {
+    $usuario = new Usuarios();
+
+    // lista de todas las opiniones
+    $opiniones = new Opiniones();
+    $opn = $opiniones -> listaOpn();
+
+    // formato de fecha
+    $fecha = new Fechas();
+
+    if (isset($_SESSION['nombre_usuario'])) {
         $nombre_usuario = $_SESSION['nombre_usuario'];
         $id_rol = $_SESSION['id_rol'];
 
         // obtener datos del usuario
-        $usuario = new Usuarios();
         $datos = $usuario -> datosUser($nombre_usuario);
-
-        // lista de todas las opiniones
-        $opiniones = new Opiniones();
-        $opn = $opiniones -> listaOpn();
-
-        // formato de fecha
-        $fecha = new Fechas();
     }
 ?>
 
 <section class="py-5">
     <h1 class="text-center text-white my-5 display-1 inicio__titulo"> Opiniones </h1>
 
-    <?php if ($id_rol == 3) { ?>
+    <?php if (isset($id_rol) && $id_rol == 3) { ?>
         <form action="#" method="POST" class="opiniones__form">
             <div class="mb-4">
                 <label for="opinion" class="form-label text-white"> Aportar una Opinión </label>
@@ -60,7 +59,6 @@
                 $datos2 = $usuario -> obtenerUser($datos_opinion['id_usuario']);
 
                 while ($datos_usuario2 = mysqli_fetch_array($datos2)) {
-
         ?>
         <div class="inicio__opinion card border-light" style="max-width: 18rem;">
             <div class="card-header"><?= $fecha->fechaFormato($datos_opinion['fecha_registro']) ?></div>

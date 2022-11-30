@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2022 a las 18:21:14
+-- Tiempo de generación: 30-11-2022 a las 02:40:16
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `romanza`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `id_carrito` int(11) NOT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `precio` text NOT NULL,
+  `total` text NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -90,7 +105,10 @@ INSERT INTO `direccion` (`id_direccion`, `direccion`, `referencia`, `id_usuario`
 (3, 'Sector 01 las casitas, av 4 con calle 5. Zona norte - el cují.', 'Frente al negocio de impresiones julio', 3, '2022-11-23'),
 (4, 'Zone norte, vía el cují. Urb don aurelio casa 15-34', 'ninguna', 4, '2022-11-23'),
 (5, 'Zone norte, vía el cují. Urb Yucatan casa 15-10', 'ninguna', 6, '2022-11-23'),
-(7, 'Pueblo Nuevo calle 6 entre carrera 1 y Avenida los Horcones', 'Al frente del gran bonche', 9, '2022-11-27');
+(6, 'Cabudare la Piedad 1', 'Al frente del gran bonche', 9, '2022-11-27'),
+(7, 'Pueblo Nuevo calle 6 entre carrera 1 y Avenida los Horcones', 'Al frente del gran bonche', 9, '2022-11-27'),
+(8, 'Cabudare la Piedad 2', 'Al frente del gran bonche', 10, '2022-11-28'),
+(9, 'Sector 04 las casitas. Zona norte - el cují.', 'Frente al negocio de hamburguesas', 14, '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -102,11 +120,20 @@ CREATE TABLE `metodo_pago` (
   `id_metodo_pago` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `telefono` text DEFAULT NULL,
-  `cedula` text NOT NULL,
+  `cedula` text DEFAULT NULL,
   `descripcion` varchar(45) NOT NULL,
   `estatus` varchar(45) NOT NULL,
   `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `metodo_pago`
+--
+
+INSERT INTO `metodo_pago` (`id_metodo_pago`, `nombre`, `telefono`, `cedula`, `descripcion`, `estatus`, `fecha_registro`) VALUES
+(1, 'Provincial', '04245278554', '10268539', 'Banco provincial', 'activo', '2022-11-28'),
+(2, 'Banco Banesco', '04143515753', '10268539', 'Banco Banesco', 'inactivo', '2022-11-28'),
+(3, 'Pago al delivery', '', '', 'Pago en efectivo', 'activo', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -149,8 +176,13 @@ CREATE TABLE `orden` (
 --
 
 INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_registro`) VALUES
-('5b', '3.50', 3, 'pendiente', '2022-11-28'),
-('yhkd', '4.00', 5, 'pendiente', '2022-11-28');
+('08u', '7.00', 14, 'pendiente', '2022-11-29'),
+('4dfg7', '11.50', 6, 'pendiente', '2022-11-29'),
+('7kyc', '22.50', 3, 'enviado', '2022-11-29'),
+('jdqk', '15.50', 1, 'pendiente', '2022-11-29'),
+('kn70h', '8.30', 4, 'pendiente', '2022-11-29'),
+('ocd1li', '10.00', 3, 'pendiente', '2022-11-29'),
+('pnz0fl', '27.00', 9, 'enviado', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -163,11 +195,18 @@ CREATE TABLE `pago` (
   `id_direccion` int(11) NOT NULL,
   `id_orden` varchar(45) NOT NULL,
   `id_metodo_pago` int(11) NOT NULL,
-  `referencia` varchar(45) DEFAULT NULL,
-  `imagen` varchar(100) DEFAULT NULL,
+  `referencia_p` varchar(45) DEFAULT NULL,
   `estatus` varchar(45) DEFAULT NULL,
   `fecha_registro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`id_pago`, `id_direccion`, `id_orden`, `id_metodo_pago`, `referencia_p`, `estatus`, `fecha_registro`) VALUES
+(1, 6, 'pnz0fl', 1, '1457893', 'Pendiente', '2022-11-29'),
+(3, 1, '7kyc', 1, '123456987', 'Pendiente', '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -189,8 +228,25 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`, `fecha_registro`) VALUES
-(1, 'yhkd', 19, '4.00', 2, '2022-11-28'),
-(2, '5b', 8, '3.50', 1, '2022-11-28');
+(1, 'pnz0fl', 5, '6.00', 2, '2022-11-29'),
+(2, 'pnz0fl', 9, '21.00', 4, '2022-11-29'),
+(3, '7kyc', 1, '2.50', 5, '2022-11-29'),
+(4, '7kyc', 10, '20.00', 5, '2022-11-29'),
+(5, 'kn70h', 19, '2.00', 1, '2022-11-29'),
+(6, 'kn70h', 18, '3.30', 1, '2022-11-29'),
+(7, 'kn70h', 5, '3.00', 1, '2022-11-29'),
+(8, '4dfg7', 1, '1.00', 2, '2022-11-29'),
+(9, '4dfg7', 9, '10.50', 2, '2022-11-29'),
+(10, 'jdqk', 19, '4.00', 2, '2022-11-29'),
+(11, 'jdqk', 21, '7.60', 2, '2022-11-29'),
+(12, 'jdqk', 15, '3.90', 6, '2022-11-29'),
+(13, 'ocd1li', 16, '10.00', 4, '2022-11-29'),
+(14, 'vef', 9, '5.25', 1, '2022-11-29'),
+(15, 'vef', 11, '4.00', 1, '2022-11-29'),
+(16, 'cxwjxt', 17, '4.00', 1, '2022-11-29'),
+(17, 'cxwjxt', 9, '5.25', 1, '2022-11-29'),
+(18, '08u', 10, '4.00', 1, '2022-11-29'),
+(19, '08u', 5, '3.00', 1, '2022-11-29');
 
 -- --------------------------------------------------------
 
@@ -214,20 +270,24 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `precio`, `estatus`, `id_categoria`, `fecha_registro`) VALUES
+(1, 'Jugo de Papaya', 'Jugo natural de papaya', '1.webp', '0.50', 'activo', 1, '2022-11-18'),
 (2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '1.85', 'activo', 4, '2022-11-17'),
-(3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '2.50', 'inactivo', 1, '2022-11-14'),
+(3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '2.50', 'activo', 1, '2022-11-14'),
+(4, 'Té de Hierbas', 'Té natural de hierbas con miel', '4.webp', '0.80', 'activo', 1, '2022-11-14'),
 (5, 'Té de Burbujas', 'Té de frutas con leche y bolitas de tapioca', '5.webp', '3.00', 'activo', 1, '2022-11-14'),
+(7, 'Americano Campari', 'Cóctel clásico italiano', '7.webp', '3.80', 'activo', 1, '2022-11-14'),
 (8, 'Banana Split', 'Postre de helado y banana', '8.webp', '3.50', 'activo', 4, '2022-11-18'),
 (9, 'Pollo a la Parrilla', 'Pollo a la parrilla con salsa agridulce', '9.webp', '5.25', 'activo', 2, '2022-11-14'),
 (10, 'Sopa de Mariscos', 'Sopa de mariscos expecial italiana', '10.webp', '4.00', 'activo', 5, '2022-11-14'),
 (11, 'Tarta de Queso', 'Tarta de queso dulce con ceresas', '11.webp', '4.00', 'activo', 4, '2022-11-15'),
 (12, 'Pasta Italiana Básica', 'Pasta con vegetales variados', '12.webp', '4.50', 'activo', 6, '2022-11-16'),
-(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '4.50', 'inactivo', 5, '2022-11-16'),
-(15, 'CocaCola', 'Refresco cocacola', '15.webp', '0.65', 'inactivo', 1, '2022-11-17'),
+(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '4.50', 'activo', 5, '2022-11-16'),
+(15, 'CocaCola', 'Refresco cocacola', '15.webp', '0.65', 'activo', 1, '2022-11-17'),
 (16, 'Ensalada de Frutas', 'Ensalada de frutas variadas', '16.webp', '2.50', 'activo', 7, '2022-11-19'),
 (17, 'Caldo de Res', 'Caldo de res con tallarines', '17.webp', '04.00', 'activo', 5, '2022-11-20'),
 (18, 'Patatas con Queso', 'Patatas con queso y carne', '18.webp', '3.30', 'activo', 2, '2022-11-20'),
 (19, 'Brownie', 'Torta brownie con nueces', '19.webp', '2.00', 'activo', 4, '2022-11-20'),
+(20, 'Extra Queso', 'Pizza sin carne con queso extra', '20.webp', '5.00', 'activo', 8, '2022-11-20'),
 (21, 'Tarta de fresa', 'Tarta de fresa con queso', '21.webp', '03.80', 'activo', 4, '2022-11-25'),
 (22, 'Ensalada de Mariscos', 'Ensalada de camarones y otros mariscos', '22.webp', '2.00', 'activo', 7, '2022-11-26');
 
@@ -276,16 +336,27 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `cl
 (2, 'Encargado', 'DeliveryE', '02518836170', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
 (3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', '4fbdbea696045fb0af973a8c8198325f', 3, '2022-11-23'),
 (4, 'Joseph Velis', 'JosephMVB', '04245244469', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
-(5, 'Camila Medina', 'CamiValen', '04166528927', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
+(5, 'Camila Medina', 'CamiValen', '04145789383', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
 (6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
 (7, 'Rosali Barboza', 'RosyAnarel', '04125356484', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23'),
 (8, 'Jonathan Barboza', 'Jothanak', '04145445583', '32467c2e0d2d69d1b9ba3d4c41a3b548', 3, '2022-11-25'),
 (9, 'Fabiana Martinez', 'fabimar27', '04143515753', '9038a2676229e68ec24104df0695ae8b', 3, '2022-11-27'),
-(10, 'David Medina', 'CDMedin19', '04145497158', '71d3d8cf54948fb923b173367d3b7f48', 3, '2022-11-28');
+(10, 'Luis Martinez', 'luisfabi', '04263594503', '222add3ebd4d5504cd67d2b4b8f99b68', 3, '2022-11-28'),
+(11, 'David Medina', 'DameBar19', '04261094858', 'fa536bb8635829db7448483b6f651d3f', 3, '2022-11-29'),
+(12, 'Milagro Gimenez', 'Milagito3', '04145445583', '9f91a5f00b3d1771c3a137b5552702de', 3, '2022-11-29'),
+(13, 'Luis Medina', 'LMaster22', '12345678910', '0215c6887ea4821fe1a776193409b2d4', 3, '2022-11-29'),
+(14, 'Darwin Rodriguez', 'DarwinRRR', '04145789383', '1128d2e9cd4456efa575a57c1b4b6783', 3, '2022-11-29'),
+(15, 'Jose Torrez', 'JosTorzz', '58694213100', '79fc5bd4d73738790998807bf249fe4e', 3, '2022-11-29');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`id_carrito`);
 
 --
 -- Indices de la tabla `categoria`
@@ -333,8 +404,8 @@ ALTER TABLE `pago`
   ADD PRIMARY KEY (`id_pago`),
   ADD UNIQUE KEY `id_orden` (`id_orden`),
   ADD KEY `id_direccion` (`id_direccion`),
-  ADD KEY `id_metodo_pago` (`id_metodo_pago`),
-  ADD KEY `id_direccion_2` (`id_direccion`);
+  ADD KEY `id_direccion_2` (`id_direccion`),
+  ADD KEY `id_metodo_pago` (`id_metodo_pago`);
 
 --
 -- Indices de la tabla `pedido`
@@ -368,6 +439,12 @@ ALTER TABLE `usuario`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -383,13 +460,13 @@ ALTER TABLE `conversion`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
-  MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `opinion`
@@ -401,13 +478,13 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -425,7 +502,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
@@ -454,8 +531,8 @@ ALTER TABLE `orden`
 --
 ALTER TABLE `pago`
   ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`id_direccion`),
-  ADD CONSTRAINT `pago_ibfk_2` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`),
-  ADD CONSTRAINT `pago_ibfk_3` FOREIGN KEY (`id_orden`) REFERENCES `orden` (`id_orden`);
+  ADD CONSTRAINT `pago_ibfk_3` FOREIGN KEY (`id_orden`) REFERENCES `orden` (`id_orden`),
+  ADD CONSTRAINT `pago_ibfk_4` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`);
 
 --
 -- Filtros para la tabla `pedido`

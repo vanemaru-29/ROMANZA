@@ -72,4 +72,5 @@ if (isset($_SESSION['id_usuario'])) {
         </article>
     </section>
 </section>
+
 <script src="vistas/../publico/js/estatuspago.js"></script>

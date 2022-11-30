@@ -1,14 +1,14 @@
 <?php
-    require_once ('vistas/../controladores/autoCarga.php');
-
     $productos = new Productos();
     $datos = $productos->activosPdt();
 
     $categorias = new Categorias();
     $cat = $categorias->listaCat();
 
-    if (isset($_SESSION['id_rol'])) {
+    if (isset($_SESSION['nombre_usuario'])) {
         $id_rol = $_SESSION['id_rol'];
+    } else {
+        $id_rol = "";
     }
 ?>
 

@@ -55,22 +55,27 @@ class Usuarios extends Conexion
             $insertar = $this->conexion->prepare($sql);
             $insertarDatos = $insertar->execute();
 
-            if (isset($insertarDatos)) {
-                if (!session_id()) session_start();
-                $_SESSION['nombre_usuario'] = $this->usuario_user;
-
-                $usuario = new Usuarios();
-                $rol = $usuario->consultarRol($this->usuario_user);
-
-                $_SESSION['id_rol'] = $rol;
-
-                $pedidos = new Redirecciones();
-                $pedidos->pedidos();
-            } else {
-                $errorRegistro = new ErrFormularios();
-                $errorRegistro->registroAlerta();
-
-                return 0;
+            $usuario = new Usuarios();
+            $datos = $usuario->datosUser($this->usuario_user);
+            while ($datos_usuario = mysqli_fetch_array($datos)) {
+                if (isset($insertarDatos)) {
+                    if (!session_id()) session_start();
+                    $_SESSION['id_usuario'] = $datos_usuario['id_usuario'];
+                    $_SESSION['nombre_usuario'] = $this->usuario_user;
+    
+                    $usuario = new Usuarios();
+                    $rol = $usuario->consultarRol($this->usuario_user);
+    
+                    $_SESSION['id_rol'] = $rol;
+    
+                    $pedidos = new Redirecciones();
+                    $pedidos->pedidos();
+                } else {
+                    $errorRegistro = new ErrFormularios();
+                    $errorRegistro->registroAlerta();
+    
+                    return 0;
+                }
             }
         }
     }

@@ -100,7 +100,7 @@
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </a>
 
-                                        <a href="#" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a>
+                                        <!-- <a href="#" class="direcciones__icono direcciones__icono-editar" title="Editar"><i class="fa-solid fa-square-pen carrito__icono-btn"></i></a> -->
                                     </td>
                                 </tr>
                             <?php
