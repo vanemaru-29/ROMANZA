@@ -70,11 +70,11 @@
                           
                                 <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $resultado['id_orden'] ?>">
-                                    Ver Detalles
+                                    Detalles
                                 </button>
                             </td>
                             <?php
-                                include('vistas/modulos/modal/modal-orden-p.php');
+                                include('vistas/modulos/modal/modal-orden-encargado.php');
                     ?>
 
                         </tr>
@@ -84,7 +84,7 @@
                     }
                     ?>    
                             <?php
-                                include('vistas/modulos/modal/modal-orden-p.php');
+                                include('vistas/modulos/modal/modal-orden-encargado.php');
                     ?>
                 </tbody>
             </table>

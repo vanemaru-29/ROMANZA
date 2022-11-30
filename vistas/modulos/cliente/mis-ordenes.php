@@ -57,27 +57,38 @@ if (isset($_SESSION['id_usuario'])) {
 
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
 
-                      
+
                             <?php if ($datos_od['estatus'] == 'pendiente') { ?>
                                 <td>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                    Pagar
-                                </button>
-                            </td>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                        Pagar
+                                    </button>
+                                </td>
+                            <?php } ?>
+                            <?php if ($datos_od['estatus'] == 'aprobado') { ?>
+                                <td>
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                        Detalles
+                                    </button>
+                                </td>
                             <?php } ?>
 
 
-                            <?php if ($datos_od['estatus'] == 'aprobado' || $datos_od['estatus'] == 'enviado') { ?>
+                            <?php if ($datos_od['estatus'] == 'enviado') { ?>
                                 <td>
-                                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                        Factura
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                        Detalles
                                     </button>
                                 </td>
                             <?php } ?>
 
                         </tr>
                     <?php
-                        include('vistas/modulos/modal/modal-orden.php');
+
+                        if ($datos_od['estatus'] == 'pendiente') {
+                            include('vistas/modulos/modal/modal-orden.php');
+                        }
+                        include('vistas/modulos/modal/modal-orden-p.php');
                     }
                     ?>
 
