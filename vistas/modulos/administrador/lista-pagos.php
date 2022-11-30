@@ -23,13 +23,13 @@
         <!-- formulario reportes por fecha -->
         <article>
             <?php
-                $nombreTabla = "orden";
+                $nombreTabla = "pago";
                 $fecha = new Fechas();
                 $fechaActual = $fecha->fechaActual();
                 $fechaPrimera = $fecha->fechaPrimera($nombreTabla);
             ?>
 
-            <form action="vistas/reportes/ordenes-registradas.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
+            <form action="vistas/reportes/pagos-registradas.php" method="POST" class="formulario formulario-fechas" target="_blank"> 
                 <?php
                     while ($verFecha = mysqli_fetch_array($fechaPrimera)) {
                 ?>

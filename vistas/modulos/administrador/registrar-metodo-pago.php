@@ -17,11 +17,6 @@
 
         <article class="row">
             <div class="col-md-12">
-                <!-- <label for="pago-movil" class="form-check-label">
-                    <input type="checkbox" name="pago-movil" id="pago-movil" class="form-check-input">
-                    Método de pago por pago móvil
-                </label> -->
-                
                 <section>
                     <form action="#" method="POST" class="formulario" id="metodo_pago">
                         <!-- Grupo: Nombre -->
@@ -31,7 +26,7 @@
                                 <input type="text" class="form-control formulario__input" placeholder=". . ." name="nombre" id="nombre">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
-                            <!-- <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
+                            <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 6 caracteres.</p>
                         </div>
 
                         <!-- Grupo: Descripción -->
@@ -41,7 +36,7 @@
                                 <input type="text" class="form-control formulario__input" placeholder=". . ." name="asunto" id="asunto">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
-                            <!-- <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
+                            <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 6 caracteres.</p>
                         </div>
                         
                         <!-- Grupo: Cédula -->
@@ -51,7 +46,7 @@
                                 <input type="text" class="form-control formulario__input" placeholder=". . ." name="cedula" id="cedula">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
-                            <!-- <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
+                            <p class="formulario__input-error m-2">Debe ingresar un número de cédula válido.</p>
                         </div>
                         
                         <!-- Grupo: Teléfono -->
@@ -61,7 +56,7 @@
                                 <input type="text" class="form-control formulario__input" placeholder=". . ." name="telefono" id="telefono">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
-                            <!-- <p class="formulario__input-error m-2">Este campo sólo admite letras y espacios, debe ser mayor a 4 caracteres.</p> -->
+                            <p class="formulario__input-error m-2">Debe ingresar un número de teléfono válido.</p>
                         </div>
                         
                         <div class="d-grid mt-2 mb-4 mx-auto formulario__grupo formulario__btn-centro editarInfo__actualizar">
@@ -70,8 +65,8 @@
 
                         <?php
                             if (empty($_POST['registrar-metodo'])) {
-                                if (isset($_POST['nombre']) && isset($_POST['cedula']) && isset($_POST['telefono']) && isset($_POST['asunto'])) {
-                                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['cedula']) >= 1 && strlen($_POST['telefono']) >= 1 && strlen($_POST['asunto']) >= 1) {
+                                if (isset($_POST['nombre']) && isset($_POST['asunto'])) {
+                                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['asunto']) >= 1) {
                                         $nombre = $_POST['nombre'];
                                         $cedula = $_POST['cedula'];
                                         $telefono = $_POST['telefono'];
@@ -98,9 +93,4 @@
     </section>
 </section>
 
-<!-- Modal -->
-<?php
-    // include('vistas/modulos/modal/modal-metodo-transferencia.php');
-    // include('vistas/modulos/modal/modal-metodo-pago-movil.php');
-    // include('vistas/modulos/modal/modal-metodo-personal.php');
-?>
+<script src="vistas/../js/validacion-metodo_pago.js"></script>

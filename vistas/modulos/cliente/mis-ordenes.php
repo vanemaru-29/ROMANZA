@@ -48,24 +48,32 @@ if (isset($_SESSION['id_usuario'])) {
                         <tr class="text-center">
                             <td><?= $datos_od['id_orden'] ?></td>
                             <td>$ <?= $datos_od['total'] ?></td>
-                           
-                     
 
-                            <td class="text-center"> <h4 href="" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></h4> </td>
+
+
+                            <td class="text-center">
+                                <h4 href="" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></h4>
+                            </td>
 
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
 
-                            <td>
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                    Ver Detalles
+                      
+                            <?php if ($datos_od['estatus'] == 'pendiente') { ?>
+                                <td>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                    Pagar
                                 </button>
                             </td>
+                            <?php } ?>
 
-                            <td>
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                    Detalles
-                                </button>
-                            </td>
+
+                            <?php if ($datos_od['estatus'] == 'aprobado' || $datos_od['estatus'] == 'enviado') { ?>
+                                <td>
+                                    <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                        Factura
+                                    </button>
+                                </td>
+                            <?php } ?>
 
                         </tr>
                     <?php
@@ -78,4 +86,5 @@ if (isset($_SESSION['id_usuario'])) {
         </article>
     </section>
 </section>
+
 <script src="vistas/../publico/js/estatuspago.js"></script>

@@ -42,7 +42,7 @@
                         <div class="formulario__grupo" id="grupo__telefono">
                             <label for="telefono" class="form-label login__label"> Teléfono </label>
                             <div class="formulario__grupo-input">
-                                <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
+                                <input type="tel" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
                             <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>

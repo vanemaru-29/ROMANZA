@@ -282,6 +282,15 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
 }
 
+.formulario__grupo-incorrecto .formulario__label {
+    color: var(--rojo-incorrecto);
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+    color: var(--rojo-incorrecto);
+    opacity: 1;
+}
+
 .color-incorrecto {
     color: var(--rojo-incorrecto);
 }
@@ -293,11 +302,6 @@ body::-webkit-scrollbar-thumb {
 
 .color-mensaje {
     color: var(--gris-medio);
-}
-
-.formulario__grupo-incorrecto .formulario__validacion-estado {
-    color: var(--rojo-incorrecto);
-    opacity: 1;
 }
 
 /* -- inicio -- */
