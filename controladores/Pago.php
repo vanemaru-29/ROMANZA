@@ -71,6 +71,20 @@ class Pago extends Conexion
         return $sql;
     }
 
+    public function factura($orden)
+    {
+
+        $sql = mysqli_query($this->conexion, "SELECT *, u.estatus as estatus_p FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario WHERE u.id_orden = '$orden'");
+        return $sql;
+    }
+
+    public function listaOrdenPendientesU()
+    {
+
+        $sql = mysqli_query($this->conexion, "SELECT *, u.estatus as estatus_p FROM pago o INNER JOIN orden u ON u.id_orden = o.id_orden INNER JOIN direccion d ON d.id_direccion = o.id_direccion INNER JOIN metodo_pago m ON m.id_metodo_pago = o.id_metodo_pago INNER JOIN usuario c ON d.id_usuario = c.id_usuario WHERE u.estatus = 'pendiente' OR u.estatus = 'aprobado'");
+        return $sql;
+    }
+
     public function listaOrdenAprobadas()
     {
 

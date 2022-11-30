@@ -15,7 +15,7 @@
 
         // obtener datos
         public function equivalenciaBs () {
-            $sql = mysqli_query($this->conexion, "SELECT * FROM conversion WHERE id_conversion = 1");
+            $sql = mysqli_query($this->conexion, "SELECT bs_equivalencia FROM conversion WHERE id_conversion = 1");
             return $sql;
         }
 

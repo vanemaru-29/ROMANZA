@@ -108,7 +108,7 @@
 
                                    <!--  <td class="text-center"> <a href="index.php?romanza=lista-pagos&&estatus=<?= $resultado['id_orden'] ?>" class="btn" id="estatus-<?= $resultado['estatus_p'] ?>"><?= $resultado['estatus_p'] ?></a> </td> -->
                             
-                                    <td scope="col"><?= $resultado['fecha_registro'] ?></td>
+                                   <td scope="col" class="text-center"><?= $fecha->fechaFormato($resultado['fecha_registro']) ?></td>
                              
                                 </tr>
                             <?php

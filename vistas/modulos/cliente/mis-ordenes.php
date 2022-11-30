@@ -51,13 +51,19 @@ if (isset($_SESSION['id_usuario'])) {
                            
                      
 
-                            <td class="text-center"> <a href="#" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></a> </td>
+                            <td class="text-center"> <h4 href="" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></h4> </td>
 
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
 
                             <td>
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
                                     Ver Detalles
+                                </button>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
+                                    Detalles
                                 </button>
                             </td>
 

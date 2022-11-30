@@ -67,10 +67,24 @@
                                     <td class="text-center"> <a href="index.php?romanza=lista-pagos&&estatus=<?= $resultado['id_orden'] ?>" class="btn" id="estatus-<?= $resultado['estatus_p'] ?>"><?= $resultado['estatus_p'] ?></a> </td>
                             
                                     <td scope="col"><?= $resultado['fecha_registro'] ?></td>
-                             
-                                </tr>
+                          
+                                <td>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $resultado['id_orden'] ?>">
+                                    Ver Detalles
+                                </button>
+                            </td>
                             <?php
-                        }
+                                include('vistas/modulos/modal/modal-orden-p.php');
+                    ?>
+
+                        </tr>
+                        
+                    <?php
+         
+                    }
+                    ?>    
+                            <?php
+                                include('vistas/modulos/modal/modal-orden-p.php');
                     ?>
                 </tbody>
             </table>
