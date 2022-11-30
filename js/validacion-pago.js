@@ -1,20 +1,20 @@
 const formulario = document.getElementById('pago');
-const referencia = document.getElementById('referencia_p');
+const referencia_p = document.getElementById('referencia_p');
 
 const expresiones = {
-	referencia: /^\d{4,10}$/, // Sólo numeros.
+	referencia_p: /^\d{4,10}$/, // Sólo numeros.
 }
 
 // inicializando campos
 const campos = {
-    referencia: false,
+    referencia_p: true,
 }
 
 // llamando expresión según name
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "referencia_p":
-            validarCampo(expresiones.referencia, e.target);
+            validarCampo(expresiones.referencia_p, e.target);
             break;
     }
 }
@@ -43,14 +43,14 @@ const validarCampo = (expresion, input) => {
 }
 
 // ejecutando función al presionar teclas o al dar click afuera
-referencia.addEventListener('keyup', validarFormulario);
-referencia.addEventListener('blur', validarFormulario);
+referencia_p.addEventListener('keyup', validarFormulario);
+referencia_p.addEventListener('blur', validarFormulario);
 
 // validando que todos los campos sean correctos
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.referencia) {
+    if (campos.referencia_p) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });
