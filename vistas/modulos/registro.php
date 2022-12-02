@@ -38,11 +38,21 @@
                             <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, debe ser mayor a 8 caracteres.</p>
                         </div>
                             
+                        <!-- Grupo: Correo Electrónico -->
+                        <div class="formulario__grupo" id="grupo__correo">
+                            <label for="correo" class="form-label login__label"> Correo Electrónico </label>
+                            <div class="formulario__grupo-input">
+                                <input type="email" class="form-control" placeholder="vanemaru29@gmail.com" name="correo" id="correo">
+                                <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                            </div>
+                            <p class="formulario__input-error m-2">Debe ingresar una dirección de correo válida.</p>
+                        </div>
+
                         <!-- Grupo: Teléfono -->
                         <div class="formulario__grupo" id="grupo__telefono">
                             <label for="telefono" class="form-label login__label"> Teléfono </label>
                             <div class="formulario__grupo-input">
-                                <input type="tel" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono">
+                                <input type="text" class="form-control" placeholder="04121384558" name="telefono" id="telefono">
                                 <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                             </div>
                             <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>
@@ -64,16 +74,17 @@
 
                         <?php
                             if (empty($_POST['submit'])) {
-                                if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono']) && isset($_POST['clave'])) {
-                                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['clave']) >= 1) {
+                                if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono']) && isset($_POST['correo']) && isset($_POST['clave'])) {
+                                    if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1  && strlen($_POST['telefono']) >= 1  && strlen($_POST['correo']) >= 1 && strlen($_POST['clave']) >= 1) {
                                         $nombre = $_POST['nombre'];
                                         $usuario = $_POST['nombre_usuario'];
                                         $telefono = $_POST['telefono'];
+                                        $correo = $_POST['correo'];
                                         $clave = $_POST['clave'];
                                         $rol = 3;                            
 
                                         $nuevoMetodo = new Usuarios();
-                                        $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $clave, $rol);
+                                        $nuevoMetodo->registroUsuario($nombre, $usuario, $telefono, $correo, $clave, $rol);
                                     } else {
                                         $camposVacios = new ErrFormularios();
                                         $camposVacios -> camposVaciosAlerta();
@@ -82,6 +93,10 @@
                             }
                         ?>  
                     </form>
+
+                    <div class="my-3">
+                        <p class="color-mensaje my-0">¿Ya tienes una cuenta? <a href="vistas/../index.php?romanza=login" class="enlace">Ir a login</a></p>
+                    </div>
                 </div>
             </div>
         </div>

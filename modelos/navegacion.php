@@ -5,7 +5,7 @@
             // general
             if ($enlace == "menu") {
                 $modulo = "vistas/modulos/".$enlace.".html";
-            } else if ($enlace == "galeria" || $enlace == "opiniones" || $enlace == "pedidos" || $enlace == "contacto" || $enlace == "registro" || $enlace == "login") {
+            } else if ($enlace == "galeria" || $enlace == "opiniones" || $enlace == "pedidos" || $enlace == "contacto" || $enlace == "registro" || $enlace == "login" || $enlace == "recuperar-clave") {
                 $modulo = "vistas/modulos/".$enlace.".php";
 
             // cliente

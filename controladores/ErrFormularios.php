@@ -19,6 +19,15 @@
                 </p>
             <?php
         }
+        
+        // campos vacíos alerta
+        public function camposVaciosAlerta2 () {
+            ?>
+                <p class="color-incorrecto editarInfo__tlfn">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>Se debe completar el formulario correctamente.
+                </p>
+            <?php
+        }
 
         // error de registro
         public function registro () {
@@ -34,6 +43,24 @@
             ?>
                 <p class="color-incorrecto">
                     <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>No se ha podido completar el registro.
+                </p>
+            <?php
+        }
+        
+        // error de formulario
+        public function formError () {
+            ?>
+                <p class="color-incorrecto editarInfo__tlfn">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>No se ha podido completar la acción.
+                </p>
+            <?php
+        }
+        
+        // correo equivocado
+        public function correoError () {
+            ?>
+                <p class="color-incorrecto editarInfo__tlfn">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <strong>Error: </strong>La dirección de correo no está registrada.
                 </p>
             <?php
         }

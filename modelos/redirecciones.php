@@ -1,5 +1,11 @@
 <?php
     class Redirecciones {
+        public function registroUsuario () {
+            ?>
+                <script> window.location.href = "vistas/../index.php?romanza=registro"; </script>
+            <?php
+        }
+
         public function miCuenta () {
             ?>
                 <script> window.location.href = "vistas/../index.php?romanza=mi-cuenta"; </script>

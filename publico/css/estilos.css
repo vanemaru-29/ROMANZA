@@ -16,6 +16,7 @@
     --amarillo-cta: rgb(255, 193, 7);
 
     /* degradados */
+    --verde-correcto: rgb(8, 75, 13);
     --sombra: rgba(135, 138, 140, .1);
     --sombra-clara: rgba(255, 255, 255, .2);
     --sombra-oscura: rgba(0, 0, 0, .2);
@@ -41,6 +42,19 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background-color: var(--sombra-oscura);
+}
+
+.enlace {
+    display: inline-block;
+    margin-left: 5px;
+    color: var(--gris-medio);
+    font-weight: 500;
+    transition: all .5s ease;
+}
+
+.enlace:hover {
+    color: var(--sombra-roja);
+    transition: all .5s ease;
 }
 
 /* -- header inicio -- */
@@ -149,6 +163,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* -- login -- */
+.formulario_sm {
+    display: block;
+    width: 50%;
+}
+
 .login__cont {
     border-radius: 10px;
     overflow: hidden;
@@ -302,6 +321,10 @@ body::-webkit-scrollbar-thumb {
 
 .color-mensaje {
     color: var(--gris-medio);
+}
+
+.color-exito {
+    color: var(--verde-correcto);
 }
 
 /* -- inicio -- */

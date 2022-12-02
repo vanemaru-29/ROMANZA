@@ -5,6 +5,7 @@ const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{8,40}$/, // Letras y espacios, pueden llevar acentos.
     nombre_usuario: /^[a-zA-Z0-9\_\-]{8,40}$/, // Letras, numeros, guion y guion_bajo
 	telefono: /^\d{11,11}$/, // 11 numeros.
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // formato correo.
 	clave: /^.{6,12}$/ // 6 a 12 digitos.
 }
 
@@ -13,6 +14,7 @@ const campos = {
     nombre: false,
     nombre_usuario: false,
     telefono: false,
+    correo: false,
     clave: false
 }
 
@@ -29,6 +31,10 @@ const validarFormulario = (e) => {
 
         case "telefono":
             validarCampo(expresiones.telefono, e.target);
+            break;
+        
+        case "correo":
+            validarCampo(expresiones.correo, e.target);
             break;
 
         case "clave":
@@ -70,7 +76,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre && campos.nombre_usuario && campos.telefono && campos.clave) {
+    if (campos.nombre && campos.nombre_usuario && campos.correo && campos.telefono && campos.clave) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

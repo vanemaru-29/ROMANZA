@@ -9,6 +9,7 @@ const inputsClave = document.querySelectorAll('#editar-clave input');
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{8,40}$/, // Letras y espacios, pueden llevar acentos.
     nombre_usuario: /^[a-zA-Z0-9\_\-]{8,40}$/, // Letras, numeros, guion y guion_bajo
+	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // formato correo.
 	telefono: /^\d{11,11}$/, // 11 numeros.
 	clave: /^.{6,12}$/ // 6 a 12 digitos.
 }
@@ -17,6 +18,7 @@ const expresiones = {
 const campos = {
     nombre: false,
     nombre_usuario: false,
+    correo: false,
     telefono: false,
     clave: false,
     clave2: false,
@@ -32,6 +34,10 @@ const validarFormulario1 = (e) => {
         
         case "nombre_usuario":
             validarCampos1(expresiones.nombre_usuario, e.target);
+            break;
+
+        case "correo":
+            validarCampos1(expresiones.correo, e.target);
             break;
 
         case "telefono":
@@ -73,7 +79,7 @@ inputsInfo.forEach((input) => {
 formularioInfo.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre || campos.nombre_usuario || campos.telefono) {
+    if (campos.nombre || campos.nombre_usuario || campos.correo || campos.telefono) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

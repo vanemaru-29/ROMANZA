@@ -11,11 +11,38 @@
             <?php
         }
         
+        // mensaje enviado
+        public function mensajeEnviado () {
+            ?>
+                <p class="color-exito editarInfo__tlfn">
+                    <i class="fa-solid fa-circle-check carrito__icono-btn"></i> ¡El mensaje se ha enviado exitosamente!
+                </p>
+            <?php
+        }
+        
         // el usuario ya existe
         public function usuarioExiste () {
             ?>
                 <p class="color-mensaje">
                     <i class="fa-solid fa-circle-exclamation"></i> El usuario ya existe en la base de datos.
+                </p>
+            <?php
+        }
+        
+        // el correo ya existe
+        public function correoExiste () {
+            ?>
+                <p class="color-mensaje">
+                    <i class="fa-solid fa-circle-exclamation"></i> El correo ya existe en la base de datos.
+                </p>
+            <?php
+        }
+        
+        // el teléfono ya existe
+        public function tlfnExiste () {
+            ?>
+                <p class="color-mensaje">
+                    <i class="fa-solid fa-circle-exclamation"></i> El teléfono ya existe en la base de datos.
                 </p>
             <?php
         }

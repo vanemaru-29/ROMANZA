@@ -87,12 +87,22 @@
                     </div>
                     <p class="formulario__input-error m-2">Este campo contiene caracteres no admitidos, debe ser mayor a 8 caracteres.</p>
                 </div>
+                
+                <!-- Grupo: Correo Electrónico -->
+                <div class="formulario__grupo" id="grupo__correo">
+                    <label for="correo" class="form-label login__label"> Correo Electrónico </label>
+                    <div class="formulario__grupo-input">
+                        <input type="email" class="form-control" placeholder="vanemaru29@gmail.com" name="correo" id="correo" value="<?= $datos_usuario['correo'] ?>">
+                        <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
+                    </div>
+                    <p class="formulario__input-error m-2">Debe ingresar una dirección de correo válida.</p>
+                </div>
                             
                 <!-- Grupo: Teléfono -->
-                <div class="formulario__grupo editarInfo__tlfn" id="grupo__telefono">
+                <div class="formulario__grupo" id="grupo__telefono">
                     <label for="telefono" class="form-label login__label"> Teléfono </label>
                     <div class="formulario__grupo-input">
-                        <input type="tel" format="+58 (###) ###-####" class="form-control" placeholder="414 544-5583" name="telefono" id="telefono" value="<?= $datos_usuario['telefono'] ?>">
+                        <input type="text" class="form-control" placeholder="04121384558" name="telefono" id="telefono" value="<?= $datos_usuario['telefono'] ?>">
                         <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                     </div>
                     <p class="formulario__input-error m-2">Este campo sólo admite números, debe ingresarse un teléfono válido.</p>
@@ -104,15 +114,16 @@
 
                 <?php
                     if (empty($_POST['actualizar-info'])) {
-                        if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['telefono'])) {
-                            if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1 && strlen($_POST['telefono']) >= 1) {
+                        if (isset($_POST['nombre']) && isset($_POST['nombre_usuario']) && isset($_POST['correo']) && isset($_POST['telefono'])) {
+                            if (strlen($_POST['nombre']) >= 1 && strlen($_POST['nombre_usuario']) >= 1 && strlen($_POST['correo']) >= 1 && strlen($_POST['telefono']) >= 1) {
                                 $nombre = $_POST['nombre'];
                                 $nombre_usuario = $_POST['nombre_usuario'];
+                                $correo = $_POST['correo'];
                                 $telefono = $_POST['telefono'];
                                 $ID_user = $datos_usuario['id_usuario'];
         
                                 $editarCat = new Usuarios();
-                                $editarCat -> editarUser($ID_user, $nombre, $nombre_usuario, $telefono);
+                                $editarCat -> editarUser($ID_user, $nombre, $nombre_usuario, $correo, $telefono);
                             } else {
                                 $camposVacios = new ErrFormularios();
                                 $camposVacios -> camposVacios();

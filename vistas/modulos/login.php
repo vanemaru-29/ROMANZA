@@ -26,7 +26,7 @@
                             <label for="clave" class="form-label login__label"> Contraseña </label>
                             <input type="password" class="form-control" placeholder="Ingrese contraseña" name="clave" id="clave">
                         </div>
-                        <div class="d-grid my-5">
+                        <div class="d-grid mt-5 mb-3">
                             <button type="submit" name="submit" class="btn btn-danger"> INGRESAR </button>
                         </div>
 
@@ -47,6 +47,11 @@
                             }
                         ?>
                     </form>
+
+                    <div class="my-3 text-center">
+                        <p class="color-mensaje my-0">¿Aún no tienes una cuenta? <a href="vistas/../index.php?romanza=registro" class="enlace">Registrarme</a></p>
+                        <p class="color-mensaje my-0">¿Has olvidado tu contraseña? <a href="vistas/../index.php?romanza=recuperar-clave" class="enlace">Recuperar Contraseña</a></p>
+                    </div>
                 </div>
             </div>
         </div>
