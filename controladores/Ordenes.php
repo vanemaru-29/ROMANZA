@@ -10,8 +10,7 @@
             $this->conexion = $this->conexion->conectar();
         }
 
-        public function obtenerO($ID)
-        {
+        public function obtenerO($ID) {
             $sql = mysqli_query($this->conexion, "SELECT * FROM orden WHERE id_orden = '$ID'");
             return $sql;
         }
@@ -22,10 +21,9 @@
             return $sql;
         }
 
-         // cambiar estatus
-         public function estatusOrden ($ID, $estatus) {
-            if ($estatus == "pendiente") {
-                
+        // cambiar estatus
+        public function estatusOrden ($ID, $estatus) {
+            if ($estatus == "pendiente") {                
                 $sql = "UPDATE orden SET estatus='aprobado' WHERE id_orden = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();

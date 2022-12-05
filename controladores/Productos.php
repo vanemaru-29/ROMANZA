@@ -99,8 +99,7 @@
 
         // cambiar estatus
         public function estatusPdt ($ID, $estatus) {
-            if ($estatus == "activo") {
-                
+            if ($estatus == "activo") {                
                 $sql = "UPDATE producto SET estatus='inactivo' WHERE id_producto = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();

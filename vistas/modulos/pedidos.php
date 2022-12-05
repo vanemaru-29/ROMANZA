@@ -73,7 +73,7 @@
                                                 <?php } ?>
                                                 
                                                 <p class="pedidos__card-nombre"><?= $resultado['nombre'] ?></p>
-                                                <span class="pedidos__card-descripcion carrito__categoria-producto"> <?= $resultado['descripcion'] ?> </span>
+                                                <span class="pedidos__card-descripcion"> <?= $resultado['descripcion'] ?> </span>
                                                 <p class="pedidos__card-precio mb-3">$ <?= $resultado['precio'] ?></p>
                                                 
                                                 <input type="hidden" name="id" id="id" value="<?= $resultado['id_producto'] ?>"/>

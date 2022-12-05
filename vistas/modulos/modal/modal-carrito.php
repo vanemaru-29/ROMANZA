@@ -22,7 +22,7 @@
                                 if ($mi_carrito[$i]!=NULL) {
                         ?>
                             <tr>
-                                <td>Cantidad <?= $mi_carrito[$i]['cantidad'] ?>: <?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span> <span class="modal__carrito-usd">$ <?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?></span></td>
+                                <td><?= $mi_carrito[$i]['nombre'] ?> <span class="carrito__categoria-producto"><?= $mi_carrito[$i]['categoria'] ?></span> <span class="modal__carrito-usd">$ <?= number_format(($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']), 2) ?></span></td>
                             </tr>
                         <?php
                             $total = $total + ($mi_carrito[$i]['precio'] * $mi_carrito[$i]['cantidad']);

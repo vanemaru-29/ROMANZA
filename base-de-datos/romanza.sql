@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2022 a las 04:29:44
+-- Tiempo de generación: 05-12-2022 a las 19:02:55
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -179,16 +179,8 @@ CREATE TABLE `orden` (
 --
 
 INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_registro`) VALUES
-('08u', '7.00', 14, 'pendiente', '2022-11-29'),
-('4dfg7', '11.50', 6, 'pendiente', '2022-11-29'),
-('7kyc', '22.50', 3, 'enviado', '2022-11-29'),
-('eooizz', '9.75', 5, 'pendiente', '2022-11-29'),
-('jdqk', '15.50', 1, 'pendiente', '2022-11-29'),
-('kn70h', '8.30', 4, 'pendiente', '2022-11-29'),
-('ocd1li', '10.00', 3, 'pendiente', '2022-11-29'),
-('pnz0fl', '27.00', 9, 'enviado', '2022-11-29'),
-('tf1i6', '0.80', 8, 'pendiente', '2022-11-29'),
-('wkm7o', '5.15', 7, 'enviado', '2022-11-29');
+('9ldwd', '16.00', 4, 'enviado', '2022-12-05'),
+('nn3p', '12.60', 5, 'enviado', '2022-12-05');
 
 -- --------------------------------------------------------
 
@@ -211,11 +203,8 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`id_pago`, `id_direccion`, `id_orden`, `id_metodo_pago`, `referencia_p`, `estatus`, `fecha_registro`) VALUES
-(1, 6, 'pnz0fl', 1, '1457893', 'Pendiente', '2022-11-29'),
-(3, 1, '7kyc', 1, '123456987', 'Pendiente', '2022-11-29'),
-(4, 10, 'eooizz', 1, '12345678', 'Pendiente', '2022-11-29'),
-(81, 11, 'wkm7o', 3, '', 'Pendiente', '2022-11-29'),
-(82, 12, 'tf1i6', 1, '12345678', 'Pendiente', '2022-11-29');
+(1, 4, '9ldwd', 3, '', 'enviado', '2022-12-05'),
+(2, 10, 'nn3p', 3, '', 'enviado', '2022-12-05');
 
 -- --------------------------------------------------------
 
@@ -237,31 +226,9 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`, `fecha_registro`) VALUES
-(1, 'pnz0fl', 5, '6.00', 2, '2022-11-29'),
-(2, 'pnz0fl', 9, '21.00', 4, '2022-11-29'),
-(3, '7kyc', 1, '2.50', 5, '2022-11-29'),
-(4, '7kyc', 10, '20.00', 5, '2022-11-29'),
-(5, 'kn70h', 19, '2.00', 1, '2022-11-29'),
-(6, 'kn70h', 18, '3.30', 1, '2022-11-29'),
-(7, 'kn70h', 5, '3.00', 1, '2022-11-29'),
-(8, '4dfg7', 1, '1.00', 2, '2022-11-29'),
-(9, '4dfg7', 9, '10.50', 2, '2022-11-29'),
-(10, 'jdqk', 19, '4.00', 2, '2022-11-29'),
-(11, 'jdqk', 21, '7.60', 2, '2022-11-29'),
-(12, 'jdqk', 15, '3.90', 6, '2022-11-29'),
-(13, 'ocd1li', 16, '10.00', 4, '2022-11-29'),
-(14, 'vef', 9, '5.25', 1, '2022-11-29'),
-(15, 'vef', 11, '4.00', 1, '2022-11-29'),
-(16, 'cxwjxt', 17, '4.00', 1, '2022-11-29'),
-(17, 'cxwjxt', 9, '5.25', 1, '2022-11-29'),
-(18, '08u', 10, '4.00', 1, '2022-11-29'),
-(19, '08u', 5, '3.00', 1, '2022-11-29'),
-(20, 'eooizz', 1, '0.50', 1, '2022-11-29'),
-(21, 'eooizz', 9, '5.25', 1, '2022-11-29'),
-(22, 'eooizz', 17, '4.00', 1, '2022-11-29'),
-(23, 'wkm7o', 13, '4.50', 1, '2022-11-29'),
-(24, 'wkm7o', 15, '0.65', 1, '2022-11-29'),
-(25, 'tf1i6', 4, '0.80', 1, '2022-11-29');
+(1, '9ldwd', 10, '16.00', 4, '2022-12-05'),
+(2, 'nn3p', 15, '2.60', 4, '2022-12-05'),
+(3, 'nn3p', 20, '10.00', 2, '2022-12-05');
 
 -- --------------------------------------------------------
 
@@ -337,6 +304,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(45) NOT NULL,
   `nombre_usuario` varchar(45) NOT NULL,
   `telefono` text NOT NULL,
+  `correo` varchar(45) NOT NULL,
   `clave` varchar(45) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `fecha_registro` date NOT NULL
@@ -346,22 +314,24 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `clave`, `id_rol`, `fecha_registro`) VALUES
-(1, 'Administrador', 'Admin123', '02518836170', '2195240f6112a2340feb9d6dbbb773b4', 1, '2022-11-22'),
-(2, 'Encargado', 'DeliveryE', '02518836170', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
-(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', '4fbdbea696045fb0af973a8c8198325f', 3, '2022-11-23'),
-(4, 'Joseph Velis', 'JosephMVB', '04245244469', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
-(5, 'Camila Medina', 'CamiValen', '04145789383', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
-(6, 'Pablo Riera', 'FloralShop', '04245663456', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
-(7, 'Rosali Barboza', 'RosyAnarel', '04125356484', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23'),
-(8, 'Jonathan Barboza', 'Jothanak', '04145445583', '32467c2e0d2d69d1b9ba3d4c41a3b548', 3, '2022-11-25'),
-(9, 'Fabiana Martinez', 'fabimar27', '04143515753', '9038a2676229e68ec24104df0695ae8b', 3, '2022-11-27'),
-(10, 'Luis Martinez', 'luisfabi', '04263594503', '222add3ebd4d5504cd67d2b4b8f99b68', 3, '2022-11-28'),
-(11, 'David Medina', 'DameBar19', '04261094858', 'fa536bb8635829db7448483b6f651d3f', 3, '2022-11-29'),
-(12, 'Milagro Gimenez', 'Milagito3', '04145445583', '9f91a5f00b3d1771c3a137b5552702de', 3, '2022-11-29'),
-(13, 'Luis Medina', 'LMaster22', '12345678910', '0215c6887ea4821fe1a776193409b2d4', 3, '2022-11-29'),
-(14, 'Darwin Rodriguez', 'DarwinRRR', '04145789383', '1128d2e9cd4456efa575a57c1b4b6783', 3, '2022-11-29'),
-(15, 'Jose Torrez', 'JosTorzz', '58694213100', '79fc5bd4d73738790998807bf249fe4e', 3, '2022-11-29');
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `correo`, `clave`, `id_rol`, `fecha_registro`) VALUES
+(1, 'Administrador', 'Admin123', '02518836170', 'admin123@gmail.com', '2195240f6112a2340feb9d6dbbb773b4', 1, '2022-11-22'),
+(2, 'Encargado', 'DeliveryE', '02518836170', 'delivery.e@gmail.com', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
+(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', 'vanemaru29@gmail.com', '03f00e8e9d0d0847bb10a3a22334274a', 3, '2022-11-23'),
+(4, 'Joseph Velis', 'JosephMVB', '04245244469', 'j.miguel@gmail.com', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
+(5, 'Camila Medina', 'CamiValen', '04145789383', 'valen03@gmail.com', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
+(6, 'Pablo Riera', 'FloralShop', '04245663456', 'floral22@gmail.com', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
+(7, 'Rosali Barboza', 'RosyAnarel', '04125356484', 'rosybb@gmail.com', '61917152b00a886a8c79089a2714cc26', 3, '2022-11-23'),
+(8, 'Jonathan Barboza', 'Jothanak', '04145445583', 'jothanak@gmail.com', '32467c2e0d2d69d1b9ba3d4c41a3b548', 3, '2022-11-25'),
+(9, 'Fabiana Martinez', 'fabimar27', '04143515753', 'fabita27@gmail.com', '9038a2676229e68ec24104df0695ae8b', 3, '2022-11-27'),
+(10, 'Luis Martinez', 'luisfabi', '04263594503', 'lu.fab@gmail.com', '222add3ebd4d5504cd67d2b4b8f99b68', 3, '2022-11-28'),
+(11, 'David Medina', 'DameBar19', '04261094858', 'damebar19@gmail.com', 'fa536bb8635829db7448483b6f651d3f', 3, '2022-11-29'),
+(12, 'Milagro Gimenez', 'Milagito3', '04145445583', 'milagito3@gmail.com', '9f91a5f00b3d1771c3a137b5552702de', 3, '2022-11-29'),
+(13, 'Luis Medina', 'LMaster22', '12345678910', 'lmaster@gmail.com', '0215c6887ea4821fe1a776193409b2d4', 3, '2022-11-29'),
+(14, 'Darwin Rodriguez', 'DarwinRRR', '04145789383', 'darwinrrr@gmail.com', '1128d2e9cd4456efa575a57c1b4b6783', 3, '2022-11-29'),
+(15, 'Jose Torrez', 'JosTorzz', '58694213100', 'jos.torzz@gmail.com', '79fc5bd4d73738790998807bf249fe4e', 3, '2022-11-29'),
+(16, 'Miguel Hernandez', 'ElMiguelon3000', '04143519158', 'miguelh@gmail.com', '84a4b64469dee11068e52dab7bd75ae8', 3, '2022-12-01'),
+(17, 'Maria Vanessa', 'MaryAr2022', '04143509571', 'vanem.art2908@gmail.com', 'fd01831d68636dcc98d897b9d7b7ef64', 3, '2022-12-02');
 
 --
 -- Índices para tablas volcadas
@@ -493,13 +463,13 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -517,7 +487,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas

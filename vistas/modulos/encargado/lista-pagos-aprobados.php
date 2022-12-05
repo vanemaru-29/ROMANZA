@@ -12,65 +12,37 @@
 
     <div class="mi-cuenta__menu mb-5">
         <a href="index.php?romanza=lista-pagos-pendientes" class="mi-cuenta-enlace"> Ordenes pendientes</a>
-        <a href="#" class="mi-cuenta-enlace"> Ordenes aprobadas</a>
+        <a href="#" class="mi-cuenta-enlace"> Ordenes aprobadas </a>
     </div>
 
     <!-- pedidos -->
     <section class="container mi-cuenta">
-        <h2 class="fw-bold text-center pb-5">Ordenes Aprobadas</h2>
-        <?php
-
-
-            // cambiar estatus del producto
-            if (!empty($_GET['estatus'])) {
-                $pago = new Ordenes();
-                $p = $pago->obtenerO($_GET['estatus']);
-
-                while ($pDatos = $p->fetch_object()) {
-                    $estatus = new Ordenes();
-                    $estatus->estatusOrden($_GET['estatus'], $pDatos->estatus);
-                }
-            }
-        ?>
+        <h2 class="fw-bold text-center pb-5"> Ordenes Aprobadas </h2>
 
         <article>
             <table class="table table-hover" id="table_data">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Metodo de pago</th>
-                        <th scope="col">Referencia del pago</th>
                         <th scope="col">Cliente</th>
-                        <th scope="col">Total de pago</th>
+                        <th scope="col">Pago</th>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Direccion</th>
                         <th scope="col">Estatus</th>
-                        <th scope="col" class="text-center">Fecha de registro</th>
-             
-                        
+                        <!-- <th scope="col" class="text-center">Fecha</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                        while ($resultado = mysqli_fetch_array($datos)) {
-                            ?>
-                                <tr>
-                                    <td scope="col"><?= $resultado['id_pago'] ?></td>
-                                    <td scope="col"><?= $resultado['direccion']?></td>
-                                    <td scope="col"><?= $resultado['descripcion']?></td>
-                                    <td scope="col"><?= $resultado['referencia_p']?></td>
-                                    <td scope="col"><?= $resultado['nombre'] ?></td>
-
-                                  
-                                    <td scope="col"><?= $resultado['total'] ?></td>
-
-                                    <td class="text-center"> <a href="index.php?romanza=lista-pagos&&estatus=<?= $resultado['id_orden'] ?>" class="btn" id="estatus-<?= $resultado['estatus_p'] ?>"><?= $resultado['estatus_p'] ?></a> </td>
-                            
-                                    <td scope="col"><?= $resultado['fecha_registro'] ?></td>
-                             
-                                </tr>
-                            <?php
-                        }
-                    ?>
+                    <?php while ($resultado = mysqli_fetch_array($datos)) { ?>
+                        <tr>
+                            <td scope="col"><?= $resultado['id_pago'] ?></td>
+                            <td scope="col"><?= $resultado['nombre'] ?></td>
+                            <td scope="col"><?= $resultado['descripcion']?></td>
+                            <td scope="col"><?= $resultado['referencia_p']?></td>
+                            <td scope="col"><?= $resultado['direccion']?></td>
+                            <td class="text-center"> <span class="btn btn-success"><?= $resultado['estatus_p'] ?></span> </td>                             
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </article>
@@ -78,4 +50,3 @@
 </section>
 
 <script src="vistas/../js/dataTables.js"></script>
-<script src="vistas/../publico/js/estatuspago.js"></script>

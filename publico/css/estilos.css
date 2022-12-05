@@ -626,9 +626,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .pedidos__card-descripcion {
+    font-size: 15px;
     display: block;
     margin-top: 5px;
     margin-bottom: 5px;
+    color: var(--gris-medio);
 }
 
 .pedidos__card-precio {
@@ -777,9 +779,17 @@ body::-webkit-scrollbar-thumb {
 /* -- mis ordenes -- */
 .detalles__orden {
     width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
     display: flex;
     justify-content: space-between;
+    transition: all .5s ease;
 }
+
+.detalles__orden:hover {
+    background-color: var(--gris-claro);
+    transition: all .5s ease;
+} 
 
 /* navegación */
 .mi-cuenta__menu {
