@@ -146,7 +146,7 @@
                         <input type="password" class="form-control" placeholder="Contraseña actual" name="clave" id="clave">
                         <i class="formulario__validacion-estado fa-solid fa-xmark"></i>
                     </div>
-                    <p class="formulario__input-error m-2">Este campo debe contener de 6 a 12 caracteres.</p>
+                    <p class="formulario__input-error m-2">Este campo debe contener de 4 a 12 caracteres.</p>
                 </div>
 
                 <!-- Grupo: Nueva Contraseña -->

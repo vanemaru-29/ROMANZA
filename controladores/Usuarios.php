@@ -136,12 +136,12 @@ class Usuarios extends Conexion {
                         $mail->isSMTP();
                         $mail->Host       = 'smtp.gmail.com';
                         $mail->SMTPAuth   = true;
-                        $mail->Username   = 'mari.v2908@gmail.com';
-                        $mail->Password   = 'fqhmidbwurtazxhu';
+                        $mail->Username   = 'romanza.restaurante2022@gmail.com';
+                        $mail->Password   = 'ltonjmzafblioobi';
                         $mail->Port       = 587;
 
                         // información para el envío de correos
-                        $mail->setFrom('mari.v2908@gmail.com', 'Romanza Restaurante');
+                        $mail->setFrom('romanza.restaurante2022@gmail.com', 'Romanza Restaurante');
                         $mail->addAddress($destino, $datos_usuario['nombre_usuario']);
 
                         //Content

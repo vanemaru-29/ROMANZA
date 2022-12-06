@@ -11,7 +11,8 @@ const expresiones = {
     nombre_usuario: /^[a-zA-Z0-9\_\-]{8,40}$/, // Letras, numeros, guion y guion_bajo
 	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // formato correo.
 	telefono: /^\d{11,11}$/, // 11 numeros.
-	clave: /^.{6,12}$/ // 6 a 12 digitos.
+	clave1: /^.{4,12}$/, // 6 a 12 digitos.
+	clave2: /^.{6,12}$/ // 6 a 12 digitos.
 }
 
 // inicializando campos
@@ -94,11 +95,11 @@ formularioInfo.addEventListener('submit', (e) => {
 const validarFormulario2 = (e) => {
     switch (e.target.name) {
         case "clave":
-            validarCampos1(expresiones.clave, e.target);
+            validarCampos1(expresiones.clave1, e.target);
             break;
         
         case "clave2":
-            validarCampos1(expresiones.clave, e.target);
+            validarCampos1(expresiones.clave2, e.target);
             validarClave();
             break;
 
@@ -144,7 +145,7 @@ inputsClave.forEach((input) => {
 formularioClave.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.clave || campos.clave2 || campos.clave3) {
+    if (campos.clave && campos.clave2 && campos.clave3) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });
