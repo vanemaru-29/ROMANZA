@@ -10,6 +10,7 @@
             $this->conexion = $this->conexion->conectar();
         }
 
+        // obtener orden
         public function obtenerO($ID) {
             $sql = mysqli_query($this->conexion, "SELECT * FROM orden WHERE id_orden = '$ID'");
             return $sql;
@@ -23,30 +24,14 @@
 
         // cambiar estatus
         public function estatusOrden ($ID, $estatus) {
-            if ($estatus == "pendiente") {                
-                $sql = "UPDATE orden SET estatus='aprobado' WHERE id_orden = '$ID'";
-                $cambiar = $this->conexion->prepare($sql);
-                $ejecutar = $cambiar->execute();
-
-                if (isset($ejecutar)) {
-                    $respuesta = new Redirecciones();
-                    $respuesta->listaP();
-                    include $respuesta;
-
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }  else if ($estatus == "aprobado") {
-                $estatus = "enviado";
-                
+            if ($estatus == "aprobado") {                
                 $sql = "UPDATE orden SET estatus='enviado' WHERE id_orden = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();
 
                 if (isset($ejecutar)) {
                     $respuesta = new Redirecciones();
-                    $respuesta->listaP();
+                    $respuesta->misOrdenes();
                     include $respuesta;
 
                     return 1;

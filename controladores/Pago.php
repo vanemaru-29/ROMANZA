@@ -162,13 +162,13 @@
 
                     return 0;
                 }
-            } else if ($estatus == "aprobado") {                
-                $sql = "UPDATE pago SET estatus='enviado' WHERE id_pago = '$ID'";
+            } else {                
+                $sql = "UPDATE pago SET estatus='pendiente' WHERE id_pago = '$ID'";
                 $cambiar = $this->conexion->prepare($sql);
                 $ejecutar = $cambiar->execute();
 
                 if (isset($ejecutar)) {
-                    $sql_orden = "UPDATE orden SET estatus='enviado' WHERE id_orden = '$codigo'";
+                    $sql_orden = "UPDATE orden SET estatus='pendiente' WHERE id_orden = '$codigo'";
                     $cambiar_orden = $this->conexion->prepare($sql_orden);
                     $ejecutar_orden = $cambiar_orden->execute();
 

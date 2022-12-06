@@ -26,6 +26,19 @@
     <section class="container mi-cuenta">
         <h2 class="fw-bold text-center pb-5">Pedidos Recientes</h2>
 
+        <?php
+            // cambiar estatus de la orden
+            if (!empty($_GET['estatus'])) {
+                $orden = new Ordenes();
+                $datos_orden = $orden->obtenerO($_GET['estatus']);
+
+                while ($info_orden = $datos_orden->fetch_object()) {
+                    $estatus = new Ordenes();
+                    $estatus->estatusOrden($_GET['estatus'], $info_orden->estatus,);
+                }
+            }
+        ?>
+
         <article>
             <table class="table table-hover">
                 <thead>
@@ -49,9 +62,15 @@
 
                             <td>$ <?= $datos_od['total'] ?></td>
 
-                            <td class="text-center">
-                                <span class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></span>
-                            </td>
+                            <?php if ($datos_od['estatus'] == "aprobado") { ?>
+                                <td class="text-center">
+                                    <a href="index.php?romanza=mis-ordenes&&estatus=<?= $datos_od['id_orden'] ?>" class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></a>
+                                </td>
+                            <?php } else { ?>
+                                <td class="text-center">
+                                    <span class="btn" id="estatus-<?= $datos_od['estatus'] ?>"><?= $datos_od['estatus'] ?></span>
+                                </td>
+                            <?php } ?>
 
                             <td><?= $fecha->fechaFormato($datos_od['fecha_registro']) ?></td>
 

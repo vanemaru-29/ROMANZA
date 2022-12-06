@@ -23,7 +23,7 @@
         <h2 class="fw-bold text-center pb-5">Ordenes Pendientes</h2>
 
         <?php
-            // cambiar estatus del producto
+            // cambiar estatus del pago y la orden
             if (!empty($_GET['estatus'])) {
                 $pago = new Pago();
                 $pg = $pago->obtenerP($_GET['estatus']);
