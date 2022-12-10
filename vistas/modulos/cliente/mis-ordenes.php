@@ -83,6 +83,12 @@
                                                     Detalles
                                                 </button>
                                             </td>
+                                        <?php } else if ($info_pago['estatus'] == 'pendiente') { ?>
+                                            <td>
+                                                <span type="button" class="btn btn-danger">
+                                                    Falta Factura
+                                                </span>
+                                            </td>
                                         <?php } else if ($info_pago['estatus'] == 'enviado') { ?>
                                             <td>
                                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
