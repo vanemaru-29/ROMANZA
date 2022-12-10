@@ -901,26 +901,33 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* -- responsive -- */
-@media only screen and (min-width: 393px) {
+@media only screen and (min-width: 280px) {
     /* -- menu -- */
-    .menu__btn-cont {
-        margin-bottom: 80px;
-    }
-
     .menu__btn-caja {
-        width: 90%;
+        width: 80%;
+        height: 100px;
     }
-
     .menu__titulo {
-        font-size: 35px;
-    }
-    
+        position: relative;
+        top: -20px;
+        font-size: 25px;
+    }    
     .titulo__left {
-        margin: 55px 0 0 10px;
-    }
-    
+        margin: 55px 0 0 25px;
+    }    
     .titulo__right {
-        margin: 55px 10px 0 0;
+        margin: 55px 25px 0 0;
+    }
+    .menu__btn-img {
+        position: relative;
+        top: -20px;
+        width: 106px;
+    }
+    .img__right {
+        right: -10px;
+    }
+    .img__left {
+        left: -10px;
     }
 
     /* -- carrito -- */
@@ -929,26 +936,26 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 540px) {
     /* -- menu -- */
     .menu__btn-cont {
-        margin-bottom: 80px;
+        margin-bottom: 20px; /* arreglar */
     }
-
     .menu__btn-caja {
-        width: 60%;
+        width: 65%;
+        height: 120px;
     }
-
     .menu__titulo {
-        font-size: 50px;
+        font-size: 40px;
     }
-
     .titulo__left {
-        margin: 50px 0 0 20px;
-    }
-    
+        margin: 50px 0 0 60px;
+    }    
     .titulo__right {
-        margin: 50px 20px 0 0;
+        margin: 50px 60px 0 0;
+    }
+    .menu__btn-img {
+        width: 140px;
     }
 
     /* -- carrito -- */
@@ -957,25 +964,31 @@ body::-webkit-scrollbar-thumb {
     }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1024px) {
     /* -- menu -- */
     .menu__btn-cont {
-        margin-bottom: 0;
+        margin-bottom: 40px;
     }
-
     .menu__btn-caja {
-        width: 45%;
+        width: 60%;
     }
-
     .menu__titulo {
-        font-size: 60px;
+        font-size: 50px;
+    }
+    .titulo__left {
+        margin: 55px 0 0 60px;
+    }    
+    .titulo__right {
+        margin: 55px 60px 0 0;
+    }
+    .menu__btn-img {
+        width: 180px;
+    }
+    .img__right {
+        right: -10px;
+    }
+    .img__left {
+        left: -10px;
     }
 
-    .titulo__left {
-        margin: 50px 0 0 20px;
-    }
-    
-    .titulo__right {
-        margin: 50px 20px 0 0;
-    }
 }
