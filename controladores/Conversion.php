@@ -19,6 +19,11 @@
             return $sql;
         }
 
+        public function fechaBs () {
+            $sql = mysqli_query($this->conexion, "SELECT fecha_registro FROM conversion WHERE id_conversion = 1");
+            return $sql;
+        }
+
         // registrar equivalencia
         public function registroConversion($bolivares) {
             $this->bolivares = $bolivares;
@@ -28,7 +33,7 @@
             $this->registro = $fechaActual;
 
             $fechaEdc = new Conversion();
-            $fecha_edicion = $fechaEdc->equivalenciaBs();
+            $fecha_edicion = $fechaEdc->fechaBs();
 
             while ($resultado = mysqli_fetch_array($fecha_edicion)) {
                 if ($resultado['fecha_registro'] != $fechaActual) {
