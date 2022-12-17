@@ -142,9 +142,6 @@
 
                                     $nuevoPago = new Pago();
                                     $nuevoPago->registroP($id_direccion, $id_orden, $id_metodo_pago, $referencia, $estatus);
-                                } else {
-                                    $camposVacios = new ErrFormularios();
-                                    $camposVacios -> camposVaciosAlerta();
                                 }
                             }else {
                                 $camposVacios = new ErrFormularios();

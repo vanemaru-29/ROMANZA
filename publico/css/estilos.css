@@ -423,7 +423,7 @@ body::-webkit-scrollbar-thumb {
 /* ir arriba */
 .inicio__top {
     position: fixed;
-    bottom: 5px;
+    bottom: -15px;
     right: 5px;
     width: 4rem;
     height: 4rem;

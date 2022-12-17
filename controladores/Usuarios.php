@@ -19,6 +19,9 @@ class Usuarios extends Conexion {
     private $rol_user;
     private $registro_user;
 
+    private $asunto;
+    private $mensaje;
+
     // constructor
     public function __construct() {
         $this->conexion = new Conexion();
@@ -335,94 +338,3 @@ class Usuarios extends Conexion {
 
     // eliminar cuenta ¿?
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// validar fecha de nacimiento
-// const date_birth = document.getElementById('date_birth');
-
-// const calculateAge = (date_birth) => {
-// 	const currentDate = new Date();
-// 	const currentYear = parseInt(currentDate.getFullYear());
-// 	const currentMonth = parseInt(currentDate.getMonth()) + 1;
-// 	const currentDay = parseInt(currentDate.getDate());
-
-// 	// yyyy-mm-dd
-// 	const yearBirth = parseInt(String(date_birth).substring(0,4));
-// 	const monthBirth = parseInt(String(date_birth).substring(5,7));
-// 	const dayBirth = parseInt(String(date_birth).substring(8,10));
-
-// 	let age = currentYear - yearBirth;
-
-// 	if (currentMonth < monthBirth) {
-// 		age--;
-// 	} else if (currentMonth === monthBirth) {
-// 		if (currentDay < dayBirth) {
-// 			age--;
-// 		}
-// 	}
-
-// 	return age;
-// }
-
-// validar fecha de ingreso al INSAI
-// const date_INSAI = document.getElementById('date_INSAI');
-
-// const calculateINSAI = (date_INSAI) => {
-// 	const yearINSAI = parseInt(String(date_INSAI).substring(0,4));
-
-//     return yearINSAI;
-// }
-
-// window.addEventListener('load', function () {
-//     date_birth.addEventListener('change', function () {
-//     	if (this.value) {
-//     		if (calculateAge(this.value) >= 18) {
-//     			document.querySelector('#group__date_birth .form-text').classList.remove('form-text-active');
-                    
-//     			fields.date_birth = true;
-//     		} else {
-//                 document.querySelector('#group__date_birth .form-text').classList.add('form-text-active');
-                    
-//     			fields.date_birth = false;
-//     		}
-//     	}
-//     });
-
-//     date_INSAI.addEventListener('change', function () {
-//         if (this.value) {
-//             if (calculateINSAI(this.value) >= 2009) {
-//                 document.querySelector('#group__date_INSAI .form-text').classList.remove('form-text-active');
-                
-//                 fields.date_INSAI = true;
-//             } else {
-//                 document.querySelector('#group__date_INSAI .form-text').classList.add('form-text-active');
-            
-//                 fields.date_INSAI = false;
-//             }
-//         }
-//     });
-// });

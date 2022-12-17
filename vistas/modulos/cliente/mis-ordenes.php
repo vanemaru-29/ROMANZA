@@ -77,39 +77,13 @@ if (isset($_SESSION['id_usuario'])) {
                             <?php
                             if ($detalles_pago->num_rows > 0) {
                                 while ($info_pago = mysqli_fetch_array($detalles_pago)) {
-                                    if ($info_pago['estatus'] == 'aprobado') { ?>
-                                      <td>
-                                            <form action="vistas/reportes/factura.php?orden=<?= $datos_od['id_orden'] ?>" method="POST"  target="_blank">
-
-                                                <button type="submit" name="exportar-factura" id="<?= $datos_od['id_usuario'] ?>" class="formulario__btn btn btn-warning"> Factura </button>
-                                            </form>
-                                            <!--     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                                    Detalles
-                                                </button> -->
-                                        </td>
-                                    <?php } else if ($info_pago['estatus'] == 'enviado' ) { ?>
+                                    if ($info_pago['estatus'] == 'pendiente' || $info_pago['estatus'] == 'aprobado' || $info_pago['estatus'] == 'enviado') { ?>
                                         <td>
                                             <form action="vistas/reportes/factura.php?orden=<?= $datos_od['id_orden'] ?>" method="POST"  target="_blank">
-
-                                                <button type="submit" name="exportar-factura" id="<?= $datos_od['id_usuario'] ?>" class="formulario__btn btn btn-success"> Factura </button>
+                                                <button type="submit" name="exportar-factura" id="<?= $datos_od['id_usuario'] ?>" class="formulario__btn btn btn-secondary"> Factura </button>
                                             </form>
-                                            <!--     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                                    Detalles
-                                                </button> -->
                                         </td>
-                                <?php } else if ($info_pago['estatus'] == 'pendiente' ) { ?>
-                                        <td>
-                                            <form action="vistas/reportes/factura.php?orden=<?= $datos_od['id_orden'] ?>" method="POST"  target="_blank">
-
-                                                <button type="submit" name="exportar-factura" id="<?= $datos_od['id_usuario'] ?>" class="formulario__btn btn btn-warning"> Factura </button>
-                                            </form>
-                                              <!--   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">
-                                                    Detalles
-                                                </button> -->
-                                        </td>
-                                <?php }
-                                }
-                                ?>
+                                <?php } } ?>
                             <?php } else { ?>
                                 <td>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ordenDetalles-<?= $datos_od['id_orden'] ?>">

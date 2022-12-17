@@ -43,5 +43,11 @@
             $sql = mysqli_query($this->conexion, "SELECT * FROM opinion");
             return $sql;
         }
+
+        // primeras opiniones
+        public function listaOpnLimit () {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM opinion LIMIT 4");
+            return $sql;
+        }
     }
 ?>

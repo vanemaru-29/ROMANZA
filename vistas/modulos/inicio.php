@@ -33,7 +33,7 @@
 <!-- quienes somos -->
 <section class="inicio__info py-5 px-4">
     <h2 class="text-center mb-5"> ¿Quiénes Somos? </h2>
-    <p class="text-center"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error similique neque autem minima magni possimus nulla dolor! Modi facere hic, libero itaque impedit assumenda nisi fugit tempora reiciendis fuga quam? </p>
+    <p class="text-center"> Somos un restaurante de comida italiana con especialidades en pizzas, massas, calzones, ensaladas y mucho más de las delicias que podrás degustar con nosotros. Ven y disfutar de nuestra experiencia ¡Te esperamos! </p>
 </section>
 
 <!-- opiniones -->
@@ -41,34 +41,26 @@
     <h2 class="text-center text-white mb-5">Opiniones de Clientes</h2>
 
     <article class="inicio__opiniones-cont">
-        <div class="inicio__opinion card border-light" style="max-width: 18rem;">
-            <div class="card-header">11/10/2022</div>
-            <div class="card-body">
-                <h5 class="card-title">Vanessa Barboza</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <div class="inicio__opinion card border-light" style="max-width: 18rem;">
-            <div class="card-header">08/10/2022</div>
-            <div class="card-body">
-                <h5 class="card-title">Fabi Martinez</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <div class="inicio__opinion card border-light" style="max-width: 18rem;">
-            <div class="card-header">05/10/2022</div>
-            <div class="card-body">
-                <h5 class="card-title">Luis Medina</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <div class="inicio__opinion card border-light" style="max-width: 18rem;">
-            <div class="card-header">10/10/2022</div>
-            <div class="card-body">
-                <h5 class="card-title">Joseph Velis</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
+        <?php
+            $opiniones = new Opiniones ();
+            $opn = $opiniones -> listaOpnLimit ();
+            while ($mostrar_opn = mysqli_fetch_array($opn)) {
+                $fecha = new Fechas ();
+                $cliente = new Usuarios ();
+                $cli = $cliente -> obtenerUser($mostrar_opn['id_usuario']);
+                ?>
+                <div class="inicio__opinion card border-light" style="max-width: 18rem;">
+                    <div class="card-header"><?= $fecha -> fechaFormato($mostrar_opn['fecha_registro']) ?></div>
+                    <div class="card-body">
+                        <?php while ($mostrar_cli = mysqli_fetch_array($cli)) { ?>
+                            <h5 class="card-title"><?= $mostrar_cli['nombre_usuario'] ?></h5>
+                        <?php } ?>
+                        <p class="card-text"><?= $mostrar_opn['opinion'] ?></p>
+                    </div>
+                </div>
+                <?php
+            }
+        ?>
     </article>
 </section>
 
