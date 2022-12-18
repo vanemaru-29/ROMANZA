@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2022 a las 19:02:55
+-- Tiempo de generación: 18-12-2022 a las 14:32:59
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -158,7 +158,8 @@ CREATE TABLE `opinion` (
 INSERT INTO `opinion` (`id_opinion`, `opinion`, `id_usuario`, `fecha_registro`) VALUES
 (1, 'Muy buen restaurante de comida italiana Hemos comido CANELONES súper ricos, y un plato que se llama BOLOGNA.', 3, '2022-11-23'),
 (3, 'Por 16 euros comimos canelones de vegetales y de carne y dos postres caseros enormes, el tiramisú estaba increíble. Si volvemos por aquí repetiremos sitio.', 5, '2022-11-23'),
-(4, 'Fue un servicio rápido y eficiente, la camarera que nos atendió exelente, es súper simpática.', 4, '2022-11-26');
+(4, 'Fue un servicio rápido y eficiente, la camarera que nos atendió exelente, es súper simpática.', 4, '2022-11-26'),
+(5, 'Acabamos de comer aquí de casualidad y la comida riquísima en abundancia y encima baratísimo.', 6, '2022-12-16');
 
 -- --------------------------------------------------------
 
@@ -180,6 +181,9 @@ CREATE TABLE `orden` (
 
 INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_registro`) VALUES
 ('9ldwd', '16.00', 4, 'enviado', '2022-12-05'),
+('aox2s', '2.60', 3, 'enviado', '2022-12-16'),
+('kler', '7.50', 3, 'pendiente', '2022-12-16'),
+('mbb', '10.50', 3, 'enviado', '2022-12-16'),
 ('nn3p', '12.60', 5, 'enviado', '2022-12-05');
 
 -- --------------------------------------------------------
@@ -204,7 +208,10 @@ CREATE TABLE `pago` (
 
 INSERT INTO `pago` (`id_pago`, `id_direccion`, `id_orden`, `id_metodo_pago`, `referencia_p`, `estatus`, `fecha_registro`) VALUES
 (1, 4, '9ldwd', 3, '', 'enviado', '2022-12-05'),
-(2, 10, 'nn3p', 3, '', 'enviado', '2022-12-05');
+(2, 10, 'nn3p', 3, '', 'enviado', '2022-12-05'),
+(3, 1, 'mbb', 3, '', 'enviado', '2022-12-16'),
+(4, 1, 'aox2s', 1, '6369875', 'aprobado', '2022-12-16'),
+(6, 1, 'kler', 1, '6765892', 'pendiente', '2022-12-16');
 
 -- --------------------------------------------------------
 
@@ -228,7 +235,11 @@ CREATE TABLE `pedido` (
 INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`, `fecha_registro`) VALUES
 (1, '9ldwd', 10, '16.00', 4, '2022-12-05'),
 (2, 'nn3p', 15, '2.60', 4, '2022-12-05'),
-(3, 'nn3p', 20, '10.00', 2, '2022-12-05');
+(3, 'nn3p', 20, '10.00', 2, '2022-12-05'),
+(4, 'mbb', 9, '10.50', 2, '2022-12-16'),
+(5, 'aox2s', 15, '2.60', 4, '2022-12-16'),
+(6, 'kler', 3, '2.50', 1, '2022-12-16'),
+(7, 'kler', 20, '5.00', 1, '2022-12-16');
 
 -- --------------------------------------------------------
 
@@ -317,7 +328,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `correo`, `clave`, `id_rol`, `fecha_registro`) VALUES
 (1, 'Administrador', 'Admin123', '02518836170', 'admin123@gmail.com', '2195240f6112a2340feb9d6dbbb773b4', 1, '2022-11-22'),
 (2, 'Encargado', 'DeliveryE', '02518836170', 'delivery.e@gmail.com', 'c12d143364a464b525b794b7876f4111', 2, '2022-11-22'),
-(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', 'vanemaru29@gmail.com', '03f00e8e9d0d0847bb10a3a22334274a', 3, '2022-11-23'),
+(3, 'Vanessa Barboza', 'Vanemaru29', '04121384558', 'vanemaru29@gmail.com', '4fbdbea696045fb0af973a8c8198325f', 3, '2022-11-23'),
 (4, 'Joseph Velis', 'JosephMVB', '04245244469', 'j.miguel@gmail.com', '05a517f8e60be259648abed77c0c65e5', 3, '2022-11-23'),
 (5, 'Camila Medina', 'CamiValen', '04145789383', 'valen03@gmail.com', '5fa1d5d52a34bb5d184cacfbaad68ff9', 3, '2022-11-23'),
 (6, 'Pablo Riera', 'FloralShop', '04245663456', 'floral22@gmail.com', '0ab9d77f602177b87619626847a92f9b', 3, '2022-11-23'),
@@ -457,19 +468,19 @@ ALTER TABLE `metodo_pago`
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
