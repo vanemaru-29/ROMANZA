@@ -50,7 +50,7 @@
 
                     <div class="my-3 text-center">
                         <p class="color-mensaje my-0">¿Aún no tienes una cuenta? <a href="vistas/../index.php?romanza=registro" class="enlace">Registrarme</a></p>
-                        <p class="color-mensaje my-0">¿Has olvidado tu contraseña? <a href="vistas/../index.php?romanza=recuperar-clave" class="enlace">Recuperar Contraseña</a></p>
+                        <p class="color-mensaje my-0">¿Has olvidado tu contraseña? <a href="vistas/../index.php?romanza=recuperar-clave" class="enlace">Recuperar Cuenta</a></p>
                     </div>
                 </div>
             </div>

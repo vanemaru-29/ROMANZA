@@ -67,7 +67,7 @@
             $this->nombre_cat = $nombre_cat;
             $this->descripcion_cat = $descripcion_cat;
 
-            $sql = "UPDATE categoria SET nombre='".$this->nombre_cat."', descripcion='".$this->descripcion_cat."', WHERE id_categoria = '".$this->ID_cat."'";
+            $sql = "UPDATE categoria SET nombre='".$this->nombre_cat."', descripcion='".$this->descripcion_cat."' WHERE id_categoria = '".$this->ID_cat."'";
             $editar = $this->conexion->prepare($sql);
             $insertarDatos = $editar->execute();
 

@@ -2,37 +2,37 @@ const formulario = document.getElementById('form-contacto');
 const inputs = document.querySelectorAll('#form-contacto input');
 
 const expresiones = {
-	nombre: /^[a-zA-ZÀ-ÿ\s]{8,40}$/, // Letras y espacios, pueden llevar acentos.
-    asunto: /^[a-zA-Z0-9À-ÿ\s\_\-\.\,]{8,40}$/, // Letras, numeros, guion y guion_bajo
-	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // formato correo.
-	mensaje: /^[a-zA-Z0-9À-ÿ\s\_\-\.\,]{10,400}$/ // 10 a 400 digitos.
+	Nombre: /^[a-zA-ZÀ-ÿ\s]{8,40}$/, // Letras y espacios, pueden llevar acentos.
+    Asunto: /^[a-zA-Z0-9À-ÿ\s\_\-\.\,]{8,40}$/, // Letras, numeros, guion y guion_bajo
+	Email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // formato correo.
+	Mensaje: /^[a-zA-Z0-9À-ÿ\s\_\-\.\,]{10,400}$/ // 10 a 400 digitos.
 }
 
 // inicializando campos
 const campos = {
-    nombre: false,
-    asunto: false,
-    email: false,
-    mensaje: false
+    Nombre: false,
+    Asunto: false,
+    Email: false,
+    Mensaje: false
 }
 
 // llamando expresión según name
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "nombre":
-            validarCampo(expresiones.nombre, e.target);
+        case "Nombre":
+            validarCampo(expresiones.Nombre, e.target);
             break;
         
-        case "asunto":
-            validarCampo(expresiones.asunto, e.target);
+        case "Asunto":
+            validarCampo(expresiones.Asunto, e.target);
             break;
         
-        case "email":
-            validarCampo(expresiones.email, e.target);
+        case "Email":
+            validarCampo(expresiones.Email, e.target);
             break;
 
-        case "mensaje":
-            validarCampo(expresiones.mensaje, e.target);
+        case "Mensaje":
+            validarCampo(expresiones.Mensaje, e.target);
             break;
     }
 }
@@ -70,7 +70,7 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     // e.preventDefault();
 
-    if (campos.nombre && campos.asunto && campos.email && campos.mensaje) {
+    if (campos.Nombre && campos.Asunto && campos.Email && campos.Mensaje) {
         document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
             icono.classList.remove('formulario__grupo-correcto');
         });

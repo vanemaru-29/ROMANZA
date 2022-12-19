@@ -1,4 +1,6 @@
 <?php
+    clearstatcache();
+
     $productos = new Productos();
     $datos = $productos->activosPdt();
 

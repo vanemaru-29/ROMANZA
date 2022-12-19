@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2022 a las 14:32:59
+-- Tiempo de generación: 19-12-2022 a las 19:45:38
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.0.13
 
@@ -80,7 +80,7 @@ CREATE TABLE `conversion` (
 --
 
 INSERT INTO `conversion` (`id_conversion`, `dolar`, `bs_equivalencia`, `fecha_registro`) VALUES
-(1, 1, '10.23', '2022-11-23');
+(1, 1, '15.76', '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -111,7 +111,9 @@ INSERT INTO `direccion` (`id_direccion`, `direccion`, `referencia`, `id_usuario`
 (9, 'Sector 04 las casitas. Zona norte - el cují.', 'Frente al negocio de hamburguesas', 14, '2022-11-29'),
 (10, 'Av #4 con calle #5, casa 8. Sector el cují, las casitas - zona norte', 'Frente al negocio de impresiones', 5, '2022-11-29'),
 (11, 'Sector 04 las casitas. Zona norte - el cují.', 'ninguna', 7, '2022-11-29'),
-(12, 'Av #4 con calle #5, casa 8. Sector el cují, las casitas - zona norte', 'Frente al negocio de impresiones', 8, '2022-11-29');
+(12, 'Av #4 con calle #5, casa 8. Sector el cují, las casitas - zona norte', 'Frente al negocio de impresiones', 8, '2022-11-29'),
+(14, 'Barquisimeto, Zona Norte, Urb. Yucatan, casa 15-10.', 'En la manzana frente a la iglesia.', 18, '2022-12-19'),
+(15, 'Av. 04, calle 05, casa 08. El cují, las casitas.', 'Frente al negocio de impresiones julio', 11, '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -134,9 +136,10 @@ CREATE TABLE `metodo_pago` (
 --
 
 INSERT INTO `metodo_pago` (`id_metodo_pago`, `nombre`, `telefono`, `cedula`, `descripcion`, `estatus`, `fecha_registro`) VALUES
-(1, 'Provincial', '04245278554', '10268539', 'Banco provincial', 'activo', '2022-11-28'),
+(1, 'Provincial', '04245278554', '10268539', 'Banco provincial', 'inactivo', '2022-11-28'),
 (2, 'Banco Banesco', '04143515753', '10268539', 'Banco Banesco', 'inactivo', '2022-11-28'),
-(3, 'Pago al delivery', '', '', 'Pago en efectivo', 'activo', '2022-11-29');
+(3, 'Pago al delivery', '', '', 'Pago en efectivo', 'activo', '2022-11-29'),
+(5, 'Banco Venezuela', '04121384558', '30019307', 'Pago movil', 'activo', '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,8 @@ INSERT INTO `opinion` (`id_opinion`, `opinion`, `id_usuario`, `fecha_registro`) 
 (1, 'Muy buen restaurante de comida italiana Hemos comido CANELONES súper ricos, y un plato que se llama BOLOGNA.', 3, '2022-11-23'),
 (3, 'Por 16 euros comimos canelones de vegetales y de carne y dos postres caseros enormes, el tiramisú estaba increíble. Si volvemos por aquí repetiremos sitio.', 5, '2022-11-23'),
 (4, 'Fue un servicio rápido y eficiente, la camarera que nos atendió exelente, es súper simpática.', 4, '2022-11-26'),
-(5, 'Acabamos de comer aquí de casualidad y la comida riquísima en abundancia y encima baratísimo.', 6, '2022-12-16');
+(5, 'Acabamos de comer aquí de casualidad y la comida riquísima en abundancia y encima baratísimo.', 6, '2022-12-16'),
+(6, 'Solo comimos ensalada y pizza, todo recién hecho, fresco, delicioso y abundante. Buen precio. Los camareros muy amables.', 18, '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -182,7 +186,9 @@ CREATE TABLE `orden` (
 INSERT INTO `orden` (`id_orden`, `total`, `id_usuario`, `estatus`, `fecha_registro`) VALUES
 ('9ldwd', '16.00', 4, 'enviado', '2022-12-05'),
 ('aox2s', '2.60', 3, 'enviado', '2022-12-16'),
-('kler', '7.50', 3, 'pendiente', '2022-12-16'),
+('gsxfe', '14.15', 18, 'enviado', '2022-12-19'),
+('kler', '7.50', 3, 'enviado', '2022-12-16'),
+('l', '4.00', 11, 'pendiente', '2022-12-19'),
 ('mbb', '10.50', 3, 'enviado', '2022-12-16'),
 ('nn3p', '12.60', 5, 'enviado', '2022-12-05');
 
@@ -210,8 +216,10 @@ INSERT INTO `pago` (`id_pago`, `id_direccion`, `id_orden`, `id_metodo_pago`, `re
 (1, 4, '9ldwd', 3, '', 'enviado', '2022-12-05'),
 (2, 10, 'nn3p', 3, '', 'enviado', '2022-12-05'),
 (3, 1, 'mbb', 3, '', 'enviado', '2022-12-16'),
-(4, 1, 'aox2s', 1, '6369875', 'aprobado', '2022-12-16'),
-(6, 1, 'kler', 1, '6765892', 'pendiente', '2022-12-16');
+(4, 1, 'aox2s', 1, '6369875', 'enviado', '2022-12-16'),
+(6, 1, 'kler', 1, '6765892', 'enviado', '2022-12-16'),
+(7, 14, 'gsxfe', 1, '', 'enviado', '2022-12-19'),
+(8, 15, 'l', 5, '1478528', 'enviado', '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -239,7 +247,11 @@ INSERT INTO `pedido` (`id_pedido`, `codigo`, `id_producto`, `total`, `cantidad`,
 (4, 'mbb', 9, '10.50', 2, '2022-12-16'),
 (5, 'aox2s', 15, '2.60', 4, '2022-12-16'),
 (6, 'kler', 3, '2.50', 1, '2022-12-16'),
-(7, 'kler', 20, '5.00', 1, '2022-12-16');
+(7, 'kler', 20, '5.00', 1, '2022-12-16'),
+(8, 'gsxfe', 9, '5.25', 1, '2022-12-19'),
+(9, 'gsxfe', 15, '1.30', 2, '2022-12-19'),
+(10, 'gsxfe', 21, '7.60', 2, '2022-12-19'),
+(11, 'l', 19, '4.00', 2, '2022-12-19');
 
 -- --------------------------------------------------------
 
@@ -264,17 +276,16 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `imagen`, `precio`, `estatus`, `id_categoria`, `fecha_registro`) VALUES
 (1, 'Jugo de Papaya', 'Jugo natural de papaya', '1.webp', '0.50', 'activo', 1, '2022-11-18'),
-(2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '1.85', 'activo', 4, '2022-11-17'),
-(3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '2.50', 'activo', 1, '2022-11-14'),
+(2, 'Batido de Fresa', 'Batido natural de fresa con leche', '2.webp', '1.85', 'activo', 1, '2022-11-17'),
+(3, 'Sorbete', 'Batido dulce y cremoso semi helado', '3.webp', '2.50', 'inactivo', 1, '2022-11-14'),
 (4, 'Té de Hierbas', 'Té natural de hierbas con miel', '4.webp', '0.80', 'activo', 1, '2022-11-14'),
 (5, 'Té de Burbujas', 'Té de frutas con leche y bolitas de tapioca', '5.webp', '3.00', 'activo', 1, '2022-11-14'),
-(7, 'Americano Campari', 'Cóctel clásico italiano', '7.webp', '3.80', 'activo', 1, '2022-11-14'),
 (8, 'Banana Split', 'Postre de helado y banana', '8.webp', '3.50', 'activo', 4, '2022-11-18'),
 (9, 'Pollo a la Parrilla', 'Pollo a la parrilla con salsa agridulce', '9.webp', '5.25', 'activo', 2, '2022-11-14'),
 (10, 'Sopa de Mariscos', 'Sopa de mariscos expecial italiana', '10.webp', '4.00', 'activo', 5, '2022-11-14'),
 (11, 'Tarta de Queso', 'Tarta de queso dulce con ceresas', '11.webp', '4.00', 'activo', 4, '2022-11-15'),
 (12, 'Pasta Italiana Básica', 'Pasta con vegetales variados', '12.webp', '4.50', 'activo', 6, '2022-11-16'),
-(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '4.50', 'activo', 5, '2022-11-16'),
+(13, 'Caldo de Pollo', 'Cado de pollo con pasta', '13.webp', '4.50', 'inactivo', 5, '2022-11-16'),
 (15, 'CocaCola', 'Refresco cocacola', '15.webp', '0.65', 'activo', 1, '2022-11-17'),
 (16, 'Ensalada de Frutas', 'Ensalada de frutas variadas', '16.webp', '2.50', 'activo', 7, '2022-11-19'),
 (17, 'Caldo de Res', 'Caldo de res con tallarines', '17.webp', '04.00', 'activo', 5, '2022-11-20'),
@@ -342,7 +353,8 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `nombre_usuario`, `telefono`, `co
 (14, 'Darwin Rodriguez', 'DarwinRRR', '04145789383', 'darwinrrr@gmail.com', '1128d2e9cd4456efa575a57c1b4b6783', 3, '2022-11-29'),
 (15, 'Jose Torrez', 'JosTorzz', '58694213100', 'jos.torzz@gmail.com', '79fc5bd4d73738790998807bf249fe4e', 3, '2022-11-29'),
 (16, 'Miguel Hernandez', 'ElMiguelon3000', '04143519158', 'miguelh@gmail.com', '84a4b64469dee11068e52dab7bd75ae8', 3, '2022-12-01'),
-(17, 'Maria Vanessa', 'MaryAr2022', '04143509571', 'vanem.art2908@gmail.com', 'fd01831d68636dcc98d897b9d7b7ef64', 3, '2022-12-02');
+(17, 'Maria Vanessa', 'MaryAr2022', '04143509571', 'vanem.art2908@gmail.com', 'fd01831d68636dcc98d897b9d7b7ef64', 3, '2022-12-02'),
+(18, 'Nadia Gimenez', 'NadiaJ00', '04145107608', 'nadia00@nadia.com', '2614ebc780845b426059375b8e8e6170', 3, '2022-12-19');
 
 --
 -- Índices para tablas volcadas
@@ -444,7 +456,7 @@ ALTER TABLE `carrito`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `conversion`
@@ -456,37 +468,37 @@ ALTER TABLE `conversion`
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
-  MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_metodo_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `opinion`
 --
 ALTER TABLE `opinion`
-  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_opinion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -498,7 +510,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restricciones para tablas volcadas

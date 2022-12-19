@@ -103,9 +103,11 @@
             $fpdf->Cell(25, 8, "Estatus:", 0, 0, 'L');
             $fpdf->Cell(50, 9, utf8_decode($info_pago['estatus_p']), 0, 1, 'L');
             
-            $fpdf->SetFont('Arial', '', 10);
-            $fpdf->Cell(50);
-            $fpdf->Cell(100, 10, 'GRACIAS POR SU COMPRA', 0, 0, 'C');
+            if (utf8_decode($info_pago['estatus_p']) == 'enviado') {
+                $fpdf->SetFont('Arial', '', 10);
+                $fpdf->Cell(50);
+                $fpdf->Cell(100, 10, 'GRACIAS POR SU COMPRA', 0, 0, 'C');
+            }
         }
     }
 

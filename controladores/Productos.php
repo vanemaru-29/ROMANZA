@@ -92,10 +92,10 @@
         }
         
         // todos los productos según categoria
-        // public function categoriaPdt ($cat) {
-        //     $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_categoria = '$cat'");
-        //     return $sql;
-        // }
+        public function categoriaPdt ($cat) {
+            $sql = mysqli_query($this->conexion, "SELECT * FROM producto WHERE id_categoria = '$cat'");
+            return $sql;
+        }
 
         // cambiar estatus
         public function estatusPdt ($ID, $estatus) {
